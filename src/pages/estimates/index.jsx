@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { PlusCircleIcon } from "@heroicons/react/24/solid";
-import { EstimateCard } from "@/ui/card";
+// import { EstimateCard } from "@/ui/card";
+import EstimateDisplay from "@/features/estimates/estimate-display";
 import { TextButton, IconButton } from "@/ui/button";
 
 export default function Estimates() {
@@ -115,9 +116,9 @@ export default function Estimates() {
           </div>
         </TextButton>
       </div>
-      <div className="flex flex-col md:flex-row">
+      <div className="flex flex-col md:flex-row mx-2">
         {estimates.map((estimate, i) => {
-          return <EstimateCard key={i} data={estimate} />;
+          return <EstimateDisplay key={i} data={estimate} />;
         })}
       </div>
     </div>
