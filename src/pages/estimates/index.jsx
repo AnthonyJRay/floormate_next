@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { PlusCircleIcon } from "@heroicons/react/24/solid";
-import { EstimateCard, InvoiceCard } from "@/ui/card";
-import { TextButton } from "@/ui/button";
+import { EstimateCard } from "@/ui/card";
+import { TextButton, IconButton } from "@/ui/button";
 
 export default function Estimates() {
-  const [estimateData, setEstimateData] = useState([
+  const [estimates, setEstimates] = useState([
     {
       estimateNO: "001",
       estimateDate: "03/22/22",
@@ -37,7 +37,7 @@ export default function Estimates() {
       estimateDate: "06/14/22",
       client: {
         firstName: "Dee",
-        lastName: "D",
+        lastName: "Thompson",
         address: "555 S Cherry Dr",
         phone: "123 777 5555",
         email: "deeD@example.com",
@@ -67,25 +67,58 @@ export default function Estimates() {
       tax: "5%",
       total: "630",
     },
+    {
+      estimateNO: "003",
+      estimateDate: "07/03/22",
+      client: {
+        firstName: "Anthony",
+        lastName: "Eriksen",
+        address: "789 S Blue Ln",
+        phone: "333 456 7890",
+        email: "anthony@example.com",
+      },
+      lineItems: [
+        {
+          name: "Install Hardwood Flooring",
+          description:
+            "Install new Hardwood flooring throughout main floor area.",
+          quantity: "1100",
+          rate: "4.00",
+          total: "4400",
+        },
+        {
+          name: "Remove Carpet",
+          description: "Remove and Dispose of existing Carpet and Padding",
+          quantity: "1100",
+          rate: "0.25",
+          total: "275",
+        },
+      ],
+      summary:
+        "Remove existing carpet and padding. Prep subfloor for hard surface installation. Install underlayment. Install hardwood.",
+      notes: 'Job will need 1 case of 2" cleat nails.',
+      invoiced: true,
+      subtotal: "4675",
+      tax: "5%",
+      total: "4908.75",
+    },
   ]);
 
   return (
     <div className="text-center">
       <h1>Estimates</h1>
-      <p>This is the Estimates page.</p>
-      <div className="w-full text-center">
+      <div className="my-4">
         <TextButton className="bg-green-500 hover:bg-green-400">
           <div className="flex items-center gap-1">
-            <PlusCircleIcon className="w-5 text-white" />
+            <PlusCircleIcon className="text-white w-5" />
             <div>Add Estimate</div>
           </div>
         </TextButton>
       </div>
-      <div>
-        <EstimateCard className="w-24 h-24 border-1 bg-blue-500">
-          This is an Estimate Card component
-        </EstimateCard>
-        <InvoiceCard>This is an Invoice Card component</InvoiceCard>
+      <div className="flex flex-col md:flex-row">
+        {estimates.map((estimate, i) => {
+          return <EstimateCard key={i} data={estimate} />;
+        })}
       </div>
     </div>
   );
