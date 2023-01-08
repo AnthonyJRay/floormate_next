@@ -1,3 +1,10 @@
+import EstimateForm from "@/features/estimates/estimate-form";
+
 export default function NewEstimate() {
-  return <h1>New Estimate</h1>;
+  return (
+    <div className="w-full text-center">
+      <h1>New Estimate</h1>
+      <EstimateForm />
+    </div>
+  );
 }
