@@ -1,8 +1,36 @@
 import { useState } from "react";
 import { PlusCircleIcon } from "@heroicons/react/24/solid";
-// import { EstimateCard } from "@/ui/card";
 import EstimateDisplay from "@/features/estimates/estimate-display";
 import { TextButton, IconButton } from "@/ui/button";
+import Link from "next/Link";
+
+const currentDate = new Date().toLocaleDateString();
+
+const defaultValues = {
+  estimateNO: "004",
+  estimateDate: currentDate,
+  client: {
+    firstName: "",
+    lastName: "",
+    address: "",
+    phone: "",
+    email: "",
+  },
+  lineItems: [
+    {
+      name: "",
+      description: "",
+      quantity: "",
+      rate: "",
+      total: "",
+    },
+  ],
+  summary: "",
+  invoiced: false,
+  subtotal: "",
+  tax: "",
+  total: "",
+};
 
 export default function Estimates() {
   const [estimates, setEstimates] = useState([
@@ -109,11 +137,13 @@ export default function Estimates() {
     <div className="text-center">
       <h1>Estimates</h1>
       <div className="my-4">
-        <TextButton className="bg-green-500 hover:bg-green-400">
-          <div className="flex items-center gap-1">
-            <PlusCircleIcon className="text-white w-5" />
-            <div>Add Estimate</div>
-          </div>
+        <TextButton className="bg-green-600 hover:bg-green-500">
+          <Link href="/estimates/new-estimate">
+            <div className="flex items-center gap-1">
+              <PlusCircleIcon className="text-white w-5" />
+              <div>Add Estimate</div>
+            </div>
+          </Link>
         </TextButton>
       </div>
       <div className="flex flex-col md:flex-row mx-2">

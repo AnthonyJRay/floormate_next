@@ -1,11 +1,12 @@
-import EstimateCard from "@/ui/card";
+import Card from "@/ui/card";
 import { TrashIcon } from "@heroicons/react/24/outline";
 import { IconButton, TextButton } from "@/ui/button";
 
-export default function EstimateDisplay({ data }) {
+export default function EstimateDisplay({ data, className }) {
+  const defaultClassName = "flex flex-col grow basis-0 gap-1 m-1 bg-gray-800";
   const { estimateNO, estimateDate, client, summary, total, invoiced } = data;
   return (
-    <EstimateCard>
+    <Card className={`${defaultClassName} ${className}`}>
       <div className="flex justify-between m-2">
         <div>#{estimateNO}</div>
         <div>{estimateDate}</div>
@@ -26,6 +27,6 @@ export default function EstimateDisplay({ data }) {
           <TrashIcon />
         </IconButton>
       </div>
-    </EstimateCard>
+    </Card>
   );
 }
