@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 
 export default function withLabel(Component) {
-  const defaultClassNames = "text-blue-100";
+  const defaultClassNames = "text-left p-1";
   return function WrappedComponent({ children }) {
     const [clicked, setClicked] = useState(false);
     return (

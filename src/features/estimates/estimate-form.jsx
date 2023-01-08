@@ -23,7 +23,8 @@ export default function EstimateForm() {
   return (
     <form>
       <div>
-        <div className="flex justify-center text-center">
+        <div className="text-left text-2xl">Client Info</div>
+        <div className="flex flex-col justify-center text-center">
           <FirstNameField
             placeholder={"First Name"}
             value={firstName}
@@ -34,7 +35,7 @@ export default function EstimateForm() {
               }))
             }
           >
-            <span className="p-1">First Name</span>
+            <span>First Name</span>
           </FirstNameField>
           <LastNameField
             placeholder={"Last Name"}

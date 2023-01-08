@@ -10,10 +10,11 @@ export default function TextField({
   className,
   value,
   onChange = () => {},
+  placeholder,
   ...rest
 }) {
   const defaultClassNames =
-    "border text-gray-700 rounded-sm p2 w-full shadow-sm";
+    "border w-1/2 text-gray-700 rounded-sm p-1 shadow-sm";
   const ref = useRef();
   useEffect(() => {
     if (!focused) return;
@@ -24,6 +25,7 @@ export default function TextField({
       <input
         ref={ref}
         type={type}
+        placeholder={placeholder}
         className={`${defaultClassNames} ${className}`}
         value={value}
         onChange={onChange}
