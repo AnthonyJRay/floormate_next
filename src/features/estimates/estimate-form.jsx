@@ -5,7 +5,6 @@ import { EmailField, SelectField } from "@/ui/textfield";
 
 export default function EstimateForm() {
   const states = [
-    "State",
     "AL",
     "AK",
     "AZ",
@@ -59,43 +58,45 @@ export default function EstimateForm() {
   ];
   const [estimate, setEstimate] = useState("");
   return (
-    <div className="w-full text-center">
-      <div>
-        <h3>{`Estimate:`}</h3>
-        <div>Date: ${}</div>
-      </div>
-      <div className="flex flex-col w-1/2 text-left gap-2">
-        {/* Client Info */}
-        <Textfield placeholder="First Name" />
-        <Textfield placeholder="Last Name" />
-        <Textfield placeholder="Street" />
-        <div className="flex">
-          <Textfield placeholder="City" />
-          <SelectField options={states} defaultValue={"State"} />
+    <form>
+      <div className="w-full text-center">
+        <div className="flex w-full justify-between px-2 py-8">
+          <h3>{`Estimate:`}</h3>
+          <div>Date: ${}</div>
         </div>
-        <Textfield placeholder="Zip" />
-        {/* street, city, state zip*/}
-        <EmailField placeholder="Email" />
+        <div className="flex flex-col w-1/2 gap-2 text-right">
+          {/* Client Info */}
+          <Textfield placeholder="First Name" />
+          <Textfield placeholder="Last Name" />
+          <Textfield placeholder="Street" />
+          <div className="flex gap-1">
+            <Textfield placeholder="City" />
+            <SelectField options={states} defaultValue={"State"} />
+          </div>
+          <Textfield placeholder="Zip" />
+          {/* street, city, state zip*/}
+          <EmailField placeholder="Email" />
+        </div>
+        <div>
+          <summary placeholder={"Job Summary"}></summary>
+        </div>
+        <div>
+          <Textfield />
+          {/* Line Items Inputs */}
+          {/* Line Items Inputs */}
+          {/* Line Items Inputs */}
+        </div>
+        <div>{/* Additional Notes */}</div>
+        <div>
+          {/* Subtotal */}
+          {/* Tax Input */}
+          {/* Total */}
+        </div>
+        <div>
+          {/* Cancel button */}
+          {/* Save button */}
+        </div>
       </div>
-      <div>
-        <summary placeholder={"Job Summary"}></summary>
-      </div>
-      <div>
-        <Textfield />
-        {/* Line Items Inputs */}
-        {/* Line Items Inputs */}
-        {/* Line Items Inputs */}
-      </div>
-      <div>{/* Additional Notes */}</div>
-      <div>
-        {/* Subtotal */}
-        {/* Tax Input */}
-        {/* Total */}
-      </div>
-      <div>
-        {/* Cancel button */}
-        {/* Save button */}
-      </div>
-    </div>
+    </form>
   );
 }

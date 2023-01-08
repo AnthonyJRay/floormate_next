@@ -4,12 +4,11 @@ import SelectField from "./select";
 export { EmailField, PasswordField, SelectField };
 
 export default function Textfield({ type = "", placeholder = "", ...rest }) {
+  const defaultStyles = "w-2/3";
   return (
     <div>
-      <label>
-        {`${placeholder}:`}
-        <input type={"text" || type} {...rest} />
-      </label>
+      <label className={"w-1/3"}>{`${placeholder}:`}</label>
+      <input type={"text" || type} className={`${defaultStyles}`} {...rest} />
     </div>
   );
 }
