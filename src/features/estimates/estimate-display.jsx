@@ -2,7 +2,7 @@ import Card from "@/ui/card";
 import { TrashIcon } from "@heroicons/react/24/outline";
 import { IconButton, TextButton } from "@/ui/button";
 
-export default function EstimateDisplay({ data, className }) {
+export default function EstimateDisplay({ data, className, onDelete }) {
   const defaultClassName = "flex flex-col grow basis-0 gap-1 m-1 bg-gray-800";
   const { estimateNO, estimateDate, client, summary, total, invoiced } = data;
   return (
@@ -23,7 +23,10 @@ export default function EstimateDisplay({ data, className }) {
         <TextButton className="bg-yellow-500 hover:bg-yellow-400">
           View
         </TextButton>
-        <IconButton className="bg-red-500 hover:bg-red-400">
+        <IconButton
+          className="bg-red-500 hover:bg-red-400"
+          onClick={() => onDelete()}
+        >
           <TrashIcon />
         </IconButton>
       </div>

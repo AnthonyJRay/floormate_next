@@ -148,7 +148,19 @@ export default function Estimates() {
       </div>
       <div className="flex flex-col md:flex-row mx-2">
         {estimates.map((estimate, i) => {
-          return <EstimateDisplay key={i} data={estimate} />;
+          return (
+            <EstimateDisplay
+              key={i}
+              data={estimate}
+              onDelete={() => {
+                setEstimates((prev) => {
+                  return prev.filter((_deleted, _i) => {
+                    return _i !== i;
+                  });
+                });
+              }}
+            />
+          );
         })}
       </div>
     </div>
