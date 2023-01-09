@@ -40,7 +40,8 @@ const LastNameField = withLabel(TextField);
 const AddressField = withLabel(TextField);
 const PhoneField = withLabel(TextField);
 const EmailField = withLabel(TextField);
-const TextAreaField = withLabel(TextArea);
+const SummaryField = withLabel(TextArea);
+const NotesField = withLabel(TextArea);
 
 export default function EstimateForm() {
   const [values, setValues] = useState(defaultValues);
@@ -89,61 +90,71 @@ export default function EstimateForm() {
       {/* BILL TO */}
       <div className="flex flex-col md:flex-row gap-5 mx-6">
         <div className="flex flex-col md:w-1/2">
-          <div className="text-left text-2xl">Bill To:</div>
-          <FirstNameField
-            name={"firstName"}
-            placeholder="First Name"
-            value={firstName}
-            onChange={(e) => clientHandler(e)}
-          >
-            <span>First Name</span>
-          </FirstNameField>
-          <LastNameField
-            name={"lastName"}
-            placeholder={"Last Name"}
-            value={lastName}
-            onChange={(e) => clientHandler(e)}
-          >
-            <span>Last Name</span>
-          </LastNameField>
-          <AddressField
-            name={"address"}
-            placeholder={"Address"}
-            value={address}
-            onChange={(e) => clientHandler(e)}
-          >
-            <span>Address</span>
-          </AddressField>
-          <PhoneField
-            name={"phone"}
-            placeholder={"Phone"}
-            value={phone}
-            onChange={(e) => clientHandler(e)}
-          >
-            <span>Phone</span>
-          </PhoneField>
-          <EmailField
-            name={"email"}
-            placeholder={"Email"}
-            value={email}
-            onChange={(e) => clientHandler(e)}
-          >
-            <span>Email</span>
-          </EmailField>
+          <div className="text-left text-xl">Bill To:</div>
+          <div className={"flex"}>
+            <FirstNameField
+              name={"firstName"}
+              placeholder="First Name"
+              value={firstName}
+              onChange={(e) => clientHandler(e)}
+            >
+              <span>First Name</span>
+            </FirstNameField>
+          </div>
+          <div className={"flex"}>
+            <LastNameField
+              name={"lastName"}
+              placeholder={"Last Name"}
+              value={lastName}
+              onChange={(e) => clientHandler(e)}
+            >
+              <span>Last Name</span>
+            </LastNameField>
+          </div>
+          <div className={"flex"}>
+            <AddressField
+              name={"address"}
+              placeholder={"Address"}
+              value={address}
+              onChange={(e) => clientHandler(e)}
+            >
+              <span>Address</span>
+            </AddressField>
+          </div>
+          <div className={"flex"}>
+            <PhoneField
+              name={"phone"}
+              placeholder={"Phone"}
+              value={phone}
+              onChange={(e) => clientHandler(e)}
+            >
+              <span>Phone</span>
+            </PhoneField>
+          </div>
+          <div className={"flex"}>
+            <EmailField
+              name={"email"}
+              placeholder={"Email"}
+              value={email}
+              onChange={(e) => clientHandler(e)}
+            >
+              <span>Email</span>
+            </EmailField>
+          </div>
         </div>
 
         {/* JOB SUMMARY */}
         <div className={"md:w-1/2"}>
           <div className={"h-full"}>
-            <TextAreaField
+            <SummaryField
               className={"w-full h-5px"}
               name={"Job Summary"}
               placeholder={"Enter the scope of work"}
               value={summary}
               onChange={(e) => summaryHandler(e)}
             >
-              <div className={"text-2xl p-1"}>Job Summary</div>
-            </TextAreaField>
+              <div className={"text-lg p-1"}>Job Summary</div>
+            </SummaryField>
           </div>
         </div>
       </div>
@@ -175,6 +186,24 @@ export default function EstimateForm() {
               })}
             </tbody>
           </table>
+        </div>
+      </div>
+      <NotesField>
+        <div className={"text-lg p-1"}>Additional Notes:</div>
+      </NotesField>
+      {/* Subtotal Tax Total */}
+      <div className={"flex flex-col w-full align-right p-8 gap-4"}>
+        <div className={"flex gap-2"}>
+          <div className={"font-bold"}>Subtotal:</div>
+          <div>100</div>
+        </div>
+        <div className={"flex gap-2"}>
+          <div className={"font-bold"}>Tax:</div>
+          <div>input</div>
+        </div>
+        <div className={"flex gap-2"}>
+          <div className={"font-bold"}>Total:</div>
+          <div>105</div>
         </div>
       </div>
     </form>
