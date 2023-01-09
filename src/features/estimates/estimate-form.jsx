@@ -4,7 +4,7 @@ import withLabel from "@/ui/form/withlabel";
 
 const currentDate = new Date().toLocaleDateString();
 const defaultValues = {
-  estimateNO: "",
+  estimateNO: "0004",
   estimateDate: currentDate,
   client: {
     firstName: "",
@@ -38,88 +38,82 @@ const EmailField = withLabel(TextField);
 
 export default function EstimateForm() {
   const [values, setValues] = useState(defaultValues);
-  const { client } = values;
+  const { client, estimateDate, estimateNO } = values;
+  const { firstName, lastName, address, phone, email } = client;
 
   function handleChange(e) {
-    console.log(e);
+    console.log(e.target);
+    const { name, value } = e.target;
+    setValues((prev) => ({
+      ...prev,
+      client: { ...client, [name]: value },
+    }));
   }
 
   return (
     <form>
-      <div>
-        <div className="text-left text-2xl">Client Info</div>
+      <div className="mx-2">
+        <div className="flex w-full justify-between">
+          <div>Estimate: #{estimateNO}</div>
+          <div>Date: {estimateDate}</div>
+        </div>
+
         <div className="flex flex-col">
+          <div className="text-left text-2xl">Bill To:</div>
           <FirstNameField
+            name={"firstName"}
             placeholder="First Name"
-            value={values.client.firstName}
-            className="text-pink-600"
+            value={firstName}
             onChange={(e) => {
               handleChange(e);
-              // const { value } = e.target;
-              // setValues((prev) => ({
-              //   ...prev,
-              //   client: { ...client, firstName: value },
-              // }));
             }}
           >
             <span>First Name</span>
           </FirstNameField>
           <LastNameField
+            name={"lastName"}
             placeholder={"Last Name"}
-            value={values.client.lastName}
+            value={lastName}
             onChange={(e) => {
-              const { value } = e.target;
-
-              setValues((prev) => ({
-                ...prev,
-                client: { ...client, lastName: value },
-              }));
+              handleChange(e);
             }}
           >
             <span>Last Name</span>
           </LastNameField>
           <AddressField
+            name={"address"}
             placeholder={"Address"}
-            value={values.client.address}
+            value={address}
             onChange={(e) => {
-              const { value } = e.target;
-
-              setValues((prev) => ({
-                ...prev,
-                client: { ...client, address: value },
-              }));
+              handleChange(e);
             }}
           >
             <span>Address</span>
           </AddressField>
           <PhoneField
-            placeholder={"555-123-1234"}
-            value={values.client.phone}
+            name={"phone"}
+            placeholder={"Phone"}
+            value={phone}
             onChange={(e) => {
-              const { value } = e.target;
-
-              setValues((prev) => ({
-                ...prev,
-                client: { ...client, phone: value },
-              }));
+              handleChange(e);
             }}
           >
             <span>Phone</span>
           </PhoneField>
           <EmailField
+            name={"email"}
             placeholder={"Email"}
-            value={values.client.email}
+            value={email}
             onChange={(e) => {
-              const { value } = e.target;
-
-              setValues((prev) => ({
-                ...prev,
-                client: { ...client, email: value },
-              }));
+              handleChange(e);
             }}
           >
             <span>Email</span>
           </EmailField>
+        </div>
+
+        <div>
+          <div>Job Summary</div>
         </div>
       </div>
     </form>
