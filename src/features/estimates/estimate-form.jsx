@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { PlusCircleIcon } from "@heroicons/react/24/solid";
-import { TrashIcon } from "@heroicons/react/24/outline";
+import { TextButton } from "@/ui/button";
 import TextField from "@/ui/form/textfield";
 import TextArea from "@/ui/form/textarea";
 import withLabel from "@/ui/form/withlabel";
-import { TextButton, IconButton } from "@/ui/button";
+import LineItem from "@/ui/form/table/lineitem";
+import TableLabels from "@/ui/form/table/labels";
 
 const currentDate = new Date().toLocaleDateString();
 const defaultValues = {
-  estimateNO: "0004",
+  estimateNO: "",
   estimateDate: currentDate,
   client: {
     firstName: "",
@@ -43,10 +44,10 @@ const TextAreaField = withLabel(TextArea);
 
 export default function EstimateForm() {
   const [values, setValues] = useState(defaultValues);
-  const { client, estimateDate, estimateNO, summary } = values;
+  const { client, estimateDate, estimateNO, summary, lineItems } = values;
   const { firstName, lastName, address, phone, email } = client;
 
-  function ClientHandler(e) {
+  function clientHandler(e) {
     const { name, value } = e.target;
     setValues((prev) => ({
       ...prev,
@@ -54,7 +55,7 @@ export default function EstimateForm() {
     }));
   }
 
-  function SummaryHandler(e) {
+  function summaryHandler(e) {
     const { value } = e.target;
     setValues((prev) => ({
       ...prev,
@@ -62,9 +63,24 @@ export default function EstimateForm() {
     }));
   }
 
+  function addItem() {
+    const newItem = defaultValues.lineItems;
+    setValues((prev) => ({
+      ...prev,
+      lineItems: [...lineItems, { newItem }],
+    }));
+  }
+
+  function deleteItem(i) {
+    const newLineItems = lineItems.filter((item) => item !== lineItems[i]);
+    setValues((prev) => ({
+      ...prev,
+      lineItems: newLineItems,
+    }));
+  }
+
   return (
     <form>
-      {/* Estimate # and Date */}
       <div className="flex w-full justify-between">
         <div>Estimate: #{estimateNO}</div>
         <div>Date: {estimateDate}</div>
@@ -78,9 +94,7 @@ export default function EstimateForm() {
             name={"firstName"}
             placeholder="First Name"
             value={firstName}
-            onChange={(e) => {
-              ClientHandler(e);
-            }}
+            onChange={(e) => clientHandler(e)}
           >
             <span>First Name</span>
           </FirstNameField>
@@ -88,9 +102,7 @@ export default function EstimateForm() {
             name={"lastName"}
             placeholder={"Last Name"}
             value={lastName}
-            onChange={(e) => {
-              ClientHandler(e);
-            }}
+            onChange={(e) => clientHandler(e)}
           >
             <span>Last Name</span>
           </LastNameField>
@@ -98,9 +110,7 @@ export default function EstimateForm() {
             name={"address"}
             placeholder={"Address"}
             value={address}
-            onChange={(e) => {
-              ClientHandler(e);
-            }}
+            onChange={(e) => clientHandler(e)}
           >
             <span>Address</span>
           </AddressField>
@@ -108,9 +118,7 @@ export default function EstimateForm() {
             name={"phone"}
             placeholder={"Phone"}
             value={phone}
-            onChange={(e) => {
-              ClientHandler(e);
-            }}
+            onChange={(e) => clientHandler(e)}
           >
             <span>Phone</span>
           </PhoneField>
@@ -118,7 +126,7 @@ export default function EstimateForm() {
             name={"email"}
             placeholder={"Email"}
             value={email}
-            onChange={(e) => ClientHandler(e)}
+            onChange={(e) => clientHandler(e)}
           >
             <span>Email</span>
           </EmailField>
@@ -132,9 +140,7 @@ export default function EstimateForm() {
               name={"Job Summary"}
               placeholder={"Enter the scope of work"}
               value={summary}
-              onChange={(e) => {
-                SummaryHandler(e);
-              }}
+              onChange={(e) => summaryHandler(e)}
             >
               <div className={"text-2xl p-1"}>Job Summary</div>
             </TextAreaField>
@@ -143,46 +149,30 @@ export default function EstimateForm() {
       </div>
 
       {/* Line Items Area */}
-      <div className="my-8">
-        <TextButton className="bg-green-600 hover:bg-green-500">
-          <div className="flex items-center gap-1">
-            <PlusCircleIcon className="text-white w-5" />
+      <div className={"my-8"}>
+        <TextButton
+          className={"bg-green-600 hover:bg-green-500"}
+          type={"button"}
+          onClick={() => addItem()}
+        >
+          <div className={"flex items-center gap-1"}>
+            <PlusCircleIcon className={"text-white w-5"} />
             <div>New Line Item</div>
           </div>
         </TextButton>
         {/* Line Items */}
-        <div className="w-full">
-          <table class="table-auto w-full">
+        <div className={"w-full"}>
+          <table className={"table-auto w-full"}>
             <thead>
-              <tr className={"text-left"}>
-                <th>Item Name</th>
-                <th>Item Description</th>
-                <th>Quantity</th>
-                <th>Rate</th>
-                <th>Total</th>
-              </tr>
+              <TableLabels />
             </thead>
             <tbody>
-              <tr className={"text-left"}>
-                <td>
-                  <input type="text" placeholder={"Name"} />
-                </td>
-                <td>
-                  <input type="text" placeholder={"Description"} />
-                </td>
-                <td>
-                  <input type="text" placeholder={"Quantity"} />
-                </td>
-                <td>
-                  <input type="text" placeholder={"Rate"} />
-                </td>
-                <td>Item Total</td>
-                <td>
-                  <IconButton className="bg-red-600">
-                    <TrashIcon />
-                  </IconButton>
-                </td>
-              </tr>
+              {lineItems.map((item, i) => {
+                console.log(item);
+                return (
+                  <LineItem key={i} data={item} onClick={() => deleteItem(i)} />
+                );
+              })}
             </tbody>
           </table>
         </div>

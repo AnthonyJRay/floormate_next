@@ -1,5 +1,5 @@
 export default function withLabel(Component) {
-  const defaultClassNames = "text-left p-1";
+  const defaultClassNames = "text-left p-1 text-sm";
   return function WrappedComponent({ children, ...rest }) {
     return (
       <>
