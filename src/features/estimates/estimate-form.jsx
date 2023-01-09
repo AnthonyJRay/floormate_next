@@ -2,19 +2,37 @@ import { useState } from "react";
 import TextField from "@/ui/form/textfield";
 import withLabel from "@/ui/form/withlabel";
 
-const defaultValues = [
-  {
+const currentDate = new Date().toLocaleDateString();
+const defaultValues = {
+  estimateNO: "",
+  estimateDate: currentDate,
+  client: {
     firstName: "",
     lastName: "",
     address: "",
     phone: "",
     email: "",
   },
-];
+  lineItems: [
+    {
+      name: "",
+      description: "",
+      quantity: "",
+      rate: "",
+      total: "",
+    },
+  ],
+  summary: "",
+  notes: "",
+  invoiced: false,
+  subtotal: "",
+  tax: "",
+  total: "",
+};
 
 export default function EstimateForm() {
   const [values, setValues] = useState(defaultValues);
-  const { firstName, lastName, address, phone, email } = values;
+  const { client } = values;
   const FirstNameField = withLabel(TextField);
   const LastNameField = withLabel(TextField);
   const AddressField = withLabel(TextField);
@@ -24,22 +42,25 @@ export default function EstimateForm() {
     <form>
       <div>
         <div className="text-left text-2xl">Client Info</div>
-        <div className="flex flex-col justify-center text-center">
+        <div className="flex flex-col">
           <FirstNameField
-            placeholder={"First Name"}
-            value={firstName}
-            onChange={() =>
+            placeholder="First Name"
+            value={values.client.firstName}
+            className="text-pink-600"
+            onChange={(e) => {
+              const { value } = e.target;
+
               setValues((prev) => ({
                 ...prev,
-                firstName,
-              }))
-            }
+                client: { ...client, firstName: value },
+              }));
+            }}
           >
             <span>First Name</span>
           </FirstNameField>
           <LastNameField
             placeholder={"Last Name"}
-            value={lastName}
+            value={values.client.lastName}
             onChange={() =>
               setValues((prev) => ({
                 ...prev,
@@ -51,7 +72,7 @@ export default function EstimateForm() {
           </LastNameField>
           <AddressField
             placeholder={"Address"}
-            value={address}
+            value={values.client.address}
             onChange={() =>
               setValues((prev) => ({
                 ...prev,
@@ -63,7 +84,7 @@ export default function EstimateForm() {
           </AddressField>
           <PhoneField
             placeholder={"555-123-1234"}
-            value={phone}
+            value={values.client.phone}
             onChange={() =>
               setValues((prev) => ({
                 ...prev,
@@ -75,7 +96,7 @@ export default function EstimateForm() {
           </PhoneField>
           <EmailField
             placeholder={"Email"}
-            value={email}
+            value={values.client.email}
             onChange={() =>
               setValues((prev) => ({
                 ...prev,

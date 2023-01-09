@@ -1,20 +1,12 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 export default function withLabel(Component) {
   const defaultClassNames = "text-left p-1";
-  return function WrappedComponent({ children }) {
-    const [clicked, setClicked] = useState(false);
+  return function WrappedComponent({ children, ...rest }) {
     return (
       <>
-        <label
-          className={defaultClassNames}
-          onClick={() => {
-            setClicked(true), setTimeout(() => setClicked(false), 500);
-          }}
-        >
-          {children}
-        </label>
-        <Component focused={clicked} />
+        <label className={defaultClassNames}>{children}</label>
+        <Component {...rest} />
       </>
     );
   };
