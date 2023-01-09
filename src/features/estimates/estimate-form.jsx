@@ -30,14 +30,20 @@ const defaultValues = {
   total: "",
 };
 
+const FirstNameField = withLabel(TextField);
+const LastNameField = withLabel(TextField);
+const AddressField = withLabel(TextField);
+const PhoneField = withLabel(TextField);
+const EmailField = withLabel(TextField);
+
 export default function EstimateForm() {
   const [values, setValues] = useState(defaultValues);
   const { client } = values;
-  const FirstNameField = withLabel(TextField);
-  const LastNameField = withLabel(TextField);
-  const AddressField = withLabel(TextField);
-  const PhoneField = withLabel(TextField);
-  const EmailField = withLabel(TextField);
+
+  function handleChange(e) {
+    console.log(e);
+  }
+
   return (
     <form>
       <div>
@@ -48,12 +54,12 @@ export default function EstimateForm() {
             value={values.client.firstName}
             className="text-pink-600"
             onChange={(e) => {
-              const { value } = e.target;
-
-              setValues((prev) => ({
-                ...prev,
-                client: { ...client, firstName: value },
-              }));
+              handleChange(e);
+              // const { value } = e.target;
+              // setValues((prev) => ({
+              //   ...prev,
+              //   client: { ...client, firstName: value },
+              // }));
             }}
           >
             <span>First Name</span>
@@ -61,48 +67,56 @@ export default function EstimateForm() {
           <LastNameField
             placeholder={"Last Name"}
             value={values.client.lastName}
-            onChange={() =>
+            onChange={(e) => {
+              const { value } = e.target;
+
               setValues((prev) => ({
                 ...prev,
-                lastName,
-              }))
-            }
+                client: { ...client, lastName: value },
+              }));
+            }}
           >
             <span>Last Name</span>
           </LastNameField>
           <AddressField
             placeholder={"Address"}
             value={values.client.address}
-            onChange={() =>
+            onChange={(e) => {
+              const { value } = e.target;
+
               setValues((prev) => ({
                 ...prev,
-                address,
-              }))
-            }
+                client: { ...client, address: value },
+              }));
+            }}
           >
             <span>Address</span>
           </AddressField>
           <PhoneField
             placeholder={"555-123-1234"}
             value={values.client.phone}
-            onChange={() =>
+            onChange={(e) => {
+              const { value } = e.target;
+
               setValues((prev) => ({
                 ...prev,
-                phone,
-              }))
-            }
+                client: { ...client, phone: value },
+              }));
+            }}
           >
             <span>Phone</span>
           </PhoneField>
           <EmailField
             placeholder={"Email"}
             value={values.client.email}
-            onChange={() =>
+            onChange={(e) => {
+              const { value } = e.target;
+
               setValues((prev) => ({
                 ...prev,
-                email,
-              }))
-            }
+                client: { ...client, email: value },
+              }));
+            }}
           >
             <span>Email</span>
           </EmailField>
