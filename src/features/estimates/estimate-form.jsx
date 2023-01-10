@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { PlusCircleIcon } from "@heroicons/react/24/solid";
 import { TextButton } from "@/ui/button";
+import Link from "next/Link";
 import TextField from "@/ui/form/textfield";
 import TextArea from "@/ui/form/textarea";
 import withLabel from "@/ui/form/withlabel";
@@ -64,146 +65,197 @@ export default function EstimateForm() {
     }));
   }
 
+  function lineItemsHandler(e, i) {
+    const { name, value } = e.target;
+    setValues((prev) => ({
+      ...prev,
+      lineItems: lineItems.map((item) => {
+        return item === lineItems[i]
+          ? {
+              ...lineItems[i],
+              [name]: value,
+            }
+          : item;
+      }),
+    }));
+  }
+
   function addItem() {
     const newItem = defaultValues.lineItems;
     setValues((prev) => ({
       ...prev,
-      lineItems: [...lineItems, { newItem }],
+      lineItems: [...lineItems, ...newItem],
     }));
   }
 
   function deleteItem(i) {
-    const newLineItems = lineItems.filter((item) => item !== lineItems[i]);
-    setValues((prev) => ({
+    // console.log(e);
+    // const newLineItems = lineItems.filter((item, _i) => {
+    //   console.log(item);
+    //   console.log(`Index coming from the map:${i}`);
+    //   console.log(`Index coming from the filter:${_i}`);
+    //   return i !== _i;
+    // });
+
+    return setValues((prev) => ({
       ...prev,
-      lineItems: newLineItems,
+      lineItems: lineItems.filter((item, _i) => {
+        console.log(item);
+        return _i !== i;
+      }),
     }));
+
+    // setValues((prev) => ({
+    //   ...prev,
+    //   lineItems: newLineItems,
+    // }));
   }
 
   return (
-    <form>
-      <div className="flex w-full justify-between">
-        <div>Estimate: #{estimateNO}</div>
-        <div>Date: {estimateDate}</div>
-      </div>
-
-      {/* BILL TO */}
-      <div className="flex flex-col md:flex-row gap-5 mx-6">
-        <div className="flex flex-col md:w-1/2">
-          <div className="text-left text-xl">Bill To:</div>
-          <div className={"flex"}>
-            <FirstNameField
-              name={"firstName"}
-              placeholder="First Name"
-              value={firstName}
-              onChange={(e) => clientHandler(e)}
-            >
-              <span>First Name</span>
-            </FirstNameField>
-          </div>
-          <div className={"flex"}>
-            <LastNameField
-              name={"lastName"}
-              placeholder={"Last Name"}
-              value={lastName}
-              onChange={(e) => clientHandler(e)}
-            >
-              <span>Last Name</span>
-            </LastNameField>
-          </div>
-          <div className={"flex"}>
-            <AddressField
-              name={"address"}
-              placeholder={"Address"}
-              value={address}
-              onChange={(e) => clientHandler(e)}
-            >
-              <span>Address</span>
-            </AddressField>
-          </div>
-          <div className={"flex"}>
-            <PhoneField
-              name={"phone"}
-              placeholder={"Phone"}
-              value={phone}
-              onChange={(e) => clientHandler(e)}
-            >
-              <span>Phone</span>
-            </PhoneField>
-          </div>
-          <div className={"flex"}>
-            <EmailField
-              name={"email"}
-              placeholder={"Email"}
-              value={email}
-              onChange={(e) => clientHandler(e)}
-            >
-              <span>Email</span>
-            </EmailField>
-          </div>
+    <form className={"bg-gray-100"}>
+      <div className={"flex flex-col"}>
+        <div className="flex w-full justify-between">
+          <div>Estimate: #{estimateNO}</div>
+          <div>Date: {estimateDate}</div>
         </div>
 
-        {/* JOB SUMMARY */}
-        <div className={"md:w-1/2"}>
-          <div className={"h-full"}>
-            <SummaryField
-              className={"w-full h-5px"}
-              name={"Job Summary"}
-              placeholder={"Enter the scope of work"}
-              value={summary}
-              onChange={(e) => summaryHandler(e)}
-            >
-              <div className={"text-lg p-1"}>Job Summary</div>
-            </SummaryField>
+        {/* BILL TO */}
+        <div className="flex flex-col md:flex-row gap-5 mx-6">
+          <div className="flex flex-col md:w-1/2">
+            <div className="text-left text-xl">Bill To:</div>
+            <div className={"flex"}>
+              <FirstNameField
+                name={"firstName"}
+                placeholder="First Name"
+                value={firstName}
+                onChange={(e) => clientHandler(e)}
+              >
+                <span>First Name</span>
+              </FirstNameField>
+            </div>
+            <div className={"flex"}>
+              <LastNameField
+                name={"lastName"}
+                placeholder={"Last Name"}
+                value={lastName}
+                onChange={(e) => clientHandler(e)}
+              >
+                <span>Last Name</span>
+              </LastNameField>
+            </div>
+            <div className={"flex"}>
+              <AddressField
+                name={"address"}
+                placeholder={"Address"}
+                value={address}
+                onChange={(e) => clientHandler(e)}
+              >
+                <span>Address</span>
+              </AddressField>
+            </div>
+            <div className={"flex"}>
+              <PhoneField
+                name={"phone"}
+                placeholder={"Phone"}
+                value={phone}
+                onChange={(e) => clientHandler(e)}
+              >
+                <span>Phone</span>
+              </PhoneField>
+            </div>
+            <div className={"flex"}>
+              <EmailField
+                name={"email"}
+                placeholder={"Email"}
+                value={email}
+                onChange={(e) => clientHandler(e)}
+              >
+                <span>Email</span>
+              </EmailField>
+            </div>
           </div>
-        </div>
-      </div>
 
-      {/* Line Items Area */}
-      <div className={"my-8"}>
-        <TextButton
-          className={"bg-green-600 hover:bg-green-500"}
-          type={"button"}
-          onClick={() => addItem()}
-        >
-          <div className={"flex items-center gap-1"}>
-            <PlusCircleIcon className={"text-white w-5"} />
-            <div>New Line Item</div>
+          {/* JOB SUMMARY */}
+          <div className={"md:w-1/2"}>
+            <div className={"h-full"}>
+              <SummaryField
+                className={"w-full h-5px"}
+                name={"Job Summary"}
+                placeholder={"Enter the scope of work"}
+                value={summary}
+                onChange={(e) => summaryHandler(e)}
+              >
+                <div className={"text-lg p-1"}>Job Summary</div>
+              </SummaryField>
+            </div>
           </div>
-        </TextButton>
-        {/* Line Items */}
-        <div className={"w-full"}>
-          <table className={"table-auto w-full"}>
-            <thead>
-              <TableLabels />
-            </thead>
-            <tbody>
-              {lineItems.map((item, i) => {
-                console.log(item);
-                return (
-                  <LineItem key={i} data={item} onClick={() => deleteItem(i)} />
-                );
-              })}
-            </tbody>
-          </table>
         </div>
-      </div>
-      <NotesField>
-        <div className={"text-lg p-1"}>Additional Notes:</div>
-      </NotesField>
-      {/* Subtotal Tax Total */}
-      <div className={"flex flex-col w-full align-right p-8 gap-4"}>
-        <div className={"flex gap-2"}>
-          <div className={"font-bold"}>Subtotal:</div>
-          <div>100</div>
+
+        {/* Line Items Area */}
+        <div className={"my-8"}>
+          <TextButton
+            className={"bg-green-600 hover:bg-green-500 my-8"}
+            type={"button"}
+            onClick={() => addItem()}
+          >
+            <div className={"flex items-center gap-1"}>
+              <PlusCircleIcon className={"text-white w-5"} />
+              <div>New Line Item</div>
+            </div>
+          </TextButton>
+          {/* Line Items */}
+          <div className={"w-full"}>
+            <table className={"table-auto w-full"}>
+              <thead>
+                <TableLabels />
+              </thead>
+              <tbody>
+                {lineItems.map((item, i) => {
+                  return (
+                    <LineItem
+                      key={i}
+                      data={item}
+                      onChange={(e) => lineItemsHandler(e, i)}
+                      onClick={() => deleteItem(i)}
+                    />
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
-        <div className={"flex gap-2"}>
-          <div className={"font-bold"}>Tax:</div>
-          <div>input</div>
+        <NotesField>
+          <div className={"text-lg p-1"}>Additional Notes:</div>
+        </NotesField>
+
+        <div className={"flex justify-end w-full gap-4 p-10"}>
+          <div>
+            <ul className={"flex flex-col text-right text-lg gap-4 font-bold"}>
+              <li>Subtotal:</li>
+              <li>Tax:</li>
+              <li>Total:</li>
+            </ul>
+          </div>
+          <div>
+            <ul className={"flex flex-col gap-4"}>
+              <li>100</li>
+              <li>
+                <TextField type="text" className={"w-10 p-0"} />
+                <span>%</span>
+              </li>
+              <li>105</li>
+            </ul>
+          </div>
         </div>
-        <div className={"flex gap-2"}>
-          <div className={"font-bold"}>Total:</div>
-          <div>105</div>
+        <div className={"flex justify-end gap-2 p-8"}>
+          <TextButton className={"bg-yellow-500 hover:bg-yellow-400"}>
+            <Link href="/estimates/">
+              <div>Cancel</div>
+            </Link>
+          </TextButton>
+          <TextButton className={"bg-green-600 hover:bg-green-500"}>
+            Save
+          </TextButton>
         </div>
       </div>
     </form>

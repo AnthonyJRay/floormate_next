@@ -5,6 +5,7 @@ export default function IconButton({
   className,
   type = "button",
   onClick = () => {},
+  onChange = () => {},
 }) {
   const defaultClassName =
     "rounded w-8 p-1 text-white transition-all duration-300 opacity-90 hover:opacity-100 drop-shadow-md";
@@ -14,6 +15,7 @@ export default function IconButton({
       className={`${defaultClassName} ${className}`}
       type={type}
       onClick={onClick}
+      onChange={onChange}
     >
       {children}
     </Button>
