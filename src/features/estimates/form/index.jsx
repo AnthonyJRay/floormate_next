@@ -22,9 +22,9 @@ const defaultValues = {
     {
       name: "Install Carpet",
       description: "Install new carpet in living room",
-      quantity: 100,
-      rate: 9,
-      total: "",
+      quantity: 0,
+      rate: 0,
+      total: 0,
     },
   ],
   summary: "This is a Job Summary",

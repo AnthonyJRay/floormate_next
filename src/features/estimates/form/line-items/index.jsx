@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import LineItem from "@/ui/form/table/lineitem";
 import TableLabels from "@/ui/form/table/labels";
 import { PlusCircleIcon } from "@heroicons/react/24/solid";
@@ -11,16 +12,41 @@ export default function LineItems({ values, setValues, defaultValues }) {
     setValues((prev) => ({
       ...prev,
       lineItems: lineItems.map((item, _i) => {
+        const { quantity, total, rate } = item;
         return _i === i
           ? {
               ...item,
               [name]: value,
-              total: item.rate * item.quantity,
+              total: rate * quantity,
             }
           : item;
       }),
     }));
   }
+
+  // function lineItemsTotal(e, i) {
+  //   const {value} = e.target
+  //   setValues(prev => ({
+  //     ...prev,
+  //     lineItems: lineItems.map((item, _i) => {
+  //       const {quantity, rate, total } = item
+  //       return _i === i ? {
+  //         ...item,
+
+  //       }
+  //     })
+  //   }))
+  // }
+
+  // useEffect(() => {
+  //   setValues((prev) => ({
+  //     ...prev,
+  //     lineItems: lineItems.map((item, i) => ({
+  //       ...item,
+  //       total: item.quantity * item.rate,
+  //     })),
+  //   }));
+  // }, [setValues]);
 
   function addItem() {
     const newItem = defaultValues.lineItems;
@@ -63,6 +89,8 @@ export default function LineItems({ values, setValues, defaultValues }) {
                 <LineItem
                   key={i}
                   className={"w-11/12 my-2"}
+                  setValues={setValues}
+                  values={lineItems}
                   data={item}
                   onChange={(e) => lineItemsHandler(e, i)}
                   onClick={() => deleteItem(i)}
