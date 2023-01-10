@@ -1,4 +1,4 @@
-import EstimateForm from "@/features/estimates/estimate-form";
+import EstimateForm from "@/features/estimates/form";
 
 export default function NewEstimate() {
   return (
