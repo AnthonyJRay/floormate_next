@@ -8,7 +8,6 @@ const PhoneField = withLabel(TextField);
 const EmailField = withLabel(TextField);
 
 export default function BillTo({ values, setValues }) {
-  console.log(setValues);
   const { client } = values;
   const { firstName, lastName, address, phone, email } = client;
 

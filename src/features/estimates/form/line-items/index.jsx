@@ -5,6 +5,7 @@ import { TextButton } from "@/ui/button";
 
 export default function LineItems({ values, setValues, defaultValues }) {
   const { lineItems } = values;
+
   function lineItemsHandler(e, i) {
     const { name, value } = e.target;
     setValues((prev) => ({
@@ -14,6 +15,7 @@ export default function LineItems({ values, setValues, defaultValues }) {
           ? {
               ...item,
               [name]: value,
+              total: item.rate * item.quantity,
             }
           : item;
       }),

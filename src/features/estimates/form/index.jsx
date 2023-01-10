@@ -9,7 +9,7 @@ import Notes from "./notes";
 
 const currentDate = new Date().toLocaleDateString();
 const defaultValues = {
-  estimateNO: "",
+  estimateNO: "004",
   estimateDate: currentDate,
   client: {
     firstName: "John",
@@ -20,11 +20,11 @@ const defaultValues = {
   },
   lineItems: [
     {
-      name: "Hammer",
-      description: "New hammer",
-      quantity: "1",
-      rate: "70",
-      total: "70",
+      name: "Install Carpet",
+      description: "Install new carpet in living room",
+      quantity: 100,
+      rate: 9,
+      total: "",
     },
   ],
   summary: "This is a Job Summary",

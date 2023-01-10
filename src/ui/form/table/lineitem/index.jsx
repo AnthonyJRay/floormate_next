@@ -8,7 +8,8 @@ export default function LineItem({
   onChange = () => {},
   onClick = () => {},
 }) {
-  const { name, description, quantity, rate } = data;
+  const { name, description, quantity, rate, total } = data;
+  // console.log(parseFloat(total));
   return (
     <tr className={"text-left"}>
       <td>
@@ -52,7 +53,7 @@ export default function LineItem({
         />
       </td>
       <td>
-        <span className={"text-green-600"}>$</span>
+        <span className={"text-green-600"}>${total}</span>
       </td>
       <td>
         <IconButton className="bg-red-600" type={"button"} onClick={onClick}>
