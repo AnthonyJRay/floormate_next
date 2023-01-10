@@ -13,27 +13,27 @@ const defaultValues = {
   estimateNO: "",
   estimateDate: currentDate,
   client: {
-    firstName: "",
-    lastName: "",
-    address: "",
-    phone: "",
-    email: "",
+    firstName: "John",
+    lastName: "Doe",
+    address: "123 N Main St",
+    phone: "555 123 12345",
+    email: "johndoe@example.com",
   },
   lineItems: [
     {
-      name: "",
-      description: "",
-      quantity: "",
-      rate: "",
-      total: "",
+      name: "Hammer",
+      description: "New hammer",
+      quantity: "1",
+      rate: "70",
+      total: "70",
     },
   ],
-  summary: "",
-  notes: "",
+  summary: "This is a Job Summary",
+  notes: "This is a Notes section",
   invoiced: false,
-  subtotal: "",
-  tax: "",
-  total: "",
+  subtotal: "100",
+  tax: "5",
+  total: "105",
 };
 
 const FirstNameField = withLabel(TextField);
@@ -46,7 +46,17 @@ const NotesField = withLabel(TextArea);
 
 export default function EstimateForm() {
   const [values, setValues] = useState(defaultValues);
-  const { client, estimateDate, estimateNO, summary, lineItems } = values;
+  const {
+    client,
+    estimateDate,
+    estimateNO,
+    summary,
+    notes,
+    lineItems,
+    subtotal,
+    total,
+    tax,
+  } = values;
   const { firstName, lastName, address, phone, email } = client;
 
   function clientHandler(e) {
@@ -57,11 +67,11 @@ export default function EstimateForm() {
     }));
   }
 
-  function summaryHandler(e) {
-    const { value } = e.target;
+  function inputHandler(e) {
+    const { value, name } = e.target;
     setValues((prev) => ({
       ...prev,
-      summary: value,
+      [name]: value,
     }));
   }
 
@@ -107,58 +117,60 @@ export default function EstimateForm() {
         </div>
 
         {/* BILL TO */}
-        <div className="flex flex-col md:flex-row gap-5 mx-6">
+        <div className="flex flex-col md:flex-row gap-5 mx-4">
           <div className="flex flex-col md:w-1/2">
             <div className="text-left text-xl">Bill To:</div>
-            <div className={"flex"}>
-              <FirstNameField
-                name={"firstName"}
-                placeholder="First Name"
-                value={firstName}
-                onChange={(e) => clientHandler(e)}
-              >
-                <span>First Name</span>
-              </FirstNameField>
-            </div>
-            <div className={"flex"}>
-              <LastNameField
-                name={"lastName"}
-                placeholder={"Last Name"}
-                value={lastName}
-                onChange={(e) => clientHandler(e)}
-              >
-                <span>Last Name</span>
-              </LastNameField>
-            </div>
-            <div className={"flex"}>
-              <AddressField
-                name={"address"}
-                placeholder={"Address"}
-                value={address}
-                onChange={(e) => clientHandler(e)}
-              >
-                <span>Address</span>
-              </AddressField>
-            </div>
-            <div className={"flex"}>
-              <PhoneField
-                name={"phone"}
-                placeholder={"Phone"}
-                value={phone}
-                onChange={(e) => clientHandler(e)}
-              >
-                <span>Phone</span>
-              </PhoneField>
-            </div>
-            <div className={"flex"}>
-              <EmailField
-                name={"email"}
-                placeholder={"Email"}
-                value={email}
-                onChange={(e) => clientHandler(e)}
-              >
-                <span>Email</span>
-              </EmailField>
+            <div>
+              <div className={"flex"}>
+                <FirstNameField
+                  name={"firstName"}
+                  placeholder="First Name"
+                  value={firstName}
+                  onChange={(e) => clientHandler(e)}
+                >
+                  <span>First Name:</span>
+                </FirstNameField>
+              </div>
+              <div className={"flex"}>
+                <LastNameField
+                  name={"lastName"}
+                  placeholder={"Last Name"}
+                  value={lastName}
+                  onChange={(e) => clientHandler(e)}
+                >
+                  <span>Last Name:</span>
+                </LastNameField>
+              </div>
+              <div className={"flex"}>
+                <AddressField
+                  name={"address"}
+                  placeholder={"Address"}
+                  value={address}
+                  onChange={(e) => clientHandler(e)}
+                >
+                  <span>Address:</span>
+                </AddressField>
+              </div>
+              <div className={"flex"}>
+                <PhoneField
+                  name={"phone"}
+                  placeholder={"Phone"}
+                  value={phone}
+                  onChange={(e) => clientHandler(e)}
+                >
+                  <span>Phone:</span>
+                </PhoneField>
+              </div>
+              <div className={"flex"}>
+                <EmailField
+                  name={"email"}
+                  placeholder={"Email"}
+                  value={email}
+                  onChange={(e) => clientHandler(e)}
+                >
+                  <span>Email:</span>
+                </EmailField>
+              </div>
             </div>
           </div>
 
@@ -166,11 +178,10 @@ export default function EstimateForm() {
           <div className={"md:w-1/2"}>
             <div className={"h-full"}>
               <SummaryField
-                className={"w-full h-5px"}
-                name={"Job Summary"}
+                name={"summary"}
                 placeholder={"Enter the scope of work"}
                 value={summary}
-                onChange={(e) => summaryHandler(e)}
+                onChange={(e) => inputHandler(e)}
               >
                 <div className={"text-lg p-1"}>Job Summary</div>
               </SummaryField>
@@ -201,6 +212,7 @@ export default function EstimateForm() {
                   return (
                     <LineItem
                       key={i}
+                      className={"w-11/12 my-2"}
                       data={item}
                       onChange={(e) => lineItemsHandler(e, i)}
                       onClick={() => deleteItem(i)}
@@ -211,7 +223,11 @@ export default function EstimateForm() {
             </table>
           </div>
         </div>
-        <NotesField>
+        <NotesField
+          name={"notes"}
+          value={notes}
+          onChange={(e) => inputHandler(e)}
+        >
           <div className={"text-lg p-1"}>Additional Notes:</div>
         </NotesField>
 
@@ -225,12 +241,18 @@ export default function EstimateForm() {
           </div>
           <div>
             <ul className={"flex flex-col gap-4"}>
-              <li>100</li>
+              <li>{subtotal}</li>
               <li>
-                <TextField type="text" className={"w-10 p-0"} />
+                <TextField
+                  className={"w-10 p-0"}
+                  type="text"
+                  name={"tax"}
+                  value={tax}
+                  onChange={(e) => inputHandler(e)}
+                />
                 <span>%</span>
               </li>
-              <li>105</li>
+              <li>{total}</li>
             </ul>
           </div>
         </div>

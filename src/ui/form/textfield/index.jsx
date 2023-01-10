@@ -4,11 +4,11 @@ export { SelectField, AddressField };
 
 export default function TextField({
   type = "text",
-  className,
+  className = "",
   onChange = () => {},
   ...rest
 }) {
-  const defaultClassNames = "border text-gray-700 rounded-sm p-1 shadow-sm";
+  const defaultClassNames = "border-b-2 text-gray-700 rounded-sm p-1 shadow-sm";
 
   return (
     <>

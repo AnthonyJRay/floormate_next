@@ -4,6 +4,7 @@ import TextField from "@/ui/form/textfield";
 
 export default function LineItem({
   data,
+  className,
   onChange = () => {},
   onClick = () => {},
 }) {
@@ -13,6 +14,7 @@ export default function LineItem({
       <td>
         <TextField
           type="text"
+          className={className}
           placeholder={"Name"}
           name={"name"}
           value={name}
@@ -22,6 +24,7 @@ export default function LineItem({
       <td>
         <TextField
           type="text"
+          className={className}
           placeholder={"Description"}
           name={"description"}
           value={description}
@@ -31,6 +34,7 @@ export default function LineItem({
       <td>
         <TextField
           type="text"
+          className={className}
           placeholder={"Quantity"}
           name={"quantity"}
           value={quantity}
@@ -40,6 +44,7 @@ export default function LineItem({
       <td>
         <TextField
           type="text"
+          className={className}
           placeholder={"Rate"}
           name={"rate"}
           value={rate}
