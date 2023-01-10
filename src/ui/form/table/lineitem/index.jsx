@@ -2,7 +2,12 @@ import { TrashIcon } from "@heroicons/react/24/outline";
 import { IconButton } from "@/ui/button";
 import TextField from "@/ui/form/textfield";
 
-export default function LineItem({ onChange = () => {}, onClick = () => {} }) {
+export default function LineItem({
+  data,
+  onChange = () => {},
+  onClick = () => {},
+}) {
+  const { name, description, quantity, rate } = data;
   return (
     <tr className={"text-left"}>
       <td>
@@ -10,6 +15,7 @@ export default function LineItem({ onChange = () => {}, onClick = () => {} }) {
           type="text"
           placeholder={"Name"}
           name={"name"}
+          value={name}
           onChange={onChange}
         />
       </td>
@@ -18,6 +24,7 @@ export default function LineItem({ onChange = () => {}, onClick = () => {} }) {
           type="text"
           placeholder={"Description"}
           name={"description"}
+          value={description}
           onChange={onChange}
         />
       </td>
@@ -26,6 +33,7 @@ export default function LineItem({ onChange = () => {}, onClick = () => {} }) {
           type="text"
           placeholder={"Quantity"}
           name={"quantity"}
+          value={quantity}
           onChange={onChange}
         />
       </td>
@@ -34,6 +42,7 @@ export default function LineItem({ onChange = () => {}, onClick = () => {} }) {
           type="text"
           placeholder={"Rate"}
           name={"rate"}
+          value={rate}
           onChange={onChange}
         />
       </td>

@@ -69,10 +69,10 @@ export default function EstimateForm() {
     const { name, value } = e.target;
     setValues((prev) => ({
       ...prev,
-      lineItems: lineItems.map((item) => {
-        return item === lineItems[i]
+      lineItems: lineItems.map((item, _i) => {
+        return _i === i
           ? {
-              ...lineItems[i],
+              ...item,
               [name]: value,
             }
           : item;
@@ -89,26 +89,13 @@ export default function EstimateForm() {
   }
 
   function deleteItem(i) {
-    // console.log(e);
-    // const newLineItems = lineItems.filter((item, _i) => {
-    //   console.log(item);
-    //   console.log(`Index coming from the map:${i}`);
-    //   console.log(`Index coming from the filter:${_i}`);
-    //   return i !== _i;
-    // });
-
-    return setValues((prev) => ({
+    const newLineItems = lineItems.filter((item, _i) => {
+      return i !== _i;
+    });
+    setValues((prev) => ({
       ...prev,
-      lineItems: lineItems.filter((item, _i) => {
-        console.log(item);
-        return _i !== i;
-      }),
+      lineItems: newLineItems,
     }));
-
-    // setValues((prev) => ({
-    //   ...prev,
-    //   lineItems: newLineItems,
-    // }));
   }
 
   return (
