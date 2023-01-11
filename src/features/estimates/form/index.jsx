@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { TextButton } from "@/ui/button";
 import Link from "next/Link";
 import TextField from "@/ui/form/textfield";
@@ -7,36 +6,7 @@ import LineItems from "./line-items";
 import Summary from "./summary";
 import Notes from "./notes";
 
-const currentDate = new Date().toLocaleDateString();
-const defaultValues = {
-  estimateNO: "004",
-  estimateDate: currentDate,
-  client: {
-    firstName: "John",
-    lastName: "Doe",
-    address: "123 N Main St",
-    phone: "555 123 12345",
-    email: "johndoe@example.com",
-  },
-  lineItems: [
-    {
-      name: "Install Carpet",
-      description: "Install new carpet in living room",
-      quantity: 0,
-      rate: 0,
-      total: 0,
-    },
-  ],
-  summary: "This is a Job Summary",
-  notes: "This is a Notes section",
-  invoiced: false,
-  subtotal: "100",
-  tax: "5",
-  total: "105",
-};
-
-export default function EstimateForm() {
-  const [values, setValues] = useState(defaultValues);
+export default function EstimateForm({ values, setValues, defaultValues }) {
   const { estimateDate, estimateNO, subtotal, total, tax } = values;
 
   function inputHandler(e) {

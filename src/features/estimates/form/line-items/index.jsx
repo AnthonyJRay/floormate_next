@@ -8,21 +8,29 @@ export default function LineItems({ values, setValues, defaultValues }) {
   // const { lineItems } = values;
   // const { quantity, rate } = lineItems;
 
+  function validateValue(value) {
+    return parseFloat(value) === undefined ? (value = 0) : value;
+  }
+
+  function getTotal(qty, rate) {
+    let sum = qty * rate;
+    return sum === undefined ? (sum = 0) : sum;
+  }
+
   function lineItemsHandler(e, i) {
     const { name, value } = e.target;
 
     setValues((prev) => ({
       ...prev,
       lineItems: values.map((item, _i) => {
-        console.log(item);
         return _i === i
           ? {
               ...item,
               [name]:
                 name === "quantity" || name === "rate"
-                  ? parseFloat(value)
+                  ? validateValue(value)
                   : value,
-              total: parseFloat(values.quantity) * parseFloat(values.rate),
+              total: getTotal(values.quantity, values.rate),
             }
           : item;
       }),
