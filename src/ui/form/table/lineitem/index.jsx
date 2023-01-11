@@ -11,18 +11,8 @@ export default function LineItem({
   onChange = () => {},
   onClick = () => {},
 }) {
-  // quantity, rate, total
+  const { name, description, quantity, rate, total } = data;
 
-  const { name, description, total, quantity, rate } = data;
-  useEffect(() => {
-    console.log(values);
-    setValues((prev) => ({
-      ...prev,
-      total: parseInt(quantity) * parseInt(rate),
-    }));
-  }, [data]);
-  // console.log(parseFloat(total));
-  // console.log(data);
   return (
     <tr className={"text-left"}>
       <td>

@@ -47,6 +47,10 @@ export default function EstimateForm() {
     }));
   }
 
+  console.log("----------------");
+  console.log(`State coming from form ${JSON.stringify(values.lineItems)}`);
+  console.log("----------------");
+
   return (
     <form className={"bg-gray-100"}>
       <div className={"flex flex-col"}>
@@ -59,7 +63,7 @@ export default function EstimateForm() {
           <Summary values={values} setValues={setValues} />
         </div>
         <LineItems
-          values={values}
+          values={values.lineItems}
           setValues={setValues}
           defaultValues={defaultValues}
         />

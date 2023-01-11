@@ -5,59 +5,46 @@ import { PlusCircleIcon } from "@heroicons/react/24/solid";
 import { TextButton } from "@/ui/button";
 
 export default function LineItems({ values, setValues, defaultValues }) {
-  const { lineItems } = values;
+  // const { lineItems } = values;
+  // const { quantity, rate } = lineItems;
 
   function lineItemsHandler(e, i) {
     const { name, value } = e.target;
+
     setValues((prev) => ({
       ...prev,
-      lineItems: lineItems.map((item, _i) => {
-        const { quantity, total, rate } = item;
+      lineItems: values.map((item, _i) => {
+        console.log(item);
         return _i === i
           ? {
               ...item,
-              [name]: value,
-              total: rate * quantity,
+              [name]:
+                name === "quantity" || name === "rate"
+                  ? parseFloat(value)
+                  : value,
+              total: parseFloat(values.quantity) * parseFloat(values.rate),
             }
           : item;
       }),
     }));
   }
 
-  // function lineItemsTotal(e, i) {
-  //   const {value} = e.target
-  //   setValues(prev => ({
-  //     ...prev,
-  //     lineItems: lineItems.map((item, _i) => {
-  //       const {quantity, rate, total } = item
-  //       return _i === i ? {
-  //         ...item,
-
-  //       }
-  //     })
-  //   }))
-  // }
-
-  // useEffect(() => {
-  //   setValues((prev) => ({
-  //     ...prev,
-  //     lineItems: lineItems.map((item, i) => ({
-  //       ...item,
-  //       total: item.quantity * item.rate,
-  //     })),
-  //   }));
-  // }, [setValues]);
+  useEffect(() => {
+    console.log("********");
+    console.log(values);
+    console.log("********");
+  }, [values]);
 
   function addItem() {
     const newItem = defaultValues.lineItems;
     setValues((prev) => ({
       ...prev,
-      lineItems: [...lineItems, ...newItem],
+      lineItems: [...values, ...newItem],
     }));
   }
 
   function deleteItem(i) {
-    const newLineItems = lineItems.filter((item, _i) => {
+    const newLineItems = values.filter((item, _i) => {
       return i !== _i;
     });
     setValues((prev) => ({
@@ -84,22 +71,43 @@ export default function LineItems({ values, setValues, defaultValues }) {
             <TableLabels />
           </thead>
           <tbody>
-            {lineItems.map((item, i) => {
+            {values.map((item, i) => {
               return (
                 <LineItem
                   key={i}
                   className={"w-11/12 my-2"}
                   setValues={setValues}
-                  values={lineItems}
+                  values={values}
                   data={item}
                   onChange={(e) => lineItemsHandler(e, i)}
                   onClick={() => deleteItem(i)}
                 />
               );
             })}
+            {console.log(`Real values? ${JSON.stringify(values)}`)}
           </tbody>
         </table>
       </div>
     </div>
   );
 }
+
+// (e) => {
+//   const { name, value } = e.target;
+//   console.log(
+//     `State before setter ${JSON.stringify(values)}`
+//   );
+//   setValues((prev) => ({
+//     ...prev,
+//     lineItems: values.map((item, _i) => {
+//       return _i === i
+//         ? {
+//             ...item,
+//             [name]: value,
+//             total: item.quantity * item.rate,
+//           }
+//         : item;
+//     }),
+//   }));
+//   console.log(`State after setter ${JSON.stringify(values)}`);
+// }
