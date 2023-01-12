@@ -24,7 +24,7 @@ export default function EstimateForm({ values, setValues, defaultValues }) {
           <div>Estimate: #{estimateNO}</div>
           <div>Date: {estimateDate}</div>
         </div>
-        <div className="flex flex-col md:flex-row gap-5 mx-2">
+        <div className="flex flex-col md:flex-row gap-4 mx-2 my-10">
           <BillTo values={values} setValues={setValues} />
           <Summary values={values} setValues={setValues} />
         </div>

@@ -21,9 +21,9 @@ export default function BillTo({ values, setValues }) {
 
   return (
     <div className="flex flex-col md:w-1/2 p-4 border-2 rounded">
-      <div className="text-left text-xl font-bold">Bill To:</div>
-      <div className={"text-sm"}>
-        <div className={"flex"}>
+      <div className="text-left text-xl font-bold">Client:</div>
+      <div className={"text-sm py-6"}>
+        <div className="w-full md:py-2">
           <FirstNameField
             name={"firstName"}
             placeholder="First Name"
@@ -33,7 +33,8 @@ export default function BillTo({ values, setValues }) {
             <span>First Name:</span>
           </FirstNameField>
         </div>
-        <div className={"flex"}>
+
+        <div className="w-full md:py-2">
           <LastNameField
             name={"lastName"}
             placeholder={"Last Name"}
@@ -43,7 +44,8 @@ export default function BillTo({ values, setValues }) {
             <span>Last Name:</span>
           </LastNameField>
         </div>
-        <div className={"flex"}>
+
+        <div className="w-full md:py-2">
           <AddressField
             name={"address"}
             placeholder={"Address"}
@@ -53,7 +55,8 @@ export default function BillTo({ values, setValues }) {
             <span>Address:</span>
           </AddressField>
         </div>
-        <div className={"flex"}>
+
+        <div className="w-full md:py-2">
           <PhoneField
             name={"phone"}
             placeholder={"Phone"}
@@ -63,7 +66,8 @@ export default function BillTo({ values, setValues }) {
             <span>Phone:</span>
           </PhoneField>
         </div>
-        <div className={"flex"}>
+
+        <div className="w-full md:py-2">
           <EmailField
             name={"email"}
             placeholder={"Email"}

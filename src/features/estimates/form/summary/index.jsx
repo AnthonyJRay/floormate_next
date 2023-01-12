@@ -15,8 +15,9 @@ export default function Summary({ values, setValues }) {
 
   return (
     <div className={"flex flex-col md:w-1/2 p-4 border-2 rounded"}>
-      <div className={"h-full"}>
+      <div className={"h-full overflow-hidden"}>
         <SummaryField
+          className={"h-full w-full"}
           name={"summary"}
           placeholder={"Enter the scope of work"}
           value={summary}
