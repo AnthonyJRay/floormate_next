@@ -1,47 +1,19 @@
-import { useEffect } from "react";
 import LineItem from "@/ui/form/table/lineitem";
 import TableLabels from "@/ui/form/table/labels";
 import { PlusCircleIcon } from "@heroicons/react/24/solid";
 import { TextButton } from "@/ui/button";
 
 export default function LineItems({ values, setValues, defaultValues }) {
-  // const { lineItems } = values;
-  // const { quantity, rate } = lineItems;
-
-  function validateValue(value) {
-    return parseFloat(value) === undefined ? (value = 0) : value;
-  }
-
-  function getTotal(qty, rate) {
-    let sum = qty * rate;
-    return sum === undefined ? (sum = 0) : sum;
-  }
-
   function lineItemsHandler(e, i) {
     const { name, value } = e.target;
 
     setValues((prev) => ({
       ...prev,
       lineItems: values.map((item, _i) => {
-        return _i === i
-          ? {
-              ...item,
-              [name]:
-                name === "quantity" || name === "rate"
-                  ? validateValue(value)
-                  : value,
-              total: getTotal(values.quantity, values.rate),
-            }
-          : item;
+        return _i === i ? { ...item, [name]: value } : item;
       }),
     }));
   }
-
-  useEffect(() => {
-    console.log("********");
-    console.log(values);
-    console.log("********");
-  }, [values]);
 
   function addItem() {
     const newItem = defaultValues.lineItems;
@@ -92,30 +64,9 @@ export default function LineItems({ values, setValues, defaultValues }) {
                 />
               );
             })}
-            {console.log(`Real values? ${JSON.stringify(values)}`)}
           </tbody>
         </table>
       </div>
     </div>
   );
 }
-
-// (e) => {
-//   const { name, value } = e.target;
-//   console.log(
-//     `State before setter ${JSON.stringify(values)}`
-//   );
-//   setValues((prev) => ({
-//     ...prev,
-//     lineItems: values.map((item, _i) => {
-//       return _i === i
-//         ? {
-//             ...item,
-//             [name]: value,
-//             total: item.quantity * item.rate,
-//           }
-//         : item;
-//     }),
-//   }));
-//   console.log(`State after setter ${JSON.stringify(values)}`);
-// }

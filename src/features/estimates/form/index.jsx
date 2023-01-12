@@ -17,10 +17,6 @@ export default function EstimateForm({ values, setValues, defaultValues }) {
     }));
   }
 
-  console.log("----------------");
-  console.log(`State coming from form ${JSON.stringify(values.lineItems)}`);
-  console.log("----------------");
-
   return (
     <form className={"bg-gray-100"}>
       <div className={"flex flex-col"}>
@@ -28,7 +24,7 @@ export default function EstimateForm({ values, setValues, defaultValues }) {
           <div>Estimate: #{estimateNO}</div>
           <div>Date: {estimateDate}</div>
         </div>
-        <div className="flex flex-col md:flex-row gap-5 mx-4">
+        <div className="flex flex-col md:flex-row gap-5 mx-2">
           <BillTo values={values} setValues={setValues} />
           <Summary values={values} setValues={setValues} />
         </div>

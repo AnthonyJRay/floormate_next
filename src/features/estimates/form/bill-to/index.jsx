@@ -20,9 +20,9 @@ export default function BillTo({ values, setValues }) {
   }
 
   return (
-    <div className="flex flex-col md:w-1/2">
-      <div className="text-left text-xl">Bill To:</div>
-      <div>
+    <div className="flex flex-col md:w-1/2 p-4 border-2 rounded">
+      <div className="text-left text-xl font-bold">Bill To:</div>
+      <div className={"text-sm"}>
         <div className={"flex"}>
           <FirstNameField
             name={"firstName"}

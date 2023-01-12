@@ -14,7 +14,7 @@ export default function Summary({ values, setValues }) {
   }
 
   return (
-    <div className={"md:w-1/2"}>
+    <div className={"flex flex-col md:w-1/2 p-4 border-2 rounded"}>
       <div className={"h-full"}>
         <SummaryField
           name={"summary"}
