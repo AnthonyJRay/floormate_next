@@ -1,5 +1,5 @@
-import { TextButton } from "@/ui/button";
 import Link from "next/Link";
+import { TextButton } from "@/ui/button";
 import TextField from "@/ui/form/textfield";
 import BillTo from "./bill-to";
 import LineItems from "./line-items";
@@ -20,11 +20,12 @@ export default function EstimateForm({ values, setValues, defaultValues }) {
   return (
     <form className={"bg-gray-100"}>
       <div className={"flex flex-col"}>
-        <div className="flex w-full justify-between">
+        {/*w-full on larget screens? */}
+        <div className="flex justify-between m-2 italic">
           <div>Estimate: #{estimateNO}</div>
           <div>Date: {estimateDate}</div>
         </div>
-        <div className="flex flex-col md:flex-row gap-4 mx-2 my-10">
+        <div className="flex flex-col md:flex-row gap-4 mx-2 my-4">
           <BillTo values={values} setValues={setValues} />
           <Summary values={values} setValues={setValues} />
         </div>

@@ -14,7 +14,7 @@ const defaultValues = {
   },
   lineItems: [
     {
-      name: "Install Carpet",
+      name: "",
       description: "Install new carpet in living room",
       quantity: 0,
       rate: 0,

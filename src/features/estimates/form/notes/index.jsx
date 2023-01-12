@@ -1,7 +1,7 @@
-import TextArea from "@/ui/form/textarea";
+import TextBox from "@/ui/form/textbox";
 import withLabel from "@/ui/form/withlabel";
 
-const NotesField = withLabel(TextArea);
+const NotesField = withLabel(TextBox);
 
 export default function Notes({ values, setValues }) {
   const { notes } = values;

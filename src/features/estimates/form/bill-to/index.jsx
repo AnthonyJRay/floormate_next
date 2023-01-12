@@ -21,10 +21,11 @@ export default function BillTo({ values, setValues }) {
 
   return (
     <div className="flex flex-col md:w-1/2 p-4 border-2 rounded">
-      <div className="text-left text-xl font-bold">Client:</div>
-      <div className={"text-sm py-6"}>
-        <div className="w-full md:py-2">
+      <div className="text-lg text-center font-bold">Client</div>
+      <div className={"text-sm py-"}>
+        <div className="w-full m-2 md:py-2 italic">
           <FirstNameField
+            className={"w-full"}
             name={"firstName"}
             placeholder="First Name"
             value={firstName}
@@ -34,8 +35,9 @@ export default function BillTo({ values, setValues }) {
           </FirstNameField>
         </div>
 
-        <div className="w-full md:py-2">
+        <div className="w-full m-2 md:py-2 italic">
           <LastNameField
+            className={"w-full"}
             name={"lastName"}
             placeholder={"Last Name"}
             value={lastName}
@@ -45,8 +47,9 @@ export default function BillTo({ values, setValues }) {
           </LastNameField>
         </div>
 
-        <div className="w-full md:py-2">
+        <div className="w-full m-2 md:py-2 italic">
           <AddressField
+            className={"w-full"}
             name={"address"}
             placeholder={"Address"}
             value={address}
@@ -56,8 +59,9 @@ export default function BillTo({ values, setValues }) {
           </AddressField>
         </div>
 
-        <div className="w-full md:py-2">
+        <div className="w-full m-2 md:py-2 italic">
           <PhoneField
+            className={"w-full"}
             name={"phone"}
             placeholder={"Phone"}
             value={phone}
@@ -67,8 +71,9 @@ export default function BillTo({ values, setValues }) {
           </PhoneField>
         </div>
 
-        <div className="w-full md:py-2">
+        <div className="w-full m-2 md:py-2 italic">
           <EmailField
+            className={"w-full"}
             name={"email"}
             placeholder={"Email"}
             value={email}

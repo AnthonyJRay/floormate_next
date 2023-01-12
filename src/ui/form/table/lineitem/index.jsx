@@ -1,12 +1,12 @@
 import { TrashIcon } from "@heroicons/react/24/outline";
 import { IconButton } from "@/ui/button";
 import TextField from "@/ui/form/textfield";
+import TextBox from "@/ui/form/textbox";
 
 export default function LineItem({
   data,
   className,
-  setValues,
-  values,
+  unitStyles,
   onChange = () => {},
   onClick = () => {},
 }) {
@@ -24,26 +24,26 @@ export default function LineItem({
         />
       </td>
       <td>
-        <TextField
-          className={className}
+        <TextBox
+          className={`${className} border-b-2 p-1 h-[39px]`}
           placeholder={"Description"}
           name={"description"}
           value={description}
           onChange={onChange}
         />
       </td>
-      <td>
+      <td className={unitStyles}>
         <TextField
-          className={className}
+          className={`${className}`}
           placeholder={"Quantity"}
           name={"quantity"}
           value={quantity}
           onChange={onChange}
         />
       </td>
-      <td>
+      <td className={unitStyles}>
         <TextField
-          className={className}
+          className={`${className}`}
           placeholder={"Rate"}
           name={"rate"}
           value={rate}
