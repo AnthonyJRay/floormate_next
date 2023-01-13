@@ -19,7 +19,7 @@ export default function EstimateForm({ values, setValues, defaultValues }) {
 
   return (
     <form className={"bg-gray-100"}>
-      <div className={"flex flex-col m-2"}>
+      <div className={"flex flex-col p-2"}>
         {/*w-full on larget screens? */}
         <div className="flex justify-between italic">
           <div>Estimate: #{estimateNO}</div>

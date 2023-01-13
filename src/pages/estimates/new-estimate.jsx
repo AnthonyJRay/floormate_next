@@ -38,7 +38,7 @@ export default function NewEstimate() {
   const [values, setValues] = useState(defaultValues);
 
   return (
-    <div className="w-screen h-screen text-center bg-gray-50 text-gray-700">
+    <div className="text-center bg-gray-50 text-gray-700">
       <EstimateForm
         values={values}
         setValues={setValues}

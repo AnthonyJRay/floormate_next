@@ -56,7 +56,6 @@ export default function LineItems({ values, setValues, defaultValues }) {
                 <LineItem
                   key={i}
                   className={"w-full my-2"}
-                  unitStyles={"w-1/12"}
                   setValues={setValues}
                   values={values}
                   data={item}

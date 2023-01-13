@@ -14,7 +14,7 @@ export default function LineItem({
 
   return (
     <tr className={"text-left"}>
-      <td>
+      <td className={"w-3/12"}>
         <TextField
           className={className}
           placeholder={"Name"}
@@ -25,14 +25,14 @@ export default function LineItem({
       </td>
       <td>
         <TextBox
-          className={`${className} border-b-2 p-1 h-[39px]`}
+          className={`${className} border-b-2 p-1 h-[40px]`}
           placeholder={"Description"}
           name={"description"}
           value={description}
           onChange={onChange}
         />
       </td>
-      <td className={unitStyles}>
+      <td className={"w-1/12"}>
         <TextField
           className={`${className}`}
           placeholder={"Quantity"}
@@ -41,7 +41,7 @@ export default function LineItem({
           onChange={onChange}
         />
       </td>
-      <td className={unitStyles}>
+      <td className={"w-1/12"}>
         <TextField
           className={`${className}`}
           placeholder={"Rate"}
@@ -51,7 +51,7 @@ export default function LineItem({
         />
       </td>
       <td>
-        <span className={"text-green-600"}>${total}</span>
+        <span className={"text-green-600 w-2/12"}>${total}</span>
       </td>
       <td>
         <IconButton className="bg-red-600" type={"button"} onClick={onClick}>
