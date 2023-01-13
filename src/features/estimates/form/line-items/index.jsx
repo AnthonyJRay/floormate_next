@@ -46,7 +46,7 @@ export default function LineItems({ values, setValues, defaultValues }) {
         </div>
       </TextButton>
       <div className={"flex w-full justify-center"}>
-        <table className={"table-auto w-11/12"}>
+        <table className={"table-auto"}>
           <thead>
             <TableLabels />
           </thead>
@@ -55,7 +55,7 @@ export default function LineItems({ values, setValues, defaultValues }) {
               return (
                 <LineItem
                   key={i}
-                  className={"w-11/12 my-2"}
+                  className={"w-full my-2"}
                   unitStyles={"w-1/12"}
                   setValues={setValues}
                   values={values}

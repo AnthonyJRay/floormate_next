@@ -14,8 +14,13 @@ export default function Notes({ values, setValues }) {
   }
 
   return (
-    <NotesField name={"notes"} value={notes} onChange={(e) => notesHandler(e)}>
-      <div className={"text-lg p-1"}>Additional Notes:</div>
+    <NotesField
+      name={"notes"}
+      value={notes}
+      className={"text-sm border-b-2 p-2"}
+      onChange={(e) => notesHandler(e)}
+    >
+      <div className={"text-lg p-1 w-full text-center"}>Additional Notes</div>
     </NotesField>
   );
 }

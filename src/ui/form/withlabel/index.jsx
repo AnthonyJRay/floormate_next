@@ -8,12 +8,10 @@ export default function withLabel(Component) {
     ...rest
   }) {
     return (
-      // <div className={"w-full md:py-2"}>
       <>
         <label className={`${defaultLabelClasses}`}>{children}</label>
         <Component className={`${defaultInputClasses}`} {...rest} />
       </>
-      // </div>
     );
   };
 }

@@ -1,9 +1,10 @@
 import TextField from "@/ui/form/textfield";
 import withLabel from "@/ui/form/withlabel";
+import AddressField from "@/ui/form/address";
 
 const FirstNameField = withLabel(TextField);
 const LastNameField = withLabel(TextField);
-const AddressField = withLabel(TextField);
+const Address = withLabel(AddressField);
 const PhoneField = withLabel(TextField);
 const EmailField = withLabel(TextField);
 
@@ -16,6 +17,17 @@ export default function BillTo({ values, setValues }) {
     setValues((prev) => ({
       ...prev,
       client: { ...client, [name]: value },
+    }));
+  }
+
+  function addressHandler(e) {
+    const { name, value } = e.target;
+    console.log(e.target);
+    console.log(name);
+    console.log(value);
+    setValues((prev) => ({
+      ...prev,
+      client: { address: { ...address, [name]: value } },
     }));
   }
 
@@ -48,15 +60,15 @@ export default function BillTo({ values, setValues }) {
         </div>
 
         <div className="w-full m-2 md:py-2 italic">
-          <AddressField
+          <Address
             className={"w-full"}
             name={"address"}
-            placeholder={"Address"}
-            value={address}
-            onChange={(e) => clientHandler(e)}
+            placeholder={"Street"}
+            values={address}
+            onChange={(e) => addressHandler(e)}
           >
             <span>Address:</span>
-          </AddressField>
+          </Address>
         </div>
 
         <div className="w-full m-2 md:py-2 italic">

@@ -8,7 +8,12 @@ const defaultValues = {
   client: {
     firstName: "John",
     lastName: "Doe",
-    address: "123 N Main St",
+    address: {
+      street: "123 N Main St",
+      city: "Omaha",
+      state: "NE",
+      zip: "68164",
+    },
     phone: "555 123 12345",
     email: "johndoe@example.com",
   },

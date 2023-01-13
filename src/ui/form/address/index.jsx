@@ -1,6 +1,6 @@
-import Textfield from "../textfield";
+import TextField from "../textfield";
 
-export default function AddressField({ options, ...rest }) {
+export default function AddressField({ values, onChange = () => {}, ...rest }) {
   const states = [
     "AL",
     "AK",
@@ -54,11 +54,31 @@ export default function AddressField({ options, ...rest }) {
     "WY",
   ];
 
-  const defaultStyles = "text-gray-600";
+  const { street, city, state, zip } = values;
+  console.log(values);
+
   return (
-    <>
-      <Textfield placeholder="Street" />
-      <select className={defaultStyles}>
+    <div className={"flex gap-2"}>
+      <TextField
+        placeholder="Street"
+        name="street"
+        value={street}
+        onChange={onChange}
+        className={"w-3/6"}
+      />
+      <TextField
+        placeholder="City"
+        name="city"
+        value={city}
+        onChange={onChange}
+        className={"w-2/6"}
+      />
+      <select
+        value={state}
+        name="state"
+        onChange={onChange}
+        className={"w-1/6 text-gray-600 border-b-2 p-1"}
+      >
         {states.map((option, i) => {
           return (
             <option key={i} {...rest}>
@@ -67,7 +87,19 @@ export default function AddressField({ options, ...rest }) {
           );
         })}
       </select>
-      <Textfield placeholder="Zip" />
-    </>
+      <TextField
+        placeholder="Zip"
+        name="zip"
+        value={zip}
+        onChange={onChange}
+        className={"w-1/6"}
+      />
+    </div>
   );
 }
+
+// <div>
+//   <TextField className={"w-3/6"} placeholder={"City"} />
+//   <TextField className={"w-2/6"} placeholder={"State"} />
+//   <TextField className={"w-1/6"} placeholder={"Zip"} />
+// </div>
