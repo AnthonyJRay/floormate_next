@@ -4,34 +4,6 @@ import EstimateDisplay from "@/features/estimates/estimate-display";
 import { TextButton } from "@/ui/button";
 import Link from "next/Link";
 
-const currentDate = new Date().toLocaleDateString();
-
-const defaultValues = {
-  estimateNO: "004",
-  estimateDate: currentDate,
-  client: {
-    firstName: "",
-    lastName: "",
-    address: "",
-    phone: "",
-    email: "",
-  },
-  lineItems: [
-    {
-      name: "",
-      description: "",
-      quantity: "",
-      rate: "",
-      total: "",
-    },
-  ],
-  summary: "",
-  invoiced: false,
-  subtotal: "",
-  tax: "",
-  total: "",
-};
-
 export default function Estimates() {
   const [estimates, setEstimates] = useState([
     {

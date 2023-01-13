@@ -17,7 +17,7 @@ export default function Notes({ values, setValues }) {
     <NotesField
       name={"notes"}
       value={notes}
-      className={"text-sm border-b-2 p-2"}
+      className={"text-sm border-2 p-2"}
       onChange={(e) => notesHandler(e)}
     >
       <div className={"text-lg p-1 w-full text-center"}>Additional Notes</div>

@@ -6,14 +6,13 @@ import TextBox from "@/ui/form/textbox";
 export default function LineItem({
   data,
   className,
-  unitStyles,
   onChange = () => {},
   onClick = () => {},
 }) {
   const { name, description, quantity, rate, total } = data;
 
   return (
-    <tr className={"text-left"}>
+    <tr>
       <td className={"w-3/12"}>
         <TextField
           className={className}
@@ -53,7 +52,7 @@ export default function LineItem({
       <td>
         <span className={"text-green-600 w-2/12"}>${total}</span>
       </td>
-      <td>
+      <td className={"w-1"}>
         <IconButton className="bg-red-600" type={"button"} onClick={onClick}>
           <TrashIcon />
         </IconButton>

@@ -1,6 +1,6 @@
 export default function TableLabels() {
   return (
-    <tr className={" text-left text-xs"}>
+    <tr className={"text-xs"}>
       <th>Name</th>
       <th>Description</th>
       <th>Quantity</th>

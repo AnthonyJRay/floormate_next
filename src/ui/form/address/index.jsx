@@ -55,7 +55,6 @@ export default function AddressField({ values, onChange = () => {}, ...rest }) {
   ];
 
   const { street, city, state, zip } = values;
-  console.log(values);
 
   return (
     <div className={"flex gap-2"}>
@@ -74,8 +73,8 @@ export default function AddressField({ values, onChange = () => {}, ...rest }) {
         className={"w-2/6"}
       />
       <select
-        value={state}
         name="state"
+        value={state}
         onChange={onChange}
         className={"w-1/6 text-gray-600 border-b-2 p-1"}
       >

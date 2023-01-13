@@ -45,7 +45,7 @@ export default function LineItems({ values, setValues, defaultValues }) {
           <div>New Line Item</div>
         </div>
       </TextButton>
-      <div className={"flex w-full justify-center"}>
+      <div className={"w-full"}>
         <table className={"table-auto"}>
           <thead>
             <TableLabels />

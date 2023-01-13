@@ -1,5 +1,8 @@
 import { useState } from "react";
 import EstimateForm from "@/features/estimates/form";
+import { Estimates } from "./index";
+
+console.log(Estimates);
 
 const currentDate = new Date().toLocaleDateString();
 const defaultValues = {
@@ -19,20 +22,24 @@ const defaultValues = {
   },
   lineItems: [
     {
-      name: "",
+      name: "Install Carpet",
       description: "Install new carpet in living room",
       quantity: 0,
       rate: 0,
       total: 0,
     },
   ],
-  summary: "This is a Job Summary",
+  summary:
+    "Remove existing carpet and padding. Scrape, sweep, subfloor for staples and other debris. Install new pad and carpet. No seams required. Vacuum before leaving.",
   notes: "This is a Notes section",
   invoiced: false,
   subtotal: "100",
   tax: "5",
   total: "105",
 };
+
+const stuff = Object.entries(defaultValues);
+console.log(stuff);
 
 export default function NewEstimate() {
   const [values, setValues] = useState(defaultValues);

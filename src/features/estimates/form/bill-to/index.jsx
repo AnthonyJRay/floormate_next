@@ -22,9 +22,7 @@ export default function BillTo({ values, setValues }) {
 
   function addressHandler(e) {
     const { name, value } = e.target;
-    console.log(e.target);
-    console.log(name);
-    console.log(value);
+
     setValues((prev) => ({
       ...prev,
       client: { address: { ...address, [name]: value } },

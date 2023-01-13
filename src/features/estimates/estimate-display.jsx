@@ -21,6 +21,7 @@ export default function EstimateDisplay({ data, className, onDelete }) {
       </div>
       <div className="flex justify-center gap-2 my-2">
         <TextButton className="bg-yellow-500 hover:bg-yellow-400">
+          {/* Add an onClick here to open New Estimate with it's data? */}
           View
         </TextButton>
         <IconButton

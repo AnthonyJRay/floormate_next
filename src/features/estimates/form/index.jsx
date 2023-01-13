@@ -67,7 +67,10 @@ export default function EstimateForm({ values, setValues, defaultValues }) {
           </div>
         </div>
         <div className={"flex justify-end gap-2 py-4"}>
-          <TextButton className={"bg-yellow-500 hover:bg-yellow-400"}>
+          <TextButton
+            type="button"
+            className={"bg-yellow-500 hover:bg-yellow-400"}
+          >
             <Link href="/estimates/">
               <div>Cancel</div>
             </Link>
