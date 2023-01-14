@@ -23,8 +23,8 @@ export default function LineItem({
         />
       </td>
       <td>
-        <TextBox
-          className={`${className} border-b-2 p-1 h-[40px]`}
+        <TextField
+          className={`${className}`}
           placeholder={"Description"}
           name={"description"}
           value={description}
