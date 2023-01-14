@@ -34,12 +34,19 @@ const defaultValues = {
   total: "",
 };
 
-// values, setValues, defaultValues
-
-export default function NewEstimate({}) {
+export default function NewEstimate({ values, setValues }) {
   const [newEstimate, setNewEstimate] = useState(defaultValues);
-  console.log("From New Estimate component!");
+  console.log("New estimate State");
   console.log(newEstimate);
+  console.log("Main state in App file");
+  console.log(values);
+
+  function onSave(e) {
+    e.preventDefault();
+
+    const data = { ...newEstimate };
+    setValues((prev) => [...prev, data]);
+  }
 
   return (
     <div className="text-center bg-gray-50 text-gray-700">
@@ -47,6 +54,7 @@ export default function NewEstimate({}) {
         values={newEstimate}
         setValues={setNewEstimate}
         defaultValues={defaultValues}
+        onSave={onSave}
       />
     </div>
   );

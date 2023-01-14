@@ -6,10 +6,13 @@ import LineItems from "./line-items";
 import Summary from "./summary";
 import Notes from "./notes";
 
-export default function EstimateForm({ values, setValues, defaultValues }) {
+export default function EstimateForm({
+  values,
+  setValues,
+  defaultValues,
+  onSave,
+}) {
   const { estimateDate, estimateNO, subtotal, total, tax } = values;
-  console.log("Inside form component!");
-  console.log(values);
 
   function inputHandler(e) {
     const { value, name } = e.target;
@@ -17,12 +20,6 @@ export default function EstimateForm({ values, setValues, defaultValues }) {
       ...prev,
       [name]: value,
     }));
-  }
-
-  function onSave(e) {
-    const { name } = e.target;
-    e.preventDefault();
-    console.log(name);
   }
 
   return (
