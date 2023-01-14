@@ -1,6 +1,8 @@
-import Card from "@/ui/card";
+import Link from "next/Link";
 import { TrashIcon } from "@heroicons/react/24/outline";
 import { IconButton, TextButton } from "@/ui/button";
+
+import Card from "@/ui/card";
 
 export default function EstimateDisplay({ data, className, onDelete }) {
   const defaultClassName = "flex flex-col grow basis-0 gap-1 m-1 bg-gray-800";
@@ -20,10 +22,13 @@ export default function EstimateDisplay({ data, className, onDelete }) {
         {invoiced ? "Invoiced" : "Not Invoiced"}
       </div>
       <div className="flex justify-center gap-2 my-2">
-        <TextButton className="bg-yellow-500 hover:bg-yellow-400">
-          {/* Add an onClick here to open New Estimate with it's data? */}
-          View
-        </TextButton>
+        <Link href="/estimates/new-estimate">
+          <div>
+            <TextButton className="bg-yellow-500 hover:bg-yellow-400">
+              <div>View</div>
+            </TextButton>
+          </div>
+        </Link>
         <IconButton
           className="bg-red-500 hover:bg-red-400"
           onClick={() => onDelete()}

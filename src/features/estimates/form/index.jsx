@@ -8,6 +8,8 @@ import Notes from "./notes";
 
 export default function EstimateForm({ values, setValues, defaultValues }) {
   const { estimateDate, estimateNO, subtotal, total, tax } = values;
+  console.log("Inside form component!");
+  console.log(values);
 
   function inputHandler(e) {
     const { value, name } = e.target;
@@ -15,6 +17,12 @@ export default function EstimateForm({ values, setValues, defaultValues }) {
       ...prev,
       [name]: value,
     }));
+  }
+
+  function onSave(e) {
+    const { name } = e.target;
+    e.preventDefault();
+    console.log(name);
   }
 
   return (
@@ -75,7 +83,12 @@ export default function EstimateForm({ values, setValues, defaultValues }) {
               <div>Cancel</div>
             </Link>
           </TextButton>
-          <TextButton className={"bg-green-600 hover:bg-green-500"}>
+          {/* Merge this state onClick with app state. */}
+          <TextButton
+            className={"bg-green-600 hover:bg-green-500"}
+            name={"Save"}
+            onClick={(e) => onSave(e)}
+          >
             Save
           </TextButton>
         </div>

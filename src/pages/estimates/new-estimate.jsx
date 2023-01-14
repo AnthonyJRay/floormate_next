@@ -1,54 +1,51 @@
 import { useState } from "react";
 import EstimateForm from "@/features/estimates/form";
-import { Estimates } from "./index";
-
-console.log(Estimates);
 
 const currentDate = new Date().toLocaleDateString();
+
 const defaultValues = {
-  estimateNO: "004",
+  estimateNO: "",
   estimateDate: currentDate,
   client: {
-    firstName: "John",
-    lastName: "Doe",
+    firstName: "",
+    lastName: "",
     address: {
-      street: "123 N Main St",
-      city: "Omaha",
-      state: "NE",
-      zip: "68164",
+      street: "",
+      city: "",
+      state: "",
+      zip: "",
     },
-    phone: "555 123 12345",
-    email: "johndoe@example.com",
+    phone: "",
+    email: "",
   },
   lineItems: [
     {
-      name: "Install Carpet",
-      description: "Install new carpet in living room",
-      quantity: 0,
-      rate: 0,
-      total: 0,
+      name: "",
+      description: "",
+      quantity: "",
+      rate: "",
+      total: "",
     },
   ],
-  summary:
-    "Remove existing carpet and padding. Scrape, sweep, subfloor for staples and other debris. Install new pad and carpet. No seams required. Vacuum before leaving.",
-  notes: "This is a Notes section",
+  summary: "",
   invoiced: false,
-  subtotal: "100",
-  tax: "5",
-  total: "105",
+  subtotal: "",
+  tax: "",
+  total: "",
 };
 
-const stuff = Object.entries(defaultValues);
-console.log(stuff);
+// values, setValues, defaultValues
 
-export default function NewEstimate() {
-  const [values, setValues] = useState(defaultValues);
+export default function NewEstimate({}) {
+  const [newEstimate, setNewEstimate] = useState(defaultValues);
+  console.log("From New Estimate component!");
+  console.log(newEstimate);
 
   return (
     <div className="text-center bg-gray-50 text-gray-700">
       <EstimateForm
-        values={values}
-        setValues={setValues}
+        values={newEstimate}
+        setValues={setNewEstimate}
         defaultValues={defaultValues}
       />
     </div>
