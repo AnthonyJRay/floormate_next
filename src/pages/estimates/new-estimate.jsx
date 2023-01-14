@@ -36,17 +36,20 @@ const defaultValues = {
 
 export default function NewEstimate({ values, setValues }) {
   const [newEstimate, setNewEstimate] = useState(defaultValues);
-  console.log("New estimate State");
-  console.log(newEstimate);
-  console.log("Main state in App file");
+  // Match ??? to values[index?]
   console.log(values);
 
   function onSave(e) {
     e.preventDefault();
-
     const data = { ...newEstimate };
     setValues((prev) => [...prev, data]);
   }
+
+  // New Estimate Form needs some sort of validation/required fields. Client info etc.
+  // Does Form need to have local state cleared? If re-directs back to Estimates page, New Estimate will always load defaultsValues as state.
+  // Saving should re-direct back to Estimates page?
+  // Should be able to click "View" and have that estimate populate a Form component. Saving should update that Estimate.
+  // Should add in a Success/Failure modal after saving form.
 
   return (
     <div className="text-center bg-gray-50 text-gray-700">

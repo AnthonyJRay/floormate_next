@@ -80,13 +80,12 @@ export default function EstimateForm({
               <div>Cancel</div>
             </Link>
           </TextButton>
-          {/* Merge this state onClick with app state. */}
           <TextButton
             className={"bg-green-600 hover:bg-green-500"}
             name={"Save"}
             onClick={(e) => onSave(e)}
           >
-            Save
+            <Link href="/estimates">Save</Link>
           </TextButton>
         </div>
       </div>

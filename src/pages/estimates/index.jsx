@@ -4,8 +4,13 @@ import { TextButton } from "@/ui/button";
 import Link from "next/Link";
 
 export default function Estimates({ values, setValues }) {
-  console.log("From inside Estimates component.");
-  console.log(values);
+  function onDelete(i) {
+    return setValues((prev) => {
+      return prev.filter((_deleted, _i) => {
+        return _i !== i;
+      });
+    });
+  }
 
   return (
     <div className="text-center">
@@ -26,13 +31,7 @@ export default function Estimates({ values, setValues }) {
             <EstimateDisplay
               key={i}
               data={estimate}
-              onDelete={() => {
-                setValues((prev) => {
-                  return prev.filter((_deleted, _i) => {
-                    return _i !== i;
-                  });
-                });
-              }}
+              onDelete={() => onDelete(i)}
             />
           );
         })}

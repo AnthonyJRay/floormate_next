@@ -22,6 +22,8 @@ export default function EstimateDisplay({ data, className, onDelete }) {
         {invoiced ? "Invoiced" : "Not Invoiced"}
       </div>
       <div className="flex justify-center gap-2 my-2">
+        {/* How to carry over props through View button 
+        to populate Form state instead of empty defaults?" */}
         <Link href="/estimates/new-estimate">
           <div>
             <TextButton className="bg-yellow-500 hover:bg-yellow-400">
