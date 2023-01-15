@@ -6,6 +6,19 @@ import { TextButton } from "@/ui/button";
 export default function LineItems({ values, setValues, defaultValues }) {
   function lineItemsHandler(e, i) {
     const { name, value } = e.target;
+    // function sum(name) {
+    //   let qty;
+    //   let rate;
+    //   if (name === "quantity") {
+    //     qty = value;
+    //   }
+    //   if (name === "rate") {
+    //     rate = value;
+    //   }
+    //   let total = parseFloat(qty) * parseFloat(rate);
+    //   console.log(total);
+    // }
+    // sum(name);
 
     setValues((prev) => ({
       ...prev,

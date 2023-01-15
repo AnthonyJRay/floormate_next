@@ -1,25 +1,24 @@
-import { TextButton, IconButton } from "@/ui/button";
-import { PlusCircleIcon } from "@heroicons/react/24/solid";
-import { PencilSquareIcon } from "@heroicons/react/24/solid";
+import Link from "next/Link";
+import { TextButton } from "@/ui/button";
 
-export default function Homepage() {
+export default function Homepage({ values, setValues }) {
+  console.log(values);
   return (
-    <div className="mt-16 container mx-auto">
-      <div className="flex items-center gap-4">
-        <TextButton className="bg-blue-500 hover:bg-blue-400">
-          Log In
-        </TextButton>
-
-        <TextButton className="bg-green-500 hover:bg-green-400">
-          <div className="flex items-center gap-1">
-            <PlusCircleIcon className="w-5 text-white" />
-            <div>Add Expense</div>
-          </div>
-        </TextButton>
-
-        <IconButton className="bg-pink-500 hover:bg-yellow-400">
-          <PencilSquareIcon className="w-5" />
-        </IconButton>
+    <div>
+      <div>{/* Header and Settings? */}</div>
+      <div>
+        {/* Sidebar? w/ Navbar? */}
+        <ul className={"flex flex-col gap-2"}>
+          <Link href="/estimates">
+            <li>
+              <TextButton className={"bg-blue-400"}>Estimates</TextButton>
+            </li>
+          </Link>
+        </ul>
+      </div>
+      <div>
+        {/* Load page content here?  */}
+        <h1 className={"text-center"}>Homepage</h1>
       </div>
     </div>
   );

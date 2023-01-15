@@ -37,7 +37,6 @@ const defaultValues = {
 export default function NewEstimate({ values, setValues }) {
   const [newEstimate, setNewEstimate] = useState(defaultValues);
   // Match ??? to values[index?]
-  console.log(values);
 
   function onSave(e) {
     e.preventDefault();

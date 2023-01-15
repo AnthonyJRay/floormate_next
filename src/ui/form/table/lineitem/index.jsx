@@ -1,7 +1,6 @@
 import { TrashIcon } from "@heroicons/react/24/outline";
 import { IconButton } from "@/ui/button";
 import TextField from "@/ui/form/textfield";
-import TextBox from "@/ui/form/textbox";
 
 export default function LineItem({
   data,
@@ -10,7 +9,6 @@ export default function LineItem({
   onClick = () => {},
 }) {
   const { name, description, quantity, rate, total } = data;
-
   return (
     <tr>
       <td className={"w-3/12"}>

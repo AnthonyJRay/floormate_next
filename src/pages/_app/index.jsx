@@ -104,12 +104,5 @@ const defaultValues = [
 
 export default function App({ Component, pageProps }) {
   const [values, setValues] = useState(defaultValues);
-  return (
-    <Component
-      values={values}
-      setValues={setValues}
-      defaultValues={defaultValues}
-      {...pageProps}
-    />
-  );
+  return <Component values={values} setValues={setValues} {...pageProps} />;
 }

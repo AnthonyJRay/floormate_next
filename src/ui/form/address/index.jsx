@@ -96,9 +96,3 @@ export default function AddressField({ values, onChange = () => {}, ...rest }) {
     </div>
   );
 }
-
-// <div>
-//   <TextField className={"w-3/6"} placeholder={"City"} />
-//   <TextField className={"w-2/6"} placeholder={"State"} />
-//   <TextField className={"w-1/6"} placeholder={"Zip"} />
-// </div>
