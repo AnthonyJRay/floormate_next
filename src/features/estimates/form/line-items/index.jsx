@@ -6,27 +6,22 @@ import { TextButton } from "@/ui/button";
 export default function LineItems({ values, setValues, defaultValues }) {
   function lineItemsHandler(e, i) {
     const { name, value } = e.target;
-    // function sum(name) {
-    //   let qty;
-    //   let rate;
-    //   if (name === "quantity") {
-    //     qty = value;
-    //   }
-    //   if (name === "rate") {
-    //     rate = value;
-    //   }
-    //   let total = parseFloat(qty) * parseFloat(rate);
-    //   console.log(total);
-    // }
-    // sum(name);
-
     setValues((prev) => ({
       ...prev,
       lineItems: values.map((item, _i) => {
-        return _i === i ? { ...item, [name]: value } : item;
+        return _i === i
+          ? {
+              ...item,
+              [name]: value,
+            }
+          : item;
       }),
     }));
   }
+
+  // How will this run with input onChanges?
+  // useEffect? with state in dependency array?
+  function itemTotal() {}
 
   function addItem() {
     const newItem = defaultValues.lineItems;

@@ -25,7 +25,6 @@ export default function EstimateForm({
   return (
     <form className={"bg-gray-100"}>
       <div className={"flex flex-col p-2"}>
-        {/*w-full on larget screens? */}
         <div className="flex justify-between italic">
           <div>Estimate: #{estimateNO}</div>
           <div>Date: {estimateDate}</div>

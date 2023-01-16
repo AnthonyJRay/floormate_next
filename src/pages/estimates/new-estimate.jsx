@@ -36,7 +36,9 @@ const defaultValues = {
 
 export default function NewEstimate({ values, setValues }) {
   const [newEstimate, setNewEstimate] = useState(defaultValues);
+  // values is existing Estimates state.
   // Match ??? to values[index?]
+  // Conditionally pass "values" or defaultValues/empty state to EstimateForm component?
 
   function onSave(e) {
     e.preventDefault();

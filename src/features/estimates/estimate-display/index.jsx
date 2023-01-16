@@ -4,11 +4,10 @@ import { IconButton, TextButton } from "@/ui/button";
 
 import Card from "@/ui/card";
 
-export default function EstimateDisplay({ data, className, onDelete }) {
-  const defaultClassName = "flex flex-col grow gap-1 m-1 bg-gray-800";
+export default function EstimateDisplay({ data, onDelete }) {
   const { estimateNO, estimateDate, client, summary, total, invoiced } = data;
   return (
-    <Card className={`${defaultClassName} ${className}`}>
+    <Card className={"flex flex-col grow gap-1 m-1 bg-gray-800"}>
       <div className="flex justify-between m-2">
         <div>#{estimateNO}</div>
         <div>{estimateDate}</div>
