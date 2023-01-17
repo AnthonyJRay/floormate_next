@@ -1,9 +1,25 @@
+import { useEffect } from "react";
+
 import LineItem from "@/ui/form/table/lineitem";
 import TableLabels from "@/ui/form/table/labels";
 import { PlusCircleIcon } from "@heroicons/react/24/solid";
 import { TextButton } from "@/ui/button";
 
 export default function LineItems({ values, setValues, defaultValues }) {
+  function estimateTotals(values, setValues, i) {
+    return useEffect(() => {
+      setValues((prev) => ({
+        ...prev,
+        total: values.map((item, _i) => {
+          return _i === i ? item.quantity * item.rate : item;
+        }),
+        subtotal: values.map((item, _i) => {
+          return _i === i ? item.quantity * item.rate : item;
+        }),
+      }));
+    }, [values]);
+  }
+
   function lineItemsHandler(e, i) {
     const { name, value } = e.target;
     setValues((prev) => ({
@@ -18,10 +34,6 @@ export default function LineItems({ values, setValues, defaultValues }) {
       }),
     }));
   }
-
-  // How will this run with input onChanges?
-  // useEffect? with state in dependency array?
-  function itemTotal() {}
 
   function addItem() {
     const newItem = defaultValues.lineItems;
@@ -69,6 +81,7 @@ export default function LineItems({ values, setValues, defaultValues }) {
                   data={item}
                   onChange={(e) => lineItemsHandler(e, i)}
                   onClick={() => deleteItem(i)}
+                  estimateTotals={estimateTotals(values, setValues, i)}
                 />
               );
             })}
