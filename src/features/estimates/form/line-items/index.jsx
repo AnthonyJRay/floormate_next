@@ -1,27 +1,36 @@
 import { useEffect } from "react";
 
-import LineItem from "@/ui/form/table/lineitem";
-import TableLabels from "@/ui/form/table/labels";
+import LineItem from "@/features/estimates/form/table/lineitem";
+import TableLabels from "@/features/estimates/form/table/labels";
 import { PlusCircleIcon } from "@heroicons/react/24/solid";
 import { TextButton } from "@/ui/button";
 
 export default function LineItems({ values, setValues, defaultValues }) {
-  function estimateTotals(values, setValues, i) {
-    return useEffect(() => {
-      setValues((prev) => ({
-        ...prev,
-        total: values.map((item, _i) => {
-          return _i === i ? item.quantity * item.rate : item;
-        }),
-        subtotal: values.map((item, _i) => {
-          return _i === i ? item.quantity * item.rate : item;
-        }),
-      }));
-    }, [values]);
-  }
+  // function estimateTotals(values, setValues, i) {
+  //   return useEffect(() => {
+  //     setValues((prev) => ({
+  //       ...prev,
+  //       total: values.map((item, _i) => {
+  //         return _i === i ? item.quantity * item.rate : item;
+  //       }),
+  //       subtotal: values.map((item, _i) => {
+  //         return _i === i ? item.quantity * item.rate : item;
+  //       }),
+  //     }));
+  //   }, [values]);
+  // }
 
   function lineItemsHandler(e, i) {
     const { name, value } = e.target;
+
+    // if (name === "quantity") {
+    //   const qty = value;
+    // }
+
+    // if (name === "rate") {
+    //   const rate = value;
+    // }
+
     setValues((prev) => ({
       ...prev,
       lineItems: values.map((item, _i) => {
@@ -29,6 +38,7 @@ export default function LineItems({ values, setValues, defaultValues }) {
           ? {
               ...item,
               [name]: value,
+              total: qty * rate,
             }
           : item;
       }),
@@ -81,7 +91,7 @@ export default function LineItems({ values, setValues, defaultValues }) {
                   data={item}
                   onChange={(e) => lineItemsHandler(e, i)}
                   onClick={() => deleteItem(i)}
-                  estimateTotals={estimateTotals(values, setValues, i)}
+                  // estimateTotals={estimateTotals(values, setValues, i)}
                 />
               );
             })}

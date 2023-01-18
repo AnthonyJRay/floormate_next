@@ -7,7 +7,6 @@ export default function LineItem({
   className,
   onChange = () => {},
   onClick = () => {},
-  getTotal = () => {},
 }) {
   const { name, description, quantity, rate, total } = data;
   return (
