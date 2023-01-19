@@ -39,8 +39,8 @@ export default function EstimateForm({
               <PaperAirplaneIcon className={"w-5"} />
               <div className={"px-1"}>Convert to Invoice</div>
             </TextButton>
-            <IconButton>
-              <PrinterIcon className={"w-6 text-gray-700"} />
+            <IconButton className={"bg-slate-500 text-white"}>
+              <PrinterIcon className={"w-6"} />
             </IconButton>
           </div>
           <div className="flex flex-col md:flex-row gap-4 py-4">

@@ -6,28 +6,30 @@ import { IconButton } from "@/ui/button";
 import Card from "@/ui/card";
 
 export default function EstimateDisplay({ data, onDelete }) {
-  const { estimateNO, estimateDate, summary, total, invoiced } = data;
+  const { estimateNO, client, estimateDate, summary, total, invoiced } = data;
   return (
     <Card
-      className={
-        "flex w-full gap-1 m-1 p-1 bg-slate-100 items-center drop-shadow-md"
-      }
+      className={"flex w-full gap-4 bg-slate-100  items-center drop-shadow-md"}
     >
-      <div className="flex flex-col text-xs m-2 h-full place-content-between">
+      <div className="flex flex-col lg:flex-row gap-2 text-xs m-2 w-1/12">
         <div>#{estimateNO}</div>
         <div>{estimateDate}</div>
       </div>
 
-      <div className="my-4 grow text-left">
-        <div>{summary}</div>
+      <div className={"hidden xl:flex w-1/12"}>
+        {client.firstName} {client.lastName}
       </div>
-      <div className={"w-38 text-right px-8"}>
+
+      <div className="py-4 grow text-left w-8/12">{summary}</div>
+
+      <div className={"w-1/12 text-right"}>
         <div className={invoiced ? "text-green-500" : "text-red-500"}>
           {invoiced ? "Invoiced" : "Not Invoiced"}
         </div>
         <div className="text-green-500">${total}</div>
       </div>
-      <div className="flex justify-center gap-2 my-2">
+
+      <div className="flex flex-col lg:flex-row justify-center w-1/12 gap-2 my-1 px-2">
         <Link href="/estimates/new-estimate">
           <div>
             <IconButton className="bg-yellow-500 hover:bg-yellow-400">
