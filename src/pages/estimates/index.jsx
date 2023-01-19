@@ -13,7 +13,7 @@ export default function Estimates({ values, setValues }) {
   }
 
   return (
-    <div className="text-center">
+    <div className="text-center bg-gray-50 text-gray-700 h-[100vh]">
       <h1>Estimates</h1>
       <div className="my-4">
         <TextButton className="bg-green-600 hover:bg-green-500">
@@ -25,7 +25,7 @@ export default function Estimates({ values, setValues }) {
           </Link>
         </TextButton>
       </div>
-      <div className="flex flex-col md:flex-row mx-2">
+      <div className={"flex flex-col m-4 items-center"}>
         {values.map((estimate, i) => {
           return (
             <EstimateDisplay

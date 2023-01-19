@@ -6,7 +6,7 @@ export default function LineItem({
   data,
   className,
   onChange = () => {},
-  onClick = () => {},
+  onDelete = () => {},
 }) {
   const { name, description, quantity, rate, total } = data;
   return (
@@ -51,7 +51,7 @@ export default function LineItem({
         <span className={"text-green-600 w-2/12"}>${total}</span>
       </td>
       <td className={"w-1"}>
-        <IconButton className="bg-red-600" type={"button"} onClick={onClick}>
+        <IconButton className="bg-red-600" type={"button"} onClick={onDelete}>
           <TrashIcon />
         </IconButton>
       </td>
