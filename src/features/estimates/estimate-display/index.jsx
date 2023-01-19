@@ -6,7 +6,7 @@ import { IconButton } from "@/ui/button";
 import Card from "@/ui/card";
 
 export default function EstimateDisplay({ data, onDelete }) {
-  const { estimateNO, estimateDate, client, summary, total, invoiced } = data;
+  const { estimateNO, estimateDate, summary, total, invoiced } = data;
   return (
     <Card
       className={
@@ -17,9 +17,6 @@ export default function EstimateDisplay({ data, onDelete }) {
         <div>#{estimateNO}</div>
         <div>{estimateDate}</div>
       </div>
-      {/* <div className="text-md">
-          {client.firstName} {client.lastName}
-        </div> */}
 
       <div className="my-4 grow text-left">
         <div>{summary}</div>

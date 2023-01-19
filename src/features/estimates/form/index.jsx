@@ -1,5 +1,6 @@
 import Link from "next/Link";
-import { TextButton } from "@/ui/button";
+import { PrinterIcon, PaperAirplaneIcon } from "@heroicons/react/24/outline";
+import { TextButton, IconButton } from "@/ui/button";
 import TextField from "@/ui/form/textfield";
 import BillTo from "./bill-to";
 import LineItems from "./line-items";
@@ -29,9 +30,23 @@ export default function EstimateForm({
           <div>Estimate: #{estimateNO}</div>
           <div>Date: {estimateDate}</div>
         </div>
-        <div className="flex flex-col md:flex-row gap-4 py-4">
-          <BillTo values={values} setValues={setValues} />
-          <Summary values={values} setValues={setValues} />
+
+        <div className={"pt-8"}>
+          <div className={"flex justify-end"}>
+            <TextButton
+              className={"flex mx-2 bg-green-600 hover:bg-green-500 text-white"}
+            >
+              <PaperAirplaneIcon className={"w-5"} />
+              <div className={"px-1"}>Convert to Invoice</div>
+            </TextButton>
+            <IconButton>
+              <PrinterIcon className={"w-6 text-gray-700"} />
+            </IconButton>
+          </div>
+          <div className="flex flex-col md:flex-row gap-4 py-4">
+            <BillTo values={values} setValues={setValues} />
+            <Summary values={values} setValues={setValues} />
+          </div>
         </div>
         <LineItems
           values={values.lineItems}
