@@ -19,7 +19,6 @@ export default function BillTo({ values, setValues }) {
       client: { ...client, [name]: value },
     }));
   }
-  // { address: { ...address, [name]: value } }
   function addressHandler(e) {
     const { name, value } = e.target;
 
@@ -32,67 +31,55 @@ export default function BillTo({ values, setValues }) {
   return (
     <div className="flex flex-col md:w-1/2 p-4 border-2 rounded">
       <div className="text-lg text-center font-bold">Client</div>
-      <div className={"text-sm py-"}>
-        <div className="w-full m-2 md:py-2 italic">
-          <FirstNameField
-            className={"w-full"}
-            name={"firstName"}
-            placeholder="First Name"
-            value={firstName}
-            onChange={(e) => clientHandler(e)}
-          >
-            <span>First Name:</span>
-          </FirstNameField>
-        </div>
+      <FirstNameField
+        className={"w-full m-2 md:py-2 italic text-sm"}
+        name={"firstName"}
+        placeholder="First Name"
+        value={firstName}
+        onChange={(e) => clientHandler(e)}
+      >
+        <span>First Name:</span>
+      </FirstNameField>
 
-        <div className="w-full m-2 md:py-2 italic">
-          <LastNameField
-            className={"w-full"}
-            name={"lastName"}
-            placeholder={"Last Name"}
-            value={lastName}
-            onChange={(e) => clientHandler(e)}
-          >
-            <span>Last Name:</span>
-          </LastNameField>
-        </div>
+      <LastNameField
+        className={"w-full m-2 md:py-2 italic text-sm"}
+        name={"lastName"}
+        placeholder={"Last Name"}
+        value={lastName}
+        onChange={(e) => clientHandler(e)}
+      >
+        <span>Last Name:</span>
+      </LastNameField>
 
-        <div className="w-full m-2 md:py-2 italic">
-          <Address
-            className={"w-full"}
-            name={"address"}
-            placeholder={"Street"}
-            values={address}
-            onChange={(e) => addressHandler(e)}
-          >
-            <span>Address:</span>
-          </Address>
-        </div>
+      <Address
+        className={"w-full m-2 md:py-2 italic text-sm"}
+        name={"address"}
+        placeholder={"Street"}
+        values={address}
+        onChange={(e) => addressHandler(e)}
+      >
+        <span>Address:</span>
+      </Address>
 
-        <div className="w-full m-2 md:py-2 italic">
-          <PhoneField
-            className={"w-full"}
-            name={"phone"}
-            placeholder={"Phone"}
-            value={phone}
-            onChange={(e) => clientHandler(e)}
-          >
-            <span>Phone:</span>
-          </PhoneField>
-        </div>
+      <PhoneField
+        className={"w-full m-2 md:py-2 italic text-sm"}
+        name={"phone"}
+        placeholder={"Phone"}
+        value={phone}
+        onChange={(e) => clientHandler(e)}
+      >
+        <span>Phone:</span>
+      </PhoneField>
 
-        <div className="w-full m-2 md:py-2 italic">
-          <EmailField
-            className={"w-full"}
-            name={"email"}
-            placeholder={"Email"}
-            value={email}
-            onChange={(e) => clientHandler(e)}
-          >
-            <span>Email:</span>
-          </EmailField>
-        </div>
-      </div>
+      <EmailField
+        className={"w-full m-2 md:py-2 italic text-sm"}
+        name={"email"}
+        placeholder={"Email"}
+        value={email}
+        onChange={(e) => clientHandler(e)}
+      >
+        <span>Email:</span>
+      </EmailField>
     </div>
   );
 }
