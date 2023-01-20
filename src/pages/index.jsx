@@ -1,8 +1,7 @@
 import Link from "next/Link";
 import { TextButton } from "@/ui/button";
 
-export default function Homepage({ values, setValues }) {
-  console.log(values);
+export default function Homepage({}) {
   return (
     <div>
       <div>

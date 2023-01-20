@@ -9,27 +9,34 @@ export default function EstimateDisplay({ data, onDelete }) {
   const { estimateNO, client, estimateDate, summary, total, invoiced } = data;
   return (
     <Card
-      className={"flex w-full gap-4 bg-slate-100  items-center drop-shadow-md"}
+      className={
+        "flex flex-col w-full border rounded p-2 bg-slate-100  items-center drop-shadow-md"
+      }
     >
-      <div className="flex flex-col lg:flex-row gap-2 text-xs m-2 w-1/12">
+      {/* Estimate info */}
+      <div className="flex w-full justify-between gap-2 text-xs italic">
         <div>#{estimateNO}</div>
         <div>{estimateDate}</div>
       </div>
 
-      <div className={"hidden xl:flex w-1/12"}>
+      {/* Client names */}
+      <div className={"text-lg"}>
         {client.firstName} {client.lastName}
       </div>
 
-      <div className="py-4 grow text-left w-8/12">{summary}</div>
+      {/* Summary */}
+      <div className="py-4 grow text-left">{summary}</div>
 
-      <div className={"w-1/12 text-right"}>
-        <div className={invoiced ? "text-green-500" : "text-red-500"}>
-          {invoiced ? "Invoiced" : "Not Invoiced"}
-        </div>
+      {/* Price and Invoiced */}
+      <div className={"lg:text-right"}>
         <div className="text-green-500">${total}</div>
+        <div className={invoiced ? "text-green-500" : "text-red-500"}>
+          Invoiced
+        </div>
       </div>
 
-      <div className="flex flex-col lg:flex-row justify-center w-1/12 gap-2 my-1 px-2">
+      {/* Buttons */}
+      <div className="flex lg:flex-row justify-center gap-2 my-1 px-2">
         <Link href="/estimates/new-estimate">
           <div>
             <IconButton className="bg-yellow-500 hover:bg-yellow-400">
