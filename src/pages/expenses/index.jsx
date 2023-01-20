@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { PlusCircleIcon } from "@heroicons/react/24/solid";
-import { TrashIcon } from "@heroicons/react/24/outline";
-import { PencilSquareIcon } from "@heroicons/react/24/outline";
 import { TextButton, IconButton } from "@/ui/button";
 import { TableLabels } from "@/ui/table";
-import { TextField } from "@/ui/form/textfield";
+import TextField from "@/ui/form/textfield";
+import ExpensesBody from "@/features/expenses";
 const currentDate = new Date().toLocaleDateString();
 
 function addExpense() {
@@ -12,27 +11,35 @@ function addExpense() {
 }
 
 export default function Expenses({}) {
+  // const [editing, setEditing] = useState(false);
+  const [editIndex, setEditIndex] = useState(-1);
+  const [newExpense, setNewExpense] = useState({
+    occurredOn: currentDate,
+    name: "",
+    purpose: "",
+    total: "",
+  });
   const [expenses, setExpenses] = useState([
     {
       expenseID: "1",
-      expenseDate: currentDate,
-      expenseName: "Hammer",
-      expensePurpose: "New hammer for installing tackstrip on concrete",
-      expenseTotal: "$60",
+      occurredOn: currentDate,
+      name: "Hammer",
+      purpose: "New hammer for installing tackstrip on concrete",
+      total: "$60",
     },
     {
       expenseID: "2",
-      expenseDate: currentDate,
-      expenseName: "Fuel",
-      expensePurpose: "Fuel for work truck.",
-      expenseTotal: "$135",
+      occurredOn: currentDate,
+      name: "Fuel",
+      purpose: "Fuel for work truck.",
+      total: "$135",
     },
     {
       expenseID: "3",
-      expenseDate: currentDate,
-      expenseName: "Tack Strip",
-      expensePurpose: "Tack Strip for carpet basement",
-      expenseTotal: "$45",
+      occurredOn: currentDate,
+      name: "Tack Strip",
+      purpose: "Tack Strip for carpet basement",
+      total: "$45",
     },
   ]);
 
@@ -67,30 +74,25 @@ export default function Expenses({}) {
         <tbody>
           {expenses.map((expense, i) => {
             return (
-              <tr key={i} className={"border rounded"}>
-                <td>{expense.expenseDate}</td>
-                <td>{expense.expenseName}</td>
-                <td>{expense.expensePurpose}</td>
-                <td>{expense.expenseTotal}</td>
-                <td>
-                  <IconButton
-                    className="bg-yellow-500 hover:bg-yellow-400"
-                    type={"button"}
-                    onClick={(e) => onEdit(e, i)}
-                  >
-                    <PencilSquareIcon />
-                  </IconButton>
-                </td>
-                <td>
-                  <IconButton
-                    className="bg-red-600"
-                    type={"button"}
-                    onClick={() => onDelete(i)}
-                  >
-                    <TrashIcon />
-                  </IconButton>
-                </td>
-              </tr>
+              <ExpensesBody
+                key={i}
+                value={i === editIndex ? newExpense : expense}
+                isEditing={i === editIndex}
+                onEdit={() => {
+                  setNewExpense(expense);
+                  setEditIndex(i);
+                }}
+                onChange={(value) => {
+                  setNewExpense(value);
+                }}
+                onDelete={() => {
+                  setExpenses((prev) => {
+                    prev.filter((_deletedExpensem, _i) => {
+                      return _i !== i;
+                    });
+                  });
+                }}
+              />
             );
           })}
         </tbody>

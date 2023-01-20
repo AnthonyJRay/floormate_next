@@ -8,7 +8,6 @@ export default function LineItem({
   onChange = () => {},
   onDelete = () => {},
 }) {
-  console.log("Data from inside LineItem", data);
   const { name, description, quantity, rate, total } = data;
   return (
     <tr>
