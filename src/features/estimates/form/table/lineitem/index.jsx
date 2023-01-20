@@ -8,6 +8,7 @@ export default function LineItem({
   onChange = () => {},
   onDelete = () => {},
 }) {
+  console.log("Data from inside LineItem", data);
   const { name, description, quantity, rate, total } = data;
   return (
     <tr>
@@ -22,7 +23,7 @@ export default function LineItem({
       </td>
       <td>
         <TextField
-          className={`${className}`}
+          className={className}
           placeholder={"Description"}
           name={"description"}
           value={description}
@@ -31,7 +32,7 @@ export default function LineItem({
       </td>
       <td className={"w-1/12"}>
         <TextField
-          className={`${className}`}
+          className={className}
           placeholder={"Quantity"}
           name={"quantity"}
           value={quantity}
@@ -40,7 +41,7 @@ export default function LineItem({
       </td>
       <td className={"w-1/12"}>
         <TextField
-          className={`${className}`}
+          className={className}
           placeholder={"Rate"}
           name={"rate"}
           value={rate}

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import LineItem from "@/features/estimates/form/table/lineitem";
-import TableLabels from "@/features/estimates/form/table/labels";
+import { TableLabels } from "@/ui/table";
 import { PlusCircleIcon } from "@heroicons/react/24/solid";
 import { TextButton } from "@/ui/button";
 
@@ -68,7 +68,9 @@ export default function LineItems({ values, setValues, defaultValues }) {
       <div className={"w-full"}>
         <table className={"table-auto"}>
           <thead>
-            <TableLabels />
+            <TableLabels
+              labels={["Name", "Description", "Quantity", "Rate", "Total"]}
+            />
           </thead>
           <tbody>
             {values.map((item, i) => {
