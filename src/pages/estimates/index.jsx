@@ -15,15 +15,15 @@ export default function Estimates({ values, setValues }) {
   return (
     <div className="text-center text-gray-700">
       <h1>Estimates</h1>
-      <div className="my-4">
-        <TextButton className="bg-green-600 hover:bg-green-500">
-          <Link href="/estimates/new-estimate">
-            <div className="flex items-center gap-1">
+      <div className="flex justify-center my-4">
+        <Link href="/estimates/new-estimate">
+          <div>
+            <TextButton className="flex gap-1 bg-green-600 hover:bg-green-500">
               <PlusCircleIcon className="text-white w-5" />
               <div>Add Estimate</div>
-            </div>
-          </Link>
-        </TextButton>
+            </TextButton>
+          </div>
+        </Link>
       </div>
       <div className={"flex flex-col m-4 gap-2 items-center"}>
         {values.map((estimate, i) => {

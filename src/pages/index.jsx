@@ -11,6 +11,11 @@ export default function Homepage({}) {
               <TextButton className={"bg-blue-400"}>Estimates</TextButton>
             </li>
           </Link>
+          <Link href="/expenses">
+            <li>
+              <TextButton className={"bg-blue-400"}>Expenses</TextButton>
+            </li>
+          </Link>
         </ul>
       </div>
       <div>

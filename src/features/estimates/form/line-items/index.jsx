@@ -44,7 +44,7 @@ export default function LineItems({ values, setValues, defaultValues }) {
   }
 
   function deleteItem(i) {
-    const newLineItems = values.filter((item, _i) => {
+    const newLineItems = values.filter((_, _i) => {
       return i !== _i;
     });
     setValues((prev) => ({

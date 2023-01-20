@@ -1,6 +1,5 @@
 import "./globals.css";
 import { useState } from "react";
-const currentDate = new Date().toLocaleDateString();
 
 const defaultValues = [
   {

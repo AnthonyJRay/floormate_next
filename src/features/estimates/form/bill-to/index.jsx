@@ -19,13 +19,13 @@ export default function BillTo({ values, setValues }) {
       client: { ...client, [name]: value },
     }));
   }
-
+  // { address: { ...address, [name]: value } }
   function addressHandler(e) {
     const { name, value } = e.target;
 
     setValues((prev) => ({
       ...prev,
-      client: { address: { ...address, [name]: value } },
+      client: { ...client, address: { ...address, [name]: value } },
     }));
   }
 
