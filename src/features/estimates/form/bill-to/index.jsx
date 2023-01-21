@@ -27,7 +27,10 @@ export default function BillTo({
     const { name, value } = e.target;
     setValues((prev) => ({
       ...prev,
-      client: { ...prev.client, address: { ...prev.address, [name]: value } },
+      client: {
+        ...prev.client,
+        address: { ...prev.client.address, [name]: value },
+      },
     }));
   }
 

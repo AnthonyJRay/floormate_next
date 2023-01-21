@@ -16,7 +16,6 @@ export default function TextField({
       <input
         className={`${defaultClassNames} ${className}`}
         type={type}
-        // value={value}
         onChange={onChange}
         {...rest}
       />
