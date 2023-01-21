@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { PlusCircleIcon } from "@heroicons/react/24/solid";
-import { TextButton, IconButton } from "@/ui/button";
+import { TextButton } from "@/ui/button";
 import { TableLabels } from "@/ui/table";
 import ExpensesBody from "@/features/expenses";
 const currentDate = new Date().toLocaleDateString();
@@ -40,7 +40,7 @@ export default function Expenses({}) {
   ]);
 
   return (
-    <div className={"w-full text-center text-gray-700"}>
+    <div className={"w-3/4 text-center text-gray-700"}>
       <h1>Expenses</h1>
       <div className={"flex justify-center my-4"}>
         <TextButton
@@ -55,7 +55,7 @@ export default function Expenses({}) {
         </TextButton>
       </div>
 
-      <table className={"w-full border-separate"}>
+      <table className={"w-full border-separate m-4"}>
         <thead>
           <TableLabels labels={["Date", "Name", "Purpose", "Total"]} />
         </thead>

@@ -7,8 +7,6 @@ import { PencilSquareIcon } from "@heroicons/react/24/outline";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { CheckIcon } from "@heroicons/react/24/outline";
 
-// export { ExpenseDisplay, ExpenseForm };
-
 export default function ExpensesBody({
   value,
   onChange = () => {},
@@ -18,7 +16,6 @@ export default function ExpensesBody({
   onDelete = () => {},
   isEditing = false,
 }) {
-  console.log("Value from expenses", value);
   return (
     <tr className={"bg-gray-200"}>
       {isEditing ? (
