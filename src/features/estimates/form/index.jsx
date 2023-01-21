@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Link from "next/Link";
 import { PrinterIcon, PaperAirplaneIcon } from "@heroicons/react/24/outline";
 import { TextButton, IconButton } from "@/ui/button";
@@ -13,7 +14,20 @@ export default function EstimateForm({
   defaultValues,
   onSave,
 }) {
-  const { estimateDate, estimateNO, subtotal, total, tax } = values;
+  const { estimateDate, estimateNO, lineItems, subtotal, total, tax } = values;
+
+  useEffect(() => {
+    const totals = Object.values(lineItems).map((item) => item.total);
+    const sum = totals.reduce((acc, currentValue) => (acc += currentValue));
+    const taxRate = tax / 100;
+    const taxAmount = sum * taxRate;
+
+    setValues((prev) => ({
+      ...prev,
+      subtotal: sum,
+      total: sum + taxAmount,
+    }));
+  }, [lineItems, tax]);
 
   function inputHandler(e) {
     const { value, name } = e.target;
@@ -49,7 +63,7 @@ export default function EstimateForm({
           </div>
         </div>
         <LineItems
-          values={values.lineItems}
+          values={lineItems}
           setValues={setValues}
           defaultValues={defaultValues}
         />

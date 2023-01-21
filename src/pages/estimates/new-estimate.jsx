@@ -22,16 +22,16 @@ const defaultValues = {
     {
       name: "",
       description: "",
-      quantity: "",
-      rate: "",
-      total: "",
+      quantity: 0,
+      rate: 0,
+      total: 0,
     },
   ],
   summary: "",
   invoiced: false,
-  subtotal: "",
-  tax: "",
-  total: "",
+  subtotal: 0,
+  tax: 0,
+  total: 0,
 };
 
 export default function NewEstimate({ values, setValues }) {

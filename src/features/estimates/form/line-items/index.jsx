@@ -24,25 +24,6 @@ export default function LineItems({ values, setValues, defaultValues }) {
     }));
   }
 
-  useEffect(() => {
-    console.log("Inside useEffect", values);
-    const totals = Object.values(values).map((item) => item.total);
-    console.log("Totals array created from values Object values", totals);
-
-    const sum = totals.reduce((acc, currentValue) => {
-      acc + currentValue, 0;
-    });
-    console.log("Sum of all totals", sum);
-    // const sum = values.total.reduce((acc, currentValue) => {
-    //   acc + currentValue, 0;
-    // });
-    // console.log("This is the sum of all lineItems", sum);
-    setValues((prev) => ({
-      ...prev,
-      // subtotal:
-    }));
-  }, [values]);
-
   function addItem() {
     const newItem = defaultValues.lineItems;
     setValues((prev) => ({
