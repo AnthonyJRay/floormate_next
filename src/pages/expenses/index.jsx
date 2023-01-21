@@ -40,7 +40,7 @@ export default function Expenses({}) {
   ]);
 
   return (
-    <div className={"text-center"}>
+    <div className={"w-full text-center text-gray-700"}>
       <h1>Expenses</h1>
       <div className={"flex justify-center my-4"}>
         <TextButton

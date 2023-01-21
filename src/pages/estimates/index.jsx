@@ -13,7 +13,7 @@ export default function Estimates({ values, setValues }) {
   }
 
   return (
-    <div className="text-center text-gray-700">
+    <div className="w-full text-center text-gray-700">
       <h1>Estimates</h1>
       <div className="flex justify-center my-4">
         <Link href="/estimates/new-estimate">

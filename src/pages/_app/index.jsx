@@ -1,5 +1,6 @@
 import "./globals.css";
 import { useState } from "react";
+import Dashboard from "@/features/dashboard";
 
 const defaultValues = [
   {
@@ -103,5 +104,9 @@ const defaultValues = [
 
 export default function App({ Component, pageProps }) {
   const [values, setValues] = useState(defaultValues);
-  return <Component values={values} setValues={setValues} {...pageProps} />;
+  return (
+    <Dashboard>
+      <Component values={values} setValues={setValues} {...pageProps} />
+    </Dashboard>
+  );
 }

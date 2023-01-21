@@ -31,6 +31,7 @@ export default function LineItem({
       </td>
       <td className={"w-1/12"}>
         <TextField
+          type={"number"}
           className={className}
           placeholder={"Quantity"}
           name={"quantity"}
@@ -40,6 +41,7 @@ export default function LineItem({
       </td>
       <td className={"w-1/12"}>
         <TextField
+          type={"number"}
           className={className}
           placeholder={"Rate"}
           name={"rate"}

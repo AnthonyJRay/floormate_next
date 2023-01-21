@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import LineItem from "@/features/estimates/form/table/lineitem";
 import { TableLabels } from "@/ui/table";
 import { PlusCircleIcon } from "@heroicons/react/24/solid";
@@ -7,7 +6,6 @@ import { TextButton } from "@/ui/button";
 export default function LineItems({ values, setValues, defaultValues }) {
   function lineItemsHandler(e, i) {
     const { name, value } = e.target;
-    console.log("Inside lineItemsHandler", values);
     setValues((prev) => ({
       ...prev,
       lineItems: values.map((item, _i) => {
@@ -70,7 +68,6 @@ export default function LineItems({ values, setValues, defaultValues }) {
                   data={item}
                   onChange={(e) => lineItemsHandler(e, i)}
                   onDelete={() => deleteItem(i)}
-                  // estimateTotals={estimateTotals(values, setValues, i)}
                 />
               );
             })}

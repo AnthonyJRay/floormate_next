@@ -18,10 +18,9 @@ export default function EstimateForm({
 
   useEffect(() => {
     const totals = Object.values(lineItems).map((item) => item.total);
-    const sum = totals.reduce((acc, currentValue) => (acc += currentValue));
+    const sum = totals.reduce((acc, currentValue) => acc + currentValue);
     const taxRate = tax / 100;
     const taxAmount = sum * taxRate;
-
     setValues((prev) => ({
       ...prev,
       subtotal: sum,
