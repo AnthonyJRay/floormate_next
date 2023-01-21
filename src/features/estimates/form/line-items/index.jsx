@@ -5,35 +5,43 @@ import { PlusCircleIcon } from "@heroicons/react/24/solid";
 import { TextButton } from "@/ui/button";
 
 export default function LineItems({ values, setValues, defaultValues }) {
-  // function estimateTotals(values, setValues, i) {
-  //   return useEffect(() => {
-  //     setValues((prev) => ({
-  //       ...prev,
-  //       total: values.map((item, _i) => {
-  //         return _i === i ? item.quantity * item.rate : item;
-  //       }),
-  //       subtotal: values.map((item, _i) => {
-  //         return _i === i ? item.quantity * item.rate : item;
-  //       }),
-  //     }));
-  //   }, [values]);
-  // }
-
   function lineItemsHandler(e, i) {
     const { name, value } = e.target;
+    console.log("Inside lineItemsHandler", values);
     setValues((prev) => ({
       ...prev,
       lineItems: values.map((item, _i) => {
+        let qty = name === "quantity" ? value : item.quantity;
+        let rate = name === "rate" ? value : item.rate;
         return _i === i
           ? {
               ...item,
               [name]: value,
-              // total: qty * rate,
+              total: qty * rate,
             }
           : item;
       }),
     }));
   }
+
+  useEffect(() => {
+    console.log("Inside useEffect", values);
+    const totals = Object.values(values).map((item) => item.total);
+    console.log("Totals array created from values Object values", totals);
+
+    const sum = totals.reduce((acc, currentValue) => {
+      acc + currentValue, 0;
+    });
+    console.log("Sum of all totals", sum);
+    // const sum = values.total.reduce((acc, currentValue) => {
+    //   acc + currentValue, 0;
+    // });
+    // console.log("This is the sum of all lineItems", sum);
+    setValues((prev) => ({
+      ...prev,
+      // subtotal:
+    }));
+  }, [values]);
 
   function addItem() {
     const newItem = defaultValues.lineItems;
