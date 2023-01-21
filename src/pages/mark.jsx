@@ -10,7 +10,7 @@ const defaultItemValues = {
 export const defaultValues = {
   customer: {
     firstName: "",
-    lastNme: "",
+    lastName: "",
     email: "",
   },
   summary: "",
@@ -75,6 +75,7 @@ export default function MarkPage() {
         >
           Add new
         </button>
+        {/* Instead of item, destructure the variables you need out of the item */}
         {values.lineItems.map(({ name, description, rate, quantity }, i) => (
           <div className="w-full flex items-center gap-1">
             <div className="w-1/6">

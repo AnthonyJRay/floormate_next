@@ -3,10 +3,11 @@ import withLabel from "@/ui/form/withlabel";
 
 const SummaryField = withLabel(TextBox);
 
-export default function Summary({ values, setValues }) {
-  const { summary } = values;
+export default function Summary({ summary, setValues }) {
+  console.log(summary);
   function summaryHandler(e) {
     const { value, name } = e.target;
+    console.log(value);
     setValues((prev) => ({
       ...prev,
       [name]: value,

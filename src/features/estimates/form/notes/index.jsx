@@ -3,8 +3,7 @@ import withLabel from "@/ui/form/withlabel";
 
 const NotesField = withLabel(TextBox);
 
-export default function Notes({ values, setValues }) {
-  const { notes } = values;
+export default function Notes({ notes, setValues }) {
   function notesHandler(e) {
     const { value, name } = e.target;
     setValues((prev) => ({

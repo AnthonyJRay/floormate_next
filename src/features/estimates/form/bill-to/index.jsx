@@ -8,23 +8,26 @@ const Address = withLabel(AddressField);
 const PhoneField = withLabel(TextField);
 const EmailField = withLabel(TextField);
 
-export default function BillTo({ values, setValues }) {
-  const { client } = values;
-  const { firstName, lastName, address, phone, email } = client;
-
+export default function BillTo({
+  firstName,
+  lastName,
+  address,
+  phone,
+  email,
+  setValues,
+}) {
   function clientHandler(e) {
     const { name, value } = e.target;
     setValues((prev) => ({
       ...prev,
-      client: { ...client, [name]: value },
+      client: { ...prev.client, [name]: value },
     }));
   }
   function addressHandler(e) {
     const { name, value } = e.target;
-
     setValues((prev) => ({
       ...prev,
-      client: { ...client, address: { ...address, [name]: value } },
+      client: { ...prev.client, address: { ...prev.address, [name]: value } },
     }));
   }
 

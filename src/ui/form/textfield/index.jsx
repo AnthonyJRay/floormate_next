@@ -3,6 +3,7 @@ import AddressField from "../address";
 export { SelectField, AddressField };
 
 export default function TextField({
+  value,
   type = "text",
   className = "",
   onChange = () => {},
@@ -13,8 +14,9 @@ export default function TextField({
   return (
     <>
       <input
-        type={type}
         className={`${defaultClassNames} ${className}`}
+        type={type}
+        // value={value}
         onChange={onChange}
         {...rest}
       />

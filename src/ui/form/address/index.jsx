@@ -1,6 +1,13 @@
 import TextField from "../textfield";
 
-export default function AddressField({ values, onChange = () => {}, ...rest }) {
+export default function AddressField({
+  street,
+  city,
+  state,
+  zip,
+  onChange = () => {},
+  ...rest
+}) {
   const states = [
     "AL",
     "AK",
@@ -54,7 +61,7 @@ export default function AddressField({ values, onChange = () => {}, ...rest }) {
     "WY",
   ];
 
-  const { street, city, state, zip } = values;
+  // const { street, city, state, zip } = values;
 
   return (
     <div className={"flex gap-2"}>

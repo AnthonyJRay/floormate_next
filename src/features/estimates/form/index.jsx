@@ -57,7 +57,7 @@ export default function EstimateForm({
             </IconButton>
           </div>
           <div className="flex flex-col md:flex-row gap-4 py-4">
-            <BillTo values={values} setValues={setValues} />
+            <BillTo values={values.client} setValues={setValues} />
             <Summary values={values} setValues={setValues} />
           </div>
         </div>
