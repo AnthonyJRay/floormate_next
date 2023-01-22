@@ -3,9 +3,12 @@ export default function TableLabels({ labels }) {
     <div className={"flex justify-between text-xs bg-gray-300"}>
       {labels.map((label, i) => {
         return (
-          <div key={i} className={"flex-1 flex-grow"}>
-            {label}
-          </div>
+          <>
+            <div key={i} className={"flex-1 flex-grow"}>
+              {label}
+            </div>
+            <div></div>
+          </>
         );
       })}
     </div>

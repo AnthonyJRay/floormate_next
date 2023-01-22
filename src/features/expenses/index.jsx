@@ -17,12 +17,14 @@ export default function ExpensesBody({
   isEditing = false,
 }) {
   return (
-    <div className={"flex   bg-gray-200"}>
-      {isEditing ? (
-        <ExpenseForm {...{ value }} onChange={onChange} />
-      ) : (
-        <ExpenseDisplay {...value} />
-      )}
+    <div className={"flex"}>
+      <div className={"flex w-full bg-gray-200"}>
+        {isEditing ? (
+          <ExpenseForm {...{ value }} onChange={onChange} />
+        ) : (
+          <ExpenseDisplay {...value} />
+        )}
+      </div>
       {isEditing ? (
         <div>
           <div>

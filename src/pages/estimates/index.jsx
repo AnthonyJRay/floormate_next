@@ -18,7 +18,7 @@ export default function Estimates({ values, setValues }) {
       <div className="flex justify-center my-4">
         <Link href="/estimates/new-estimate">
           <div>
-            <TextButton className="flex gap-1 bg-green-600 hover:bg-green-500">
+            <TextButton className="flex gap-1 py-1 bg-green-600 hover:bg-green-500">
               <PlusCircleIcon className="text-white w-5" />
               <div>Add Estimate</div>
             </TextButton>

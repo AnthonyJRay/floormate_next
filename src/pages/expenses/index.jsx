@@ -46,7 +46,7 @@ export default function Expenses({}) {
       <h1>Expenses</h1>
       <div className={"flex justify-center my-4"}>
         <TextButton
-          className="flex gap-1 bg-green-600 hover:bg-green-500"
+          className="flex gap-1 py-1 bg-green-600 hover:bg-green-500"
           onClick={() => {
             setExpenses([defaultValues, ...expenses]);
             setEditIndex(0);
