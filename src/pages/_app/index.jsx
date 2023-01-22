@@ -2,7 +2,65 @@ import "./globals.css";
 import { useState } from "react";
 import Dashboard from "@/features/dashboard";
 
-const defaultValues = [
+const defaultValues = {
+  user: {
+    userID: "",
+    userEmail: "",
+    userPassword: "",
+    userFirstName: "",
+    userLastName: "",
+    userAddress: {
+      street: "",
+      city: "",
+      state: "",
+      zip: "",
+    },
+    userBusiness: {
+      businessName: "",
+      businessAddress: "",
+      businessLogo: "",
+    },
+  },
+  expenses: [
+    {
+      expenseID: "",
+      expenseDate: "",
+      expenseName: "",
+      expenseDescription: "",
+      expenseCost: "",
+    },
+  ],
+  estimates: [
+    {
+      estimateID: "",
+      estimateDate: "",
+      client: {
+        firstName: "",
+        lastName: "",
+        address: "",
+        phone: "",
+        email: "",
+      },
+      lineItems: [
+        {
+          name: "",
+          description: "",
+          quantity: "",
+          rate: "",
+          total: "",
+        },
+      ],
+      summary: "",
+      notes: "",
+      invoiced: false,
+      subtotal: "",
+      tax: "",
+      total: "",
+    },
+  ],
+};
+
+const estimateValues = [
   {
     estimateNO: "001",
     estimateDate: "03/22/22",
@@ -103,10 +161,15 @@ const defaultValues = [
 ];
 
 export default function App({ Component, pageProps }) {
-  const [values, setValues] = useState(defaultValues);
+  const [values, setValues] = useState(estimateValues);
   return (
     <Dashboard>
-      <Component values={values} setValues={setValues} {...pageProps} />
+      <Component
+        values={values}
+        setValues={setValues}
+        testValues={defaultValues}
+        {...pageProps}
+      />
     </Dashboard>
   );
 }

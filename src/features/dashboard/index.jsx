@@ -5,13 +5,17 @@ import {
   Cog6ToothIcon,
   DocumentChartBarIcon,
   ArrowTrendingDownIcon,
+  ArrowRightOnRectangleIcon,
+  WalletIcon,
 } from "@heroicons/react/24/outline";
 
 import { TextButton, IconButton } from "@/ui/button";
+import NavLink from "./nav-link";
 
 export default function Dashboard({ children }) {
   return (
-    <>
+    <div className={"h-[100vh]"}>
+      {/* Dashboard Header */}
       <div className={"flex justify-between m-2 border-b-2 h-20 items-center"}>
         <Link href={"/"}>
           <h1 className={"cursor-pointer"}>
@@ -26,35 +30,38 @@ export default function Dashboard({ children }) {
           </div>
         </Link>
       </div>
-      <div className={"flex"}>
-        <ul className={"flex flex-col w-1/4 items-center gap-2"}>
-          <Link href="/">
-            <li>
-              <TextButton className={"flex bg-blue-400 items-center"}>
-                <HomeIcon className={"w-8"} />
-                Dashboard
-              </TextButton>
-            </li>
-          </Link>
-          <Link href="/estimates">
-            <li>
-              <TextButton className={"flex bg-blue-400 items-center"}>
-                <DocumentChartBarIcon className={"w-8"} />
-                Estimates
-              </TextButton>
-            </li>
-          </Link>
-          <Link href="/expenses">
-            <li>
-              <TextButton className={"flex bg-blue-400 items-center"}>
-                <ArrowTrendingDownIcon className={"w-8"} />
-                Expenses
-              </TextButton>
-            </li>
-          </Link>
-        </ul>
+
+      {/* Dashboard Sidebar / NavLinks */}
+      <div className={"flex h-[90vh]"}>
+        <div className={"p-4 flex flex-col justify-between"}>
+          <div className={"flex flex-col w-full items-center gap-4"}>
+            <NavLink link="/">
+              <HomeIcon className={"w-6"} />
+              <div className={"hidden md:inline-block"}>Dashboard</div>
+            </NavLink>
+            <NavLink link="/estimates">
+              <DocumentChartBarIcon className={"w-6"} />
+              <div className={"hidden md:inline-block"}>Estimates</div>
+            </NavLink>
+            <NavLink link="/expenses">
+              <ArrowTrendingDownIcon className={"w-6"} />
+              <div className={"hidden md:inline-block"}>Expenses</div>
+            </NavLink>
+            <NavLink link="/invoices">
+              <WalletIcon className={"w-6"} />
+              <div className={"hidden md:inline-block"}>Invoices</div>
+            </NavLink>
+          </div>
+
+          <NavLink link="/login">
+            <ArrowRightOnRectangleIcon className={"w-6"} />
+            <div className={"hidden md:inline-block"}>Log In</div>
+          </NavLink>
+        </div>
+
+        {/* Dashboard Body / Main Content Area */}
         {children}
       </div>
-    </>
+    </div>
   );
 }

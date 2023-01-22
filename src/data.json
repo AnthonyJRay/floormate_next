@@ -1,19 +1,21 @@
 {
-  "userID": "",
-  "userEmail": "",
-  "userPassword": "",
-  "userFirstName": "",
-  "userLastName": "",
-  "userAddress": {
-    "street": "",
-    "city": "",
-    "state": "",
-    "zip": ""
-  },
-  "userBusiness": {
-    "businessName": "",
-    "businessAddress": "",
-    "businessLogo": ""
+  "user": {
+    "userID": "",
+    "userEmail": "",
+    "userPassword": "",
+    "userFirstName": "",
+    "userLastName": "",
+    "userAddress": {
+      "street": "",
+      "city": "",
+      "state": "",
+      "zip": ""
+    },
+    "userBusiness": {
+      "businessName": "",
+      "businessAddress": "",
+      "businessLogo": ""
+    }
   },
   "expenses": [
     {
