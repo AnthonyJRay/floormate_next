@@ -26,10 +26,9 @@ export default function Settings(parentValues) {
   const [values, setValues] = useState(defaultValues);
   console.log(parentValues);
   return (
-    <div className={"w-full text-center m-4"}>
+    <div className={"relative w-full text-center m-4"}>
       <h1>Settings</h1>
-      <div className={"relative flex flex-col w-full gap-2"}>
-        <Success />
+      <div className={"flex flex-col w-full gap-2"}>
         <FirstName
           value={values.firstName}
           onChange={(firstName) =>
@@ -111,6 +110,7 @@ export default function Settings(parentValues) {
             <button className={"italic text-red-600"}>Delete Account</button>
           </div>
         </div>
+        <Success />
       </div>
     </div>
   );
