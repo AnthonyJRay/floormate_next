@@ -1,6 +1,6 @@
 import { useState } from "react";
 import NewTextField from "@/ui/form/newtextfield";
-import withLabel from "@/ui/form/withLabel";
+import withLabel from "@/ui/form/withlabel";
 import { TextButton } from "@/ui/button";
 import { Success } from "@/ui/alerts";
 
