@@ -25,9 +25,7 @@ const Email = withLabel(NewTextField);
 export default function Settings(parentValues) {
   const [values, setValues] = useState(defaultValues);
   return (
-    <div
-      className={"w-3/4 absolute right-0 top-24 m-2 text-center text-gray-700"}
-    >
+    <>
       <h1>Settings</h1>
       <div className={"flex flex-col w-full gap-2"}>
         <FirstName
@@ -113,6 +111,6 @@ export default function Settings(parentValues) {
         </div>
         <Success />
       </div>
-    </div>
+    </>
   );
 }

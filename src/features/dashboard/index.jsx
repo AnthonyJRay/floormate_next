@@ -14,11 +14,11 @@ import NavLink from "./nav-link";
 
 export default function Dashboard({ children }) {
   return (
-    <div className={"h-[100vh]"}>
+    <div className={"h-[100vh] overflow-hidden"}>
       {/* Dashboard Header */}
       <div
         className={
-          "flex justify-between p-4 bg-gray-50 border-b-2 h-20 items-center fixed w-full z-10"
+          "flex justify-between w-full p-4 bg-gray-50 border-b-2 h-20 items-center"
         }
       >
         <Link href={"/"}>
@@ -36,12 +36,8 @@ export default function Dashboard({ children }) {
       </div>
 
       {/* Dashboard Sidebar / NavLinks */}
-      <div className={"flex h-[90vh]"}>
-        <div
-          className={
-            "p-4 flex flex-col justify-between border-r fixed top-24 h-[90vh]"
-          }
-        >
+      <div className={"flex"}>
+        <div className={"p-4 flex flex-col justify-between border-r h-[90vh]"}>
           <div className={"flex flex-col items-center gap-4"}>
             <NavLink link="/">
               <HomeIcon className={"w-6"} />
@@ -68,7 +64,13 @@ export default function Dashboard({ children }) {
           </NavLink>
         </div>
         {/* Dashboard Body / Main Content Area */}
-        {children}
+        <div
+          className={
+            "w-full h-[90vh] overflow-y-auto m-2 text-center text-gray-700"
+          }
+        >
+          {children}
+        </div>
       </div>
     </div>
   );

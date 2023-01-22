@@ -10,7 +10,7 @@ export default function NewEstimate({ values, setValues, testValues }) {
     setValues((prev) => [data, ...prev]);
   }
   return (
-    <div className="w-3/4 absolute right-0 top-24 m-2 text-center text-gray-700">
+    <div className="m-2 text-center text-gray-700">
       <EstimateForm
         values={newEstimate}
         setValues={setNewEstimate}
