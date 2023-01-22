@@ -21,7 +21,7 @@ export const defaultValues = {
 export default function MarkPage() {
   const [values, setValues] = useState(defaultValues);
   return (
-    <div className="w-full border p-4 border-gray-200 flex flex-col gap-6">
+    <div className="absolute top-52 w-full border p-4 border-gray-200 flex flex-col gap-6">
       <div className="flex flex-col gap-2">
         <TextField
           value={values.customer.firstName}

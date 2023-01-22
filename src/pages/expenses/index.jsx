@@ -57,11 +57,10 @@ export default function Expenses({}) {
         </TextButton>
       </div>
 
-      <table className={"w-full border-separate m-4"}>
-        <thead>
-          <TableLabels labels={["Date", "Name", "Purpose", "Total"]} />
-        </thead>
-        <tbody>
+      <div className={"w-full m-4"}>
+        <TableLabels labels={["Date", "Name", "Purpose", "Total"]} />
+
+        <div>
           {expenses.map((expense, i) => {
             return (
               <ExpensesBody
@@ -97,8 +96,8 @@ export default function Expenses({}) {
               />
             );
           })}
-        </tbody>
-      </table>
+        </div>
+      </div>
     </div>
   );
 }

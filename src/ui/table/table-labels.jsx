@@ -1,9 +1,13 @@
 export default function TableLabels({ labels }) {
   return (
-    <tr className={"text-xs bg-gray-300"}>
+    <div className={"flex justify-between text-xs bg-gray-300"}>
       {labels.map((label, i) => {
-        return <th key={i}>{label}</th>;
+        return (
+          <div key={i} className={"flex-1 flex-grow"}>
+            {label}
+          </div>
+        );
       })}
-    </tr>
+    </div>
   );
 }

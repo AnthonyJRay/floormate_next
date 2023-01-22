@@ -61,6 +61,7 @@ export default function Dashboard({ children }) {
             </NavLink>
           </div>
 
+          {/* Login/Log Out button */}
           <NavLink link="/login">
             <ArrowRightOnRectangleIcon className={"w-6"} />
             <div className={"hidden md:inline-block"}>Log In</div>

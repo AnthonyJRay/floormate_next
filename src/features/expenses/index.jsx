@@ -17,51 +17,51 @@ export default function ExpensesBody({
   isEditing = false,
 }) {
   return (
-    <tr className={"bg-gray-200"}>
+    <div className={"flex   bg-gray-200"}>
       {isEditing ? (
         <ExpenseForm {...{ value }} onChange={onChange} />
       ) : (
         <ExpenseDisplay {...value} />
       )}
       {isEditing ? (
-        <>
-          <td>
+        <div>
+          <div>
             <IconButton
               className="bg-green-600 hover:bg-green-500"
               onClick={() => onSave(value)}
             >
               <CheckIcon />
             </IconButton>
-          </td>
-          <td>
+          </div>
+          <div>
             <IconButton
               className="bg-red-500 hover:bg-red-400"
               onClick={onCancel}
             >
               <XMarkIcon />
             </IconButton>
-          </td>
-        </>
+          </div>
+        </div>
       ) : (
-        <>
-          <td>
+        <div>
+          <div>
             <IconButton
               className="bg-yellow-500 hover:bg-yellow-400"
               onClick={onEdit}
             >
               <PencilSquareIcon />
             </IconButton>
-          </td>
-          <td>
+          </div>
+          <div>
             <IconButton
               className="bg-red-500 hover:bg-red-400"
               onClick={onDelete}
             >
               <TrashIcon />
             </IconButton>
-          </td>
-        </>
+          </div>
+        </div>
       )}
-    </tr>
+    </div>
   );
 }
