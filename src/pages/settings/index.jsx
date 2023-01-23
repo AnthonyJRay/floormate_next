@@ -27,7 +27,7 @@ export default function Settings(parentValues) {
   return (
     <>
       <h1>Settings</h1>
-      <div className={"flex flex-col w-full gap-2"}>
+      <div className={"flex flex-col w-full md:w-3/4 gap-2"}>
         <FirstName
           value={values.firstName}
           onChange={(firstName) =>

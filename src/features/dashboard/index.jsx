@@ -3,10 +3,11 @@ import Link from "next/Link";
 import {
   HomeIcon,
   Cog6ToothIcon,
-  DocumentChartBarIcon,
+  PencilSquareIcon,
   ArrowTrendingDownIcon,
   ArrowRightOnRectangleIcon,
   WalletIcon,
+  WrenchScrewdriverIcon,
 } from "@heroicons/react/24/outline";
 
 import { IconButton } from "@/ui/button";
@@ -44,7 +45,7 @@ export default function Dashboard({ children }) {
               <div className={"hidden md:inline-block"}>Dashboard</div>
             </NavLink>
             <NavLink link="/estimates">
-              <DocumentChartBarIcon className={"w-6"} />
+              <PencilSquareIcon className={"w-6"} />
               <div className={"hidden md:inline-block"}>Estimates</div>
             </NavLink>
             <NavLink link="/expenses">
@@ -54,6 +55,10 @@ export default function Dashboard({ children }) {
             <NavLink link="/invoices">
               <WalletIcon className={"w-6"} />
               <div className={"hidden md:inline-block"}>Invoices</div>
+            </NavLink>
+            <NavLink link="/tools">
+              <WrenchScrewdriverIcon className={"w-6"} />
+              <div className={"hidden md:inline-block"}>Tools</div>
             </NavLink>
           </div>
 
@@ -66,7 +71,7 @@ export default function Dashboard({ children }) {
         {/* Dashboard Body / Main Content Area */}
         <div
           className={
-            "w-full h-[90vh] overflow-y-auto m-2 text-center text-gray-700"
+            "w-full h-[90vh] overflow-y-auto m-2 text-center flex flex-col items-center text-gray-700"
           }
         >
           {children}
