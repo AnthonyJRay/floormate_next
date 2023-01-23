@@ -55,10 +55,9 @@ export default function Expenses({}) {
         </TextButton>
       </div>
 
-      <div className={"w-full m-4"}>
-        <TableLabels labels={["Date", "Name", "Purpose", "Total"]} />
-
-        <div>
+      <div className={"w-full flex flex-col gap-1"}>
+        <TableLabels labels={["Date", "Name", "Purpose", "Total", ""]} />
+        <div className={"flex flex-col gap-2"}>
           {expenses.map((expense, i) => {
             return (
               <ExpensesBody

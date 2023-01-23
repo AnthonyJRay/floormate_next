@@ -17,53 +17,55 @@ export default function ExpensesBody({
   isEditing = false,
 }) {
   return (
-    <div className={"flex"}>
-      <div className={"flex w-full bg-gray-200"}>
-        {isEditing ? (
-          <ExpenseForm {...{ value }} onChange={onChange} />
+    <>
+      <div className={"flex"}>
+        <div className={"w-full bg-gray-200"}>
+          {isEditing ? (
+            <ExpenseForm {...{ value }} onChange={onChange} />
+          ) : (
+            <ExpenseDisplay {...value} onEdit={onEdit} onDelete={onDelete} />
+          )}
+        </div>
+        {/* {isEditing ? (
+          <div>
+            <div>
+              <IconButton
+                className="bg-green-600 hover:bg-green-500"
+                onClick={() => onSave(value)}
+              >
+                <CheckIcon />
+              </IconButton>
+            </div>
+            <div>
+              <IconButton
+                className="bg-red-500 hover:bg-red-400"
+                onClick={onCancel}
+              >
+                <XMarkIcon />
+              </IconButton>
+            </div>
+          </div>
         ) : (
-          <ExpenseDisplay {...value} />
-        )}
+          <div>
+            <div>
+              <IconButton
+                className="bg-yellow-500 hover:bg-yellow-400"
+                onClick={onEdit}
+              >
+                <PencilSquareIcon />
+              </IconButton>
+            </div>
+            <div>
+              <IconButton
+                className="bg-red-500 hover:bg-red-400"
+                onClick={onDelete}
+              >
+                <TrashIcon />
+              </IconButton>
+            </div>
+          </div>
+        )} */}
       </div>
-      {isEditing ? (
-        <div>
-          <div>
-            <IconButton
-              className="bg-green-600 hover:bg-green-500"
-              onClick={() => onSave(value)}
-            >
-              <CheckIcon />
-            </IconButton>
-          </div>
-          <div>
-            <IconButton
-              className="bg-red-500 hover:bg-red-400"
-              onClick={onCancel}
-            >
-              <XMarkIcon />
-            </IconButton>
-          </div>
-        </div>
-      ) : (
-        <div>
-          <div>
-            <IconButton
-              className="bg-yellow-500 hover:bg-yellow-400"
-              onClick={onEdit}
-            >
-              <PencilSquareIcon />
-            </IconButton>
-          </div>
-          <div>
-            <IconButton
-              className="bg-red-500 hover:bg-red-400"
-              onClick={onDelete}
-            >
-              <TrashIcon />
-            </IconButton>
-          </div>
-        </div>
-      )}
-    </div>
+    </>
   );
 }
