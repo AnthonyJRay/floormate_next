@@ -53,26 +53,23 @@ export default function LineItems({ values, setValues, defaultValues }) {
         </div>
       </TextButton>
       <div className={"w-full"}>
-        <table className={"table-auto"}>
-          <thead>
-            <TableLabels
-              labels={["Name", "Description", "Quantity", "Rate", "Total"]}
-            />
-          </thead>
-          <tbody>
-            {values.map((item, i) => {
-              return (
-                <LineItem
-                  key={i}
-                  className={"w-full my-2"}
-                  data={item}
-                  onChange={(e) => lineItemsHandler(e, i)}
-                  onDelete={() => deleteItem(i)}
-                />
-              );
-            })}
-          </tbody>
-        </table>
+        <div>
+          <TableLabels
+            className={"bg-slate-300 p-2 italic"}
+            labels={["Name", "Description", "Quantity", "Rate", "Total"]}
+          />
+          {values.map((item, i) => {
+            return (
+              <LineItem
+                key={i}
+                className={"w-full my-2"}
+                data={item}
+                onChange={(e) => lineItemsHandler(e, i)}
+                onDelete={() => deleteItem(i)}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );

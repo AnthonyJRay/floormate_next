@@ -1,4 +1,4 @@
-export default function TableLabels({ labels, className }) {
+export default function TableLabels({ labels, className = "" }) {
   return (
     <div className={"flex justify-between text-xs bg-gray-300"}>
       {labels.map((label, i) => {

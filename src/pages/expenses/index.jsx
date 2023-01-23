@@ -102,12 +102,12 @@ export default function Expenses({}) {
   );
 }
 
-export async function getServerSideProps(context) {
-  const res = await fetch("http://localhost:3000/api/data.json");
-  console.log(res);
-  // const data = await res.json();
-  // console.log(data);
-  return {
-    props: { message: `Next.js is awesome` }, // will be passed to the page component as props
-  };
-}
+// export async function getServerSideProps(context) {
+//   const res = await fetch("http://localhost:3000/api/data.json");
+//   console.log(res);
+//   // const data = await res.json();
+//   // console.log(data);
+//   return {
+//     props: { message: `Next.js is awesome` }, // will be passed to the page component as props
+//   };
+// }

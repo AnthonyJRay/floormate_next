@@ -10,8 +10,8 @@ export default function LineItem({
 }) {
   const { name, description, quantity, rate, total } = data;
   return (
-    <tr>
-      <td className={"w-3/12"}>
+    <div className={"flex w-full p-2 gap-2"}>
+      <div className={"flex-grow"}>
         <TextField
           className={className}
           placeholder={"Name"}
@@ -19,8 +19,8 @@ export default function LineItem({
           value={name}
           onChange={onChange}
         />
-      </td>
-      <td>
+      </div>
+      <div className={"flex-grow"}>
         <TextField
           className={className}
           placeholder={"Description"}
@@ -28,35 +28,35 @@ export default function LineItem({
           value={description}
           onChange={onChange}
         />
-      </td>
-      <td className={"w-1/12"}>
+      </div>
+      <div className={"flex-grow"}>
         <TextField
-          type={"number"}
           className={className}
           placeholder={"Quantity"}
           name={"quantity"}
           value={quantity}
           onChange={onChange}
         />
-      </td>
-      <td className={"w-1/12"}>
+      </div>
+      <div className={"flex-grow"}>
         <TextField
-          type={"number"}
           className={className}
           placeholder={"Rate"}
           name={"rate"}
           value={rate}
           onChange={onChange}
         />
-      </td>
-      <td>
-        <span className={"text-green-600 w-2/12"}>${total}</span>
-      </td>
-      <td className={"w-1"}>
-        <IconButton className="bg-red-600" type={"button"} onClick={onDelete}>
-          <TrashIcon />
-        </IconButton>
-      </td>
-    </tr>
+      </div>
+      <div className={"flex-grow"}>
+        <div className={"text-green-600"}>${total}</div>
+      </div>
+      <div className={"flex-grow"}>
+        <div>
+          <IconButton className="bg-red-600" type={"button"} onClick={onDelete}>
+            <TrashIcon />
+          </IconButton>
+        </div>
+      </div>
+    </div>
   );
 }
