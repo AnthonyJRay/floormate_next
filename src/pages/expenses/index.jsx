@@ -2,7 +2,7 @@ import { useState } from "react";
 import { PlusCircleIcon } from "@heroicons/react/24/solid";
 import { TextButton } from "@/ui/button";
 import { TableLabels } from "@/ui/table";
-import ExpensesBody from "@/features/expenses";
+import Expense from "@/features/expenses";
 const currentDate = new Date().toLocaleDateString();
 
 const defaultValues = {
@@ -60,7 +60,7 @@ export default function Expenses({}) {
         <div className={"flex flex-col gap-2"}>
           {expenses.map((expense, i) => {
             return (
-              <ExpensesBody
+              <Expense
                 key={i}
                 value={i === editIndex ? newExpense : expense}
                 isEditing={i === editIndex}
