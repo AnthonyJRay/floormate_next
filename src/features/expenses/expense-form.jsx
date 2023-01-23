@@ -9,10 +9,9 @@ export default function ExpenseForm({
   onSave = () => {},
   onChange = () => {},
 }) {
-  console.log(value);
   const { occurredOn, name, purpose, total } = value;
   return (
-    <div className={"flex"}>
+    <div className={"flex flex-col lg:flex-row p-2 gap-2"}>
       <div className={"flex-grow"}>
         <NewTextField
           type="text"
@@ -49,7 +48,7 @@ export default function ExpenseForm({
           onChange={(e) => onChange({ ...value, total: e.target.value })}
         />
       </div>
-      <div className={"flex flex-1 flex-grow gap-2 justify-center"}>
+      <div className={"flex flex-1 flex-grow gap-1 justify-center"}>
         <div>
           <IconButton
             className="bg-green-600 hover:bg-green-500"

@@ -40,7 +40,7 @@ export default function Expenses({}) {
   ]);
 
   return (
-    <div className={"m-2 text-center text-gray-700"}>
+    <div className={"w-full m-2 text-center text-gray-700"}>
       <h1>Expenses</h1>
       <div className={"flex justify-center my-4"}>
         <TextButton
@@ -56,7 +56,10 @@ export default function Expenses({}) {
       </div>
 
       <div className={"w-full flex flex-col gap-1"}>
-        <TableLabels labels={["Date", "Name", "Purpose", "Total", ""]} />
+        <TableLabels
+          className={"bg-slate-300 p-2 italic"}
+          labels={["Date", "Name", "Purpose", "Total", ""]}
+        />
         <div className={"flex flex-col gap-2"}>
           {expenses.map((expense, i) => {
             return (
@@ -97,4 +100,14 @@ export default function Expenses({}) {
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  const res = await fetch("http://localhost:3000/api/data.json");
+  console.log(res);
+  // const data = await res.json();
+  // console.log(data);
+  return {
+    props: { message: `Next.js is awesome` }, // will be passed to the page component as props
+  };
 }

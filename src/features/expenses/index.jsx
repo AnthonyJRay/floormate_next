@@ -13,7 +13,7 @@ export default function Expense({
   return (
     <>
       <div className={"flex"}>
-        <div className={"w-full bg-gray-200"}>
+        <div className={"w-full bg-slate-200 rounded"}>
           {isEditing ? (
             <ExpenseForm
               {...{ value }}

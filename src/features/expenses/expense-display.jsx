@@ -11,7 +11,7 @@ export default function ExpenseDisplay({
   onDelete,
 }) {
   return (
-    <div className={"flex w-full items-center p-1"}>
+    <div className={"flex flex-col md:flex-row w-full items-center p-1"}>
       <div className={"flex-1 flex-grow"}>{occurredOn}</div>
       <div className={"flex-1 flex-grow"}>{name}</div>
       <div className={"flex-1 flex-grow"}>{purpose}</div>
