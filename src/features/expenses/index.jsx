@@ -21,7 +21,12 @@ export default function ExpensesBody({
       <div className={"flex"}>
         <div className={"w-full bg-gray-200"}>
           {isEditing ? (
-            <ExpenseForm {...{ value }} onChange={onChange} />
+            <ExpenseForm
+              {...{ value }}
+              onSave={onSave}
+              onCancel={onCancel}
+              onChange={onChange}
+            />
           ) : (
             <ExpenseDisplay {...value} onEdit={onEdit} onDelete={onDelete} />
           )}

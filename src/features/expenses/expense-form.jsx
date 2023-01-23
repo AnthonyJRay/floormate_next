@@ -1,9 +1,18 @@
 import NewTextField from "@/ui/form/newtextfield";
+import { IconButton } from "@/ui/button";
+import { XMarkIcon } from "@heroicons/react/24/outline";
+import { CheckIcon } from "@heroicons/react/24/outline";
 
-export default function ExpenseForm({ value, onChange = () => {} }) {
+export default function ExpenseForm({
+  value,
+  onCancel = () => {},
+  onSave = () => {},
+  onChange = () => {},
+}) {
+  console.log(value);
   const { occurredOn, name, purpose, total } = value;
   return (
-    <>
+    <div className={"flex"}>
       <div className={"flex-grow"}>
         <NewTextField
           type="text"
@@ -40,6 +49,24 @@ export default function ExpenseForm({ value, onChange = () => {} }) {
           onChange={(e) => onChange({ ...value, total: e.target.value })}
         />
       </div>
-    </>
+      <div className={"flex flex-1 flex-grow gap-2 justify-center"}>
+        <div>
+          <IconButton
+            className="bg-green-600 hover:bg-green-500"
+            onClick={() => onSave(value)}
+          >
+            <CheckIcon />
+          </IconButton>
+        </div>
+        <div>
+          <IconButton
+            className="bg-red-500 hover:bg-red-400"
+            onClick={onCancel}
+          >
+            <XMarkIcon />
+          </IconButton>
+        </div>
+      </div>
+    </div>
   );
 }

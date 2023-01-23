@@ -1,9 +1,6 @@
 import { IconButton } from "@/ui/button";
-
 import { TrashIcon } from "@heroicons/react/24/outline";
 import { PencilSquareIcon } from "@heroicons/react/24/outline";
-import { XMarkIcon } from "@heroicons/react/24/outline";
-import { CheckIcon } from "@heroicons/react/24/outline";
 
 export default function ExpenseDisplay({
   occurredOn,
