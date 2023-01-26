@@ -3,6 +3,7 @@ import { PlusCircleIcon } from "@heroicons/react/24/solid";
 import { TextButton } from "@/ui/button";
 import { TableLabels } from "@/ui/table";
 import Expense from "@/features/expenses";
+import clientPromise from "../../../lib/mongodb";
 const currentDate = new Date().toLocaleDateString();
 
 const defaultValues = {
@@ -102,12 +103,24 @@ export default function Expenses({}) {
   );
 }
 
-// export async function getServerSideProps(context) {
-//   const res = await fetch("http://localhost:3000/api/data.json");
-//   console.log(res);
-//   // const data = await res.json();
-//   // console.log(data);
-//   return {
-//     props: { message: `Next.js is awesome` }, // will be passed to the page component as props
-//   };
-// }
+export async function getServerSideProps(context) {
+  try {
+    const client = await clientPromise;
+    const db = await client.db("floormate_db");
+
+    const data = await db.collection("expenses").find({});
+    // const a = JSON.stringify(expenses);
+    // const a = data.map((stuff) => {
+    //   const expenses = stuff.expenses;
+    //   return expenses;
+    // });
+    console.log(JSON.parse(JSON.stringify(data)));
+    return {
+      // JSON.parse(JSON.stringify(expenses))
+      // props: { expenses: JSON.parse(JSON.stringify(a)) },
+      props: { expenses: "Test" },
+    };
+  } catch (error) {
+    console.error(error);
+  }
+}
