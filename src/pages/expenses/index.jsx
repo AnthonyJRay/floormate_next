@@ -13,32 +13,36 @@ const defaultValues = {
   total: "",
 };
 
-export default function Expenses({}) {
+export default function Expenses({ expense }) {
   const [editIndex, setEditIndex] = useState(-1);
   const [newExpense, setNewExpense] = useState(defaultValues);
-  const [expenses, setExpenses] = useState([
-    {
-      expenseID: "1",
-      occurredOn: "03/24/2022",
-      name: "Hammer",
-      purpose: "New hammer for installing tackstrip on concrete",
-      total: "$60",
-    },
-    {
-      expenseID: "2",
-      occurredOn: "06/04/2022",
-      name: "Fuel",
-      purpose: "Fuel for work truck.",
-      total: "$135",
-    },
-    {
-      expenseID: "3",
-      occurredOn: "08/18/2022",
-      name: "Tack Strip",
-      purpose: "Tack Strip for carpet basement",
-      total: "$45",
-    },
-  ]);
+  const [expenses, setExpenses] = useState(...expense);
+
+  // [
+  //   {
+  //     expenseID: "1",
+  //     occurredOn: "03/24/2022",
+  //     name: "Hammer",
+  //     purpose: "New hammer for installing tackstrip on concrete",
+  //     total: "$60",
+  //   },
+  //   {
+  //     expenseID: "2",
+  //     occurredOn: "06/04/2022",
+  //     name: "Fuel",
+  //     purpose: "Fuel for work truck.",
+  //     total: "$135",
+  //   },
+  //   {
+  //     expenseID: "3",
+  //     occurredOn: "08/18/2022",
+  //     name: "Tack Strip",
+  //     purpose: "Tack Strip for carpet basement",
+  //     total: "$45",
+  //   },
+  // ];
+
+  console.log(expenses);
 
   return (
     <div className={"w-full m-2 text-center text-gray-700"}>
@@ -108,19 +112,19 @@ export async function getServerSideProps(context) {
     const client = await clientPromise;
     const db = await client.db("floormate_db");
 
-    const data = await db.collection("expenses").find({});
-    // const a = JSON.stringify(expenses);
-    // const a = data.map((stuff) => {
-    //   const expenses = stuff.expenses;
-    //   return expenses;
-    // });
-    console.log(JSON.parse(JSON.stringify(data)));
+    const data = await db.collection("users").find({}).toArray();
+    const testData = data.map((d) => {
+      return d.expenses;
+    });
     return {
-      // JSON.parse(JSON.stringify(expenses))
-      // props: { expenses: JSON.parse(JSON.stringify(a)) },
-      props: { expenses: "Test" },
+      props: { expense: JSON.parse(JSON.stringify(testData)) },
     };
   } catch (error) {
     console.error(error);
+    return {
+      props: {
+        error: JSON.stringify(error, Object.getOwnPropertyNames(error)),
+      },
+    };
   }
 }
