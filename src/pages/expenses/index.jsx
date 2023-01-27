@@ -18,32 +18,6 @@ export default function Expenses({ expense }) {
   const [newExpense, setNewExpense] = useState(defaultValues);
   const [expenses, setExpenses] = useState(...expense);
 
-  // [
-  //   {
-  //     expenseID: "1",
-  //     occurredOn: "03/24/2022",
-  //     name: "Hammer",
-  //     purpose: "New hammer for installing tackstrip on concrete",
-  //     total: "$60",
-  //   },
-  //   {
-  //     expenseID: "2",
-  //     occurredOn: "06/04/2022",
-  //     name: "Fuel",
-  //     purpose: "Fuel for work truck.",
-  //     total: "$135",
-  //   },
-  //   {
-  //     expenseID: "3",
-  //     occurredOn: "08/18/2022",
-  //     name: "Tack Strip",
-  //     purpose: "Tack Strip for carpet basement",
-  //     total: "$45",
-  //   },
-  // ];
-
-  console.log(expenses);
-
   return (
     <div className={"w-full m-2 text-center text-gray-700"}>
       <h1>Expenses</h1>
@@ -80,10 +54,12 @@ export default function Expenses({ expense }) {
                   setEditIndex(-1);
                 }}
                 onSave={(changedExpense) => {
+                  console.log("Changed Expense", changedExpense);
                   setExpenses((prev) => [
-                    ...prev.map((_expense, _i) =>
-                      i !== _i ? _expense : changedExpense
-                    ),
+                    ...prev.map((_expense, _i) => {
+                      console.log("Expense from inside map:", _expense);
+                      return i !== _i ? _expense : changedExpense;
+                    }),
                   ]);
                   setNewExpense(defaultValues);
                   setEditIndex(-1);
@@ -113,11 +89,11 @@ export async function getServerSideProps(context) {
     const db = await client.db("floormate_db");
 
     const data = await db.collection("users").find({}).toArray();
-    const testData = data.map((d) => {
+    const expense = data.map((d) => {
       return d.expenses;
     });
     return {
-      props: { expense: JSON.parse(JSON.stringify(testData)) },
+      props: { expense: JSON.parse(JSON.stringify(expense)) },
     };
   } catch (error) {
     console.error(error);
