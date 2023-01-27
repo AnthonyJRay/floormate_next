@@ -1,4 +1,4 @@
-import LineItem from "@/features/estimates/form/table/lineitem";
+import LineItem from "@/features/estimates/estimate-form/table/lineitem";
 import { TableLabels } from "@/ui/table";
 import { PlusCircleIcon } from "@heroicons/react/24/solid";
 import { TextButton } from "@/ui/button";

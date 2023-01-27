@@ -1,5 +1,5 @@
 import { useState } from "react";
-import EstimateForm from "@/features/estimates/form";
+import EstimateForm from "@/features/estimates/estimate-form";
 
 export default function NewEstimate({ values, setValues, testValues }) {
   const defaultValues = testValues.estimates[0];

@@ -36,7 +36,7 @@ export default function Expenses({ expense }) {
 
       <div className={"w-full flex flex-col gap-1"}>
         <TableLabels
-          className={"bg-slate-300 p-2 italic"}
+          className={"hidden md:block bg-slate-300 p-2 italic"}
           labels={["Date", "Name", "Purpose", "Total", ""]}
         />
         <div className={"flex flex-col gap-2"}>
