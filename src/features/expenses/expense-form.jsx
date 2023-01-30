@@ -7,6 +7,7 @@ export default function ExpenseForm({
   value,
   onCancel = () => {},
   onSave = () => {},
+  onNewExpense = () => {},
   onChange = () => {},
 }) {
   const { occurredOn, name, purpose, total } = value;
@@ -52,7 +53,10 @@ export default function ExpenseForm({
         <div>
           <IconButton
             className="bg-green-600 hover:bg-green-500"
-            onClick={() => onSave(value)}
+            onClick={() => {
+              onSave(value);
+              onNewExpense(value);
+            }}
           >
             <CheckIcon />
           </IconButton>

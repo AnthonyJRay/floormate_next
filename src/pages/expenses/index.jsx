@@ -18,6 +18,20 @@ export default function Expenses({ expense }) {
   const [newExpense, setNewExpense] = useState(defaultValues);
   const [expenses, setExpenses] = useState(...expense);
 
+  async function addExpenseHandler(enteredExpenseData) {
+    const response = await fetch("/api/new-expense", {
+      method: "POST",
+      body: JSON.stringify(enteredExpenseData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await response.json();
+
+    console.log("Console log from the addExpenseHandler", data);
+  }
+
   return (
     <div className={"w-full m-2 text-center text-gray-700"}>
       <h1>Expenses</h1>
@@ -54,15 +68,16 @@ export default function Expenses({ expense }) {
                   setEditIndex(-1);
                 }}
                 onSave={(changedExpense) => {
-                  console.log("Changed Expense", changedExpense);
+                  // console.log("Changed Expense", changedExpense);
                   setExpenses((prev) => [
                     ...prev.map((_expense, _i) => {
-                      console.log("Expense from inside map:", _expense);
+                      // console.log("Expense from inside map:", _expense);
                       return i !== _i ? _expense : changedExpense;
                     }),
                   ]);
                   setNewExpense(defaultValues);
                   setEditIndex(-1);
+                  addExpenseHandler(changedExpense);
                 }}
                 onChange={(value) => {
                   setNewExpense(value);
