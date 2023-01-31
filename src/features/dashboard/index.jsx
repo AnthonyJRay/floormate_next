@@ -32,6 +32,7 @@ export default function Dashboard({ children }) {
         </Link>
         <Link href="/settings">
           <div>
+            <p>Wecome back</p>
             <IconButton>
               <Cog6ToothIcon className={"w-8 text-gray-700"} />
             </IconButton>
@@ -105,6 +106,7 @@ export async function getServerSideProps(context) {
     return {
       redirect: {
         destination: "/",
+        props: session,
       },
     };
   }
