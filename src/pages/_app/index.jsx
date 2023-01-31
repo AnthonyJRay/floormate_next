@@ -1,5 +1,6 @@
 import "./globals.css";
 import { useState } from "react";
+import { SessionProvider } from "next-auth/react";
 import Dashboard from "@/features/dashboard";
 
 const defaultValues = {
@@ -160,16 +161,18 @@ const estimateValues = [
   },
 ];
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps, session }) {
   const [values, setValues] = useState(estimateValues);
   return (
-    <Dashboard>
-      <Component
-        values={values}
-        setValues={setValues}
-        testValues={defaultValues}
-        {...pageProps}
-      />
-    </Dashboard>
+    <SessionProvider session={session}>
+      <Dashboard>
+        <Component
+          values={values}
+          setValues={setValues}
+          testValues={defaultValues}
+          {...pageProps}
+        />
+      </Dashboard>
+    </SessionProvider>
   );
 }

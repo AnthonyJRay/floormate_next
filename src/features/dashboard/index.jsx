@@ -1,4 +1,5 @@
 import Link from "next/Link";
+import { useSession, signIn, signOut, getSession } from "next-auth/react";
 
 import {
   HomeIcon,
@@ -14,6 +15,8 @@ import { IconButton } from "@/ui/button";
 import NavLink from "./nav-link";
 
 export default function Dashboard({ children }) {
+  const { data: session } = useSession();
+  console.log(session);
   return (
     <div className={"h-[100vh] overflow-hidden"}>
       {/* Dashboard Header */}
@@ -61,12 +64,26 @@ export default function Dashboard({ children }) {
               <div className={"hidden md:inline-block"}>Tools</div>
             </NavLink>
           </div>
-
           {/* Login/Log Out button */}
-          <NavLink link="/login" className={"justify-center"}>
-            <ArrowRightOnRectangleIcon className={"w-6"} />
-            <div className={"hidden md:inline-block"}>Log In</div>
-          </NavLink>
+          {!session ? (
+            <NavLink
+              link="/login"
+              className={"justify-center"}
+              onClick={() => signIn()}
+            >
+              <ArrowRightOnRectangleIcon className={"w-6"} />
+              <div className={"hidden md:inline-block"}>Log In</div>
+            </NavLink>
+          ) : (
+            <NavLink
+              link="/logout"
+              className={"justify-center"}
+              onClick={() => signOut()}
+            >
+              <ArrowRightOnRectangleIcon className={"w-6"} />
+              <div className={"hidden md:inline-block"}>Log Out</div>
+            </NavLink>
+          )}
         </div>
         {/* Dashboard Body / Main Content Area */}
         <div
@@ -79,4 +96,16 @@ export default function Dashboard({ children }) {
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  const session = await getSession(context);
+
+  if (session) {
+    return {
+      redirect: {
+        destination: "/",
+      },
+    };
+  }
 }
