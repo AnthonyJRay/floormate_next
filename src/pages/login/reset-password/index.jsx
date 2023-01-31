@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Link from "next/Link";
 import NewTextField from "@/ui/form/newtextfield";
-import withLabel from "@/ui/form/withLabel";
+import withLabel from "@/ui/form/withlabel";
 import TextButton from "@/ui/button";
 
 export default function ResetPassword({}) {
@@ -14,12 +14,12 @@ export default function ResetPassword({}) {
   return (
     <div className={"w-full m-2 text-gray-700 flex flex-col items-center"}>
       <h1>Reset Password</h1>
-      <div className={"bg-gray-200 flex flex-col gap-2 w-1/2 m-10 rounded p-2"}>
+      <div className={"bg-gray-200 flex flex-col gap-2 w-3/4 m-10 rounded p-2"}>
         <UserPassword
           type="text"
           name={"email"}
           placeholder={"User Email"}
-          value={password.old}
+          value={password.oldPassword}
           onChange={(e) => {
             setPassword((prev) => ({
               ...prev,
@@ -34,7 +34,7 @@ export default function ResetPassword({}) {
           type="text"
           name={"password"}
           placeholder={"User Password"}
-          value={password.new}
+          value={password.newPassword}
           onChange={(e) => {
             setPassword((prev) => ({
               ...prev,
@@ -49,7 +49,7 @@ export default function ResetPassword({}) {
           type="text"
           name={"password"}
           placeholder={"User Password"}
-          value={password.new}
+          value={password.newPassword}
           onChange={(e) => {
             setPassword((prev) => ({
               ...prev,

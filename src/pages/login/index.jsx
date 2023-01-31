@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Link from "next/Link";
 import NewTextField from "@/ui/form/newtextfield";
-import withLabel from "@/ui/form/withLabel";
+import withLabel from "@/ui/form/withlabel";
 import TextButton from "@/ui/button";
 
 const UserEmail = withLabel(NewTextField);
@@ -13,7 +13,7 @@ export default function Login({}) {
   return (
     <div className={"w-full m-2 text-gray-700 flex flex-col items-center"}>
       <h1>Login</h1>
-      <div className={"bg-gray-200 flex flex-col gap-2 w-1/2 m-10 rounded p-2"}>
+      <div className={"bg-gray-200 flex flex-col gap-2 w-3/4 m-10 rounded p-2"}>
         <UserEmail
           type="text"
           name={"email"}
