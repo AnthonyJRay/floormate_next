@@ -1,0 +1,21 @@
+import { MongoClient } from "mongodb";
+
+export default async function handler(req, res) {
+  if (req.method === "POST") {
+    const data = req.body;
+    console.log("This is the data from the request body", data);
+
+    const client = await MongoClient.connect(process.env.MONGODB_URI);
+    const db = client.db();
+
+    // const expensesCollection = db.collection("expenses");
+
+    // const result = await expensesCollection.insertOne(data);
+
+    console.log("This is the data coming from the request", data);
+
+    client.close();
+
+    res.status(201).json({ data });
+  }
+}

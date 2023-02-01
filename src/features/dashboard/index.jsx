@@ -16,7 +16,6 @@ import NavLink from "./nav-link";
 
 export default function Dashboard({ children }) {
   const { data: session } = useSession();
-  console.log(session);
   return (
     <div className={"h-[100vh] overflow-hidden"}>
       {/* Dashboard Header */}
@@ -30,14 +29,20 @@ export default function Dashboard({ children }) {
             Floor<span className={"border-4 m-1"}>Mate</span>
           </h1>
         </Link>
-        <Link href="/settings">
-          <div>
-            <p>Wecome back</p>
+        <div className={"flex items-center gap-2"}>
+          {session ? (
+            <p>Welcome back, {session.user.name}</p>
+          ) : (
+            <>
+              <p>Log in,</p> <Link href={"/login"}>here</Link>
+            </>
+          )}
+          <Link href="/settings">
             <IconButton>
               <Cog6ToothIcon className={"w-8 text-gray-700"} />
             </IconButton>
-          </div>
-        </Link>
+          </Link>
+        </div>
       </div>
 
       {/* Dashboard Sidebar / NavLinks */}
@@ -99,15 +104,14 @@ export default function Dashboard({ children }) {
   );
 }
 
-export async function getServerSideProps(context) {
-  const session = await getSession(context);
+// export async function getStaticProps(context) {
+//   const session = await getSession(context);
+//   console.log("Session", session);
 
-  if (session) {
-    return {
-      redirect: {
-        destination: "/",
-        props: session,
-      },
-    };
-  }
-}
+//   return {
+//     props: { session },
+//     redirect: {
+//       destination: "/",
+//     },
+//   };
+// }
