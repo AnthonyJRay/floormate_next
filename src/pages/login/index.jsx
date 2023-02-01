@@ -1,9 +1,10 @@
 import { getSession } from "next-auth/react";
 import clientPromise from "../../../lib/mongodb";
 
-export default function Login({ session }) {
+export default function Login({ session, user }) {
   // const { data: session } = useSession();
   // return <h1>hello</h1>;
+  console.log(user);
   if (session) {
     return (
       <div>
@@ -21,38 +22,39 @@ export default function Login({ session }) {
 
 export async function getServerSideProps(context) {
   const session = await getSession(context);
-  const email = session.user.email;
+
   // const email = "test@example.com";
-  const client = await clientPromise;
-  const db = await client.db("floormate_db");
-  const user = await db.collection("users").findOne({ email });
+
   if (session) {
+    const client = await clientPromise;
+    const db = await client.db("floormate_db");
+    const email = session.user.email;
+    const user = session.user;
+    const isUser = await db.collection("users").findOne({ email });
     return user
       ? {
-          props: { user: JSON.parse(JSON.stringify(user)), session },
+          props: { user: JSON.parse(JSON.stringify(isUser)), session },
+          // redirect: {
+          //   destination: "/",
+          // },
         }
       : {
           props: {
             user: JSON.parse(
-              JSON.stringify(await db.collection("users").insertOne({ email }))
+              JSON.stringify(await db.collection("users").insertOne({ user }))
             ),
             session,
           },
+          // redirect: {
+          //   destination: "/",
+          // },
         };
+  } else {
+    return {
+      props: {},
+      // redirect: {
+      //   destination: "/",
+      // },
+    };
   }
 }
-// if (user) {
-//   console.log("User already exists");
-//   return user;
-// } else {
-//   const newUser = await db.collection("users").insertOne({ email });
-//   console.log("New User inserted!", newUser);
-//   return newUser;
-// }
-// const data = await db.collection("users").insertOne({ email });
-// return {
-//   props: { session },
-//   // redirect: {
-//   //   destination: "/",
-//   // },
-// };
