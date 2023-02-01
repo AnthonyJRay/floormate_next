@@ -161,7 +161,10 @@ const estimateValues = [
   },
 ];
 
-export default function App({ Component, pageProps, session }) {
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}) {
   const [values, setValues] = useState(estimateValues);
   return (
     <SessionProvider session={session}>

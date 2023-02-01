@@ -29,7 +29,7 @@ export default function Expenses({ expense }) {
 
     const data = await response.json();
 
-    console.log("Console log from the addExpenseHandler", data);
+    // console.log("Console log from the addExpenseHandler", data);
   }
 
   return (
