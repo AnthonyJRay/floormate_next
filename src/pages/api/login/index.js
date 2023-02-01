@@ -1,21 +1,23 @@
-import { MongoClient } from "mongodb";
+import clientPromise from "../../lib/mongodb";
 
-export default async function handler(req, res) {
-  if (req.method === "POST") {
-    const data = req.body;
-    console.log("This is the data from the request body", data);
+export default async (req, res) => {
+  try {
+    const client = await clientPromise;
+    const db = client.db("floormate_db");
+    console.log(req.body);
 
-    const client = await MongoClient.connect(process.env.MONGODB_URI);
-    const db = client.db();
+    // const isUser = await db
+    //   .collection("users")
+    //   .findOut({ email: JSON.stringify(session.users) });
 
-    // const expensesCollection = db.collection("expenses");
+    // const post = await db.collection("users").insertOne({
+    //   title,
+    //   content,
+    // });
 
-    // const result = await expensesCollection.insertOne(data);
-
-    console.log("This is the data coming from the request", data);
-
-    client.close();
-
-    res.status(201).json({ data });
+    // res.json(post);
+  } catch (e) {
+    console.error(e);
+    throw new Error(e).message;
   }
-}
+};

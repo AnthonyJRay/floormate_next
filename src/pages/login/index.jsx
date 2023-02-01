@@ -23,38 +23,24 @@ export default function Login({ session, user }) {
 export async function getServerSideProps(context) {
   const session = await getSession(context);
 
-  // const email = "test@example.com";
-
+  const client = await clientPromise;
+  const db = await client.db("floormate_db");
   if (session) {
-    const client = await clientPromise;
-    const db = await client.db("floormate_db");
-    const email = session.user.email;
     const user = session.user;
-    const isUser = await db.collection("users").findOne({ email });
-    return user
-      ? {
-          props: { user: JSON.parse(JSON.stringify(isUser)), session },
-          // redirect: {
-          //   destination: "/",
-          // },
-        }
-      : {
-          props: {
-            user: JSON.parse(
-              JSON.stringify(await db.collection("users").insertOne({ user }))
-            ),
-            session,
-          },
-          // redirect: {
-          //   destination: "/",
-          // },
-        };
-  } else {
-    return {
-      props: {},
-      // redirect: {
-      //   destination: "/",
-      // },
-    };
+    const email = JSON.stringify(user.email);
+    console.log("This is the email value", email);
+    const isUser = await db.collection("users").findOne({ user: { email } });
+    console.log("Does this user exist", isUser);
+    // isUser ? isUser : await db.collection("users").insertOne({ user });
   }
+
+  console.log(session);
+  return {
+    props: {
+      session,
+    },
+    // redirect: {
+    //   destination: "/"
+    // }
+  };
 }

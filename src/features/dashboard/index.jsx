@@ -38,9 +38,11 @@ export default function Dashboard({ children }) {
             </>
           )}
           <Link href="/settings">
-            <IconButton>
-              <Cog6ToothIcon className={"w-8 text-gray-700"} />
-            </IconButton>
+            <>
+              <IconButton>
+                <Cog6ToothIcon className={"w-8 text-gray-700"} />
+              </IconButton>
+            </>
           </Link>
         </div>
       </div>
