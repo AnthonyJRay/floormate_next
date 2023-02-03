@@ -16,7 +16,6 @@ import NavLink from "./nav-link";
 
 export default function Dashboard({ children }) {
   const { data: session } = useSession();
-  console.log("This is the session in Dashboard", session);
   return (
     <div className={"h-[100vh] overflow-hidden"}>
       {/* Dashboard Header */}
@@ -105,14 +104,4 @@ export default function Dashboard({ children }) {
       </div>
     </div>
   );
-}
-
-export async function getServerSideProps(context) {
-  const sessionData = await getSession(context);
-  console.log("Session Data", sessionData);
-  return {
-    props: {
-      session: sessionData,
-    },
-  };
 }

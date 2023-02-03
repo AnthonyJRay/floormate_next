@@ -5,6 +5,7 @@ import { TableLabels } from "@/ui/table";
 import Expense from "@/features/expenses";
 import clientPromise from "../../../lib/mongodb";
 const currentDate = new Date().toLocaleDateString();
+import { getData } from "@/pages/api/expenses";
 
 const defaultValues = {
   occurredOn: currentDate,
@@ -19,6 +20,8 @@ export default function Expenses({ expense }) {
   const [expenses, setExpenses] = useState(...expense);
 
   async function addExpenseHandler(enteredExpenseData) {
+    const newData = getData();
+    console.log(newData);
     const response = await fetch("/api/new-expense", {
       method: "POST",
       body: JSON.stringify(enteredExpenseData),
@@ -28,8 +31,6 @@ export default function Expenses({ expense }) {
     });
 
     const data = await response.json();
-
-    // console.log("Console log from the addExpenseHandler", data);
   }
 
   return (

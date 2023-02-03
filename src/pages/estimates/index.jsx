@@ -1,7 +1,8 @@
+import Link from "next/Link";
+import { getSession, useSession } from "next-auth/react";
 import { PlusCircleIcon } from "@heroicons/react/24/solid";
 import EstimateDisplay from "@/features/estimates/estimate-display";
 import { TextButton } from "@/ui/button";
-import Link from "next/Link";
 
 export default function Estimates({ values, setValues }) {
   function onDelete(i) {
@@ -11,6 +12,8 @@ export default function Estimates({ values, setValues }) {
       });
     });
   }
+  const { data: session } = useSession();
+  console.log(session);
 
   return (
     <div className="w-full m-2 text-center text-gray-700">
@@ -38,4 +41,14 @@ export default function Estimates({ values, setValues }) {
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  const sessionData = await getSession(context);
+  console.log("Session Data", sessionData);
+  return {
+    props: {
+      session: sessionData,
+    },
+  };
 }
