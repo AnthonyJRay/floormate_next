@@ -1,12 +1,7 @@
-// import { authOptions } from "./api/auth/[...nextauth]";
-// import { getServerSession } from "next-auth/next";
-// import { useSession } from "next-auth/react";
 import { getSession } from "next-auth/react";
-// import { getServerSideProps } from "./expenses";
+import { getUser } from "@/api/user";
 
 export default function Homepage({}) {
-  // const { data: session } = useSession();
-
   return (
     <div className={"w-full m-2 text-center text-gray-700"}>
       <h1 className={"text-center"}>Dashboard</h1>
@@ -15,6 +10,12 @@ export default function Homepage({}) {
 }
 
 export async function getServerSideProps(context) {
+  const sessionData = await getSession(context);
+
+  if (sessionData) {
+    const userData = await getUser(sessionData);
+    console.log("User Data coming from API/USER", userData);
+  }
   return {
     props: {
       session: await getSession(context),

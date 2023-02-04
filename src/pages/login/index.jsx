@@ -1,21 +1,8 @@
 // import { getSession } from "next-auth/react";
 // import clientPromise from "../../../lib/mongodb";
 
-export default function Login({ session }) {
+export default function Login() {
   return <></>;
-  // if (session) {
-  //   return (
-  //     <div>
-  //       <p>Welcome back, {session.user.name}</p>
-  //     </div>
-  //   );
-  // } else {
-  //   return (
-  //     <div>
-  //       <p>You are not signed in.</p>
-  //     </div>
-  //   );
-  // }
 }
 
 // export async function getServerSideProps(context) {
@@ -28,16 +15,15 @@ export default function Login({ session }) {
 //     const isUser = await db
 //       .collection("users")
 //       .findOne({ "user.email": email });
-//     // console.log("Is this a user", isUser);
 //     isUser ? isUser : await db.collection("users").insertOne({ user });
 //     return {
 //       props: {
 //         session,
 //         user: JSON.parse(JSON.stringify(isUser)),
 //       },
-//       redirect: {
-//         destination: "/",
-//       },
+//       // redirect: {
+//       //   destination: "/",
+//       // },
 //     };
 //   } else {
 //     return {
