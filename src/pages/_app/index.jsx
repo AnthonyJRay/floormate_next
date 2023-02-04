@@ -166,7 +166,6 @@ export default function App({
   pageProps: { session, ...pageProps },
 }) {
   const [values, setValues] = useState(estimateValues);
-  // console.log("From _app", session);
   return (
     <SessionProvider session={session}>
       <Dashboard>

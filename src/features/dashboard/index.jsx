@@ -74,11 +74,7 @@ export default function Dashboard({ children }) {
           </div>
           {/* Login/Log Out button */}
           {!session ? (
-            <NavLink
-              link="/login"
-              className={"justify-center"}
-              onClick={() => signIn()}
-            >
+            <NavLink className={"justify-center"} onClick={() => signIn()}>
               <ArrowRightOnRectangleIcon className={"w-6"} />
               <div className={"hidden md:inline-block"}>Log In</div>
             </NavLink>

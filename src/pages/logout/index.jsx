@@ -5,3 +5,12 @@ export default function Logout() {
     </>
   );
 }
+
+export async function getServerSideProps(context) {
+  return {
+    props: {},
+    redirect: {
+      destination: "/",
+    },
+  };
+}
