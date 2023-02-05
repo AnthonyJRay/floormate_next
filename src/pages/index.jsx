@@ -17,10 +17,6 @@ export default function Homepage({}) {
 
 export async function getServerSideProps(context) {
   const sessionData = await getSession(context);
-
-  sessionData
-    ? console.log("Session data exists", sessionData)
-    : console.log("No session data");
   if (sessionData) {
     const userData = await getUser(sessionData);
     console.log("user data from mongo", userData);
@@ -32,11 +28,9 @@ export async function getServerSideProps(context) {
         destination: `/${userData._id}`,
       },
     };
+  } else {
+    return {
+      props: {},
+    };
   }
-  return {
-    props: {},
-    // redirect: {
-    //   destination: "/",
-    // },
-  };
 }

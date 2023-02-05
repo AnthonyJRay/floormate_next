@@ -14,8 +14,10 @@ import {
 import { IconButton } from "@/ui/button";
 import NavLink from "./nav-link";
 
-export default function Dashboard({ children }) {
+export default function Dashboard({ children, params }) {
   const { data: session } = useSession();
+  console.log(params);
+  console.log("Session data from Dashboard", session);
   return (
     <div className={"h-[100vh] overflow-hidden"}>
       {/* Dashboard Header */}
@@ -38,11 +40,11 @@ export default function Dashboard({ children }) {
             </>
           )}
           <Link href="/settings">
-            <>
+            <div>
               <IconButton>
                 <Cog6ToothIcon className={"w-8 text-gray-700"} />
               </IconButton>
-            </>
+            </div>
           </Link>
         </div>
       </div>
@@ -80,9 +82,9 @@ export default function Dashboard({ children }) {
             </NavLink>
           ) : (
             <NavLink
-              link="/logout"
+              link="/"
               className={"justify-center"}
-              onClick={() => signOut()}
+              onClick={() => signOut({ callbackUrl: "/" })}
             >
               <ArrowRightOnRectangleIcon className={"w-6"} />
               <div className={"hidden md:inline-block"}>Log Out</div>
