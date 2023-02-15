@@ -69,10 +69,8 @@ export default function Expenses({ expense }) {
                   setEditIndex(-1);
                 }}
                 onSave={(changedExpense) => {
-                  // console.log("Changed Expense", changedExpense);
                   setExpenses((prev) => [
                     ...prev.map((_expense, _i) => {
-                      // console.log("Expense from inside map:", _expense);
                       return i !== _i ? _expense : changedExpense;
                     }),
                   ]);
