@@ -3,9 +3,10 @@ import { PlusCircleIcon } from "@heroicons/react/24/solid";
 import { TextButton } from "@/ui/button";
 import { TableLabels } from "@/ui/table";
 import Expense from "@/features/expenses";
-import clientPromise from "../../../lib/dbConnect";
+import dbConnect from "../../../lib/dbConnect";
 const currentDate = new Date().toLocaleDateString();
 import { getData } from "@/pages/api/expenses";
+import ExpenseModel from "../../../models/Expense";
 
 const defaultValues = {
   occurredOn: currentDate,
@@ -14,10 +15,35 @@ const defaultValues = {
   total: "",
 };
 
-export default function Expenses({ expense }) {
+export async function getServerSideProps(context) {
+  await dbConnect();
+  try {
+    const data = await ExpenseModel.find({});
+    const expensesList = data.map((d) => {
+      const expense = d.toObject();
+      expense._id = expense._id.toString();
+      return expense;
+    });
+    console.log("expensesList", expensesList);
+    return {
+      props: { expensesList },
+      // props: { expense: JSON.parse(JSON.stringify(expense)) },
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      props: {
+        error: JSON.stringify(error, Object.getOwnPropertyNames(error)),
+      },
+    };
+  }
+}
+
+export default function Expenses({ expensesList }) {
   const [editIndex, setEditIndex] = useState(-1);
   const [newExpense, setNewExpense] = useState(defaultValues);
-  const [expenses, setExpenses] = useState(...expense);
+  const [expenses, setExpenses] = useState(expensesList);
+  console.log("Real Expenses List?", expensesList);
 
   async function addExpenseHandler(enteredExpenseData) {
     const newData = getData();
@@ -56,10 +82,12 @@ export default function Expenses({ expense }) {
         />
         <div className={"flex flex-col gap-2"}>
           {expenses.map((expense, i) => {
+            console.log("expensesList", expense);
             return (
               <Expense
                 key={i}
-                value={i === editIndex ? newExpense : expense}
+                // value={i === editIndex ? newExpense : expense}
+                value={expense}
                 isEditing={i === editIndex}
                 onEdit={() => {
                   setNewExpense(expense);
@@ -95,26 +123,4 @@ export default function Expenses({ expense }) {
       </div>
     </div>
   );
-}
-
-export async function getServerSideProps(context) {
-  try {
-    const client = await clientPromise;
-    const db = await client.db("floormate_db");
-
-    const data = await db.collection("users").find({}).toArray();
-    const expense = data.map((d) => {
-      return d.expenses;
-    });
-    return {
-      props: { expense: JSON.parse(JSON.stringify(expense)) },
-    };
-  } catch (error) {
-    console.error(error);
-    return {
-      props: {
-        error: JSON.stringify(error, Object.getOwnPropertyNames(error)),
-      },
-    };
-  }
 }

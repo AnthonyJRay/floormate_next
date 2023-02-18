@@ -10,6 +10,7 @@ export default function Expense({
   onDelete = () => {},
   isEditing = false,
 }) {
+  console.log("Value:", value);
   return (
     <>
       <div className={"flex"}>
