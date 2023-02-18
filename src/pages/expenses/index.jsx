@@ -3,7 +3,7 @@ import { PlusCircleIcon } from "@heroicons/react/24/solid";
 import { TextButton } from "@/ui/button";
 import { TableLabels } from "@/ui/table";
 import Expense from "@/features/expenses";
-import clientPromise from "../../../lib/mongodb";
+import clientPromise from "../../../lib/dbConnect";
 const currentDate = new Date().toLocaleDateString();
 import { getData } from "@/pages/api/expenses";
 

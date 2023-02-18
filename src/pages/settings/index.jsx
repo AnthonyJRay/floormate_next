@@ -4,7 +4,7 @@ import withLabel from "@/ui/form/withlabel";
 import { TextButton } from "@/ui/button";
 import { Success } from "@/ui/alerts";
 
-import clientPromise from "../../../lib/mongodb";
+import clientPromise from "../../../lib/dbConnect";
 
 // const defaultValues = {
 //   firstName: "",
