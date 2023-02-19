@@ -5,7 +5,6 @@ import { TableLabels } from "@/ui/table";
 import Expense from "@/features/expenses";
 import dbConnect from "../../../lib/dbConnect";
 const currentDate = new Date().toLocaleDateString();
-import { getData } from "@/pages/api/expenses";
 import ExpenseModel from "../../../models/Expense";
 
 const defaultValues = {
@@ -43,11 +42,9 @@ export default function Expenses({ expensesList }) {
   const [editIndex, setEditIndex] = useState(-1);
   const [newExpense, setNewExpense] = useState(defaultValues);
   const [expenses, setExpenses] = useState(expensesList);
-  console.log("Real Expenses List?", expensesList);
 
   async function addExpenseHandler(enteredExpenseData) {
     const newData = getData();
-    console.log(newData);
     const response = await fetch("/api/new-expense", {
       method: "POST",
       body: JSON.stringify(enteredExpenseData),
@@ -58,6 +55,7 @@ export default function Expenses({ expensesList }) {
 
     const data = await response.json();
   }
+  console.log("Does expensesList have data?", expensesList);
 
   return (
     <div className={"w-full m-2 text-center text-gray-700"}>
@@ -81,13 +79,13 @@ export default function Expenses({ expensesList }) {
           labels={["Date", "Name", "Purpose", "Total", ""]}
         />
         <div className={"flex flex-col gap-2"}>
-          {expenses.map((expense, i) => {
+          {expensesList.map((expense, i) => {
             console.log("expensesList", expense);
             return (
               <Expense
                 key={i}
-                // value={i === editIndex ? newExpense : expense}
-                value={expense}
+                value={i === editIndex ? newExpense : expense}
+                // value={expense}
                 isEditing={i === editIndex}
                 onEdit={() => {
                   setNewExpense(expense);
@@ -96,25 +94,33 @@ export default function Expenses({ expensesList }) {
                 onCancel={() => {
                   setEditIndex(-1);
                 }}
-                onSave={(changedExpense) => {
-                  setExpenses((prev) => [
-                    ...prev.map((_expense, _i) => {
-                      return i !== _i ? _expense : changedExpense;
-                    }),
-                  ]);
-                  setNewExpense(defaultValues);
-                  setEditIndex(-1);
-                  addExpenseHandler(changedExpense);
+                onSave={async (changedExpense) => {
+                  console.log("Changed Expense", changedExpense);
+                  // setExpenses((prev) => [
+                  //   ...prev.map((_expense, _i) => {
+                  //     return i !== _i ? _expense : changedExpense;
+                  //   }),
+                  // ]);
+                  // setNewExpense(defaultValues);
+                  // setEditIndex(-1);
+                  // addExpenseHandler(changedExpense);
+                  await fetch(`/api/expenses/${expense._id}`, {
+                    method: "PUT",
+                    body: JSON.stringify(changedExpense),
+                  });
                 }}
                 onChange={(value) => {
                   setNewExpense(value);
                 }}
-                onDelete={() => {
-                  setExpenses((prev) => [
-                    ...prev.filter((_, _i) => {
-                      return i !== _i;
-                    }),
-                  ]);
+                onDelete={async () => {
+                  // setExpenses((prev) => [
+                  //   ...prev.filter((_, _i) => {
+                  //     return i !== _i;
+                  //   }),
+                  // ]);
+                  await fetch(`/api/expenses/${expense._id}`, {
+                    method: "DELETE",
+                  });
                 }}
               />
             );

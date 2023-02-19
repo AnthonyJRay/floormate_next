@@ -16,8 +16,8 @@ import NavLink from "./nav-link";
 
 export default function Dashboard({ children, params }) {
   const { data: session } = useSession();
-  console.log(params);
-  console.log("Session data from Dashboard", session);
+  // console.log("Does params contain any data?", params);
+  // console.log("Session data from Dashboard", session);
   return (
     <div className={"h-[100vh] overflow-hidden"}>
       {/* Dashboard Header */}
