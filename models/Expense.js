@@ -1,20 +1,20 @@
 import mongoose from "mongoose";
 
 const ExpenseSchema = new mongoose.Schema({
-  expenseDate: {
+  occurredOn: {
     type: String,
     required: [true, "Please add an expense date"],
   },
-  expenseName: {
+  name: {
     type: String,
     required: [true, "Please add an expense name"],
   },
-  expensePurpose: {
+  purpose: {
     type: String,
     required: [true, "Please add an expense purpose"],
   },
-  expenseAmount: {
-    type: Number,
+  total: {
+    type: String,
     required: [true, "Please add an expense amount"],
   },
 });

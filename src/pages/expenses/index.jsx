@@ -63,9 +63,14 @@ export default function Expenses({ expensesList }) {
       <div className={"flex justify-center my-4"}>
         <TextButton
           className="flex gap-1 py-1 bg-green-600 hover:bg-green-500"
-          onClick={() => {
-            setExpenses([defaultValues, ...expenses]);
+          onClick={async (newExpense) => {
+            // setExpenses([defaultValues, ...expenses]);
             setEditIndex(0);
+            console.log("Add Expense Clicked", newExpense);
+            // await fetch(`/api/expenses/new-expense`, {
+            //   method: "POST",
+            //   body: newExpense,
+            // });
           }}
         >
           <PlusCircleIcon className="text-white w-5" />
@@ -95,7 +100,10 @@ export default function Expenses({ expensesList }) {
                   setEditIndex(-1);
                 }}
                 onSave={async (changedExpense) => {
-                  console.log("Changed Expense", changedExpense);
+                  console.log(
+                    "Changed Expense in the onSave function",
+                    changedExpense
+                  );
                   // setExpenses((prev) => [
                   //   ...prev.map((_expense, _i) => {
                   //     return i !== _i ? _expense : changedExpense;
