@@ -126,6 +126,7 @@ export default function Expenses({ expensesList }) {
                   //     return i !== _i;
                   //   }),
                   // ]);
+                  console.log("DELETED");
                   await fetch(`/api/expenses/${expense._id}`, {
                     method: "DELETE",
                   });

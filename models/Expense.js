@@ -1,13 +1,13 @@
 import mongoose from "mongoose";
 
 const ExpenseSchema = new mongoose.Schema({
-  occurredOn: {
-    type: String,
-    required: [true, "Please add an expense date"],
-  },
   name: {
     type: String,
     required: [true, "Please add an expense name"],
+  },
+  occurredOn: {
+    type: String,
+    required: [true, "Please add an expense date"],
   },
   purpose: {
     type: String,
