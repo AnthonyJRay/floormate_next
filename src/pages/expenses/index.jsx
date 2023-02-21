@@ -23,10 +23,8 @@ export async function getServerSideProps(context) {
       expense._id = expense._id.toString();
       return expense;
     });
-    console.log("expensesList", expensesList);
     return {
       props: { expensesList },
-      // props: { expense: JSON.parse(JSON.stringify(expense)) },
     };
   } catch (error) {
     console.error(error);
@@ -43,11 +41,11 @@ export default function Expenses({ expensesList }) {
   const [newExpense, setNewExpense] = useState(defaultValues);
   const [expenses, setExpenses] = useState(expensesList);
 
-  async function addExpenseHandler(enteredExpenseData) {
-    const newData = getData();
-    const response = await fetch("/api/new-expense", {
+  console.log("newExpense", newExpense);
+  async function addExpenseHandler() {
+    const response = await fetch("/api/expenses", {
       method: "POST",
-      body: JSON.stringify(enteredExpenseData),
+      body: JSON.stringify(newExpense),
       headers: {
         "Content-Type": "application/json",
       },
@@ -55,7 +53,6 @@ export default function Expenses({ expensesList }) {
 
     const data = await response.json();
   }
-  console.log("Does expensesList have data?", expensesList);
 
   return (
     <div className={"w-full m-2 text-center text-gray-700"}>
@@ -63,14 +60,10 @@ export default function Expenses({ expensesList }) {
       <div className={"flex justify-center my-4"}>
         <TextButton
           className="flex gap-1 py-1 bg-green-600 hover:bg-green-500"
-          onClick={async (newExpense) => {
-            // setExpenses([defaultValues, ...expenses]);
+          onClick={async () => {
+            setExpenses([newExpense, ...expenses]);
             setEditIndex(0);
-            console.log("Add Expense Clicked", newExpense);
-            // await fetch(`/api/expenses/new-expense`, {
-            //   method: "POST",
-            //   body: newExpense,
-            // });
+            // addExpenseHandler();
           }}
         >
           <PlusCircleIcon className="text-white w-5" />
@@ -84,8 +77,7 @@ export default function Expenses({ expensesList }) {
           labels={["Date", "Name", "Purpose", "Total", ""]}
         />
         <div className={"flex flex-col gap-2"}>
-          {expensesList.map((expense, i) => {
-            console.log("expensesList", expense);
+          {expenses.map((expense, i) => {
             return (
               <Expense
                 key={i}
@@ -100,21 +92,16 @@ export default function Expenses({ expensesList }) {
                   setEditIndex(-1);
                 }}
                 onSave={async (changedExpense) => {
-                  console.log(
-                    "Changed Expense in the onSave function",
-                    changedExpense
-                  );
-                  // setExpenses((prev) => [
-                  //   ...prev.map((_expense, _i) => {
-                  //     return i !== _i ? _expense : changedExpense;
-                  //   }),
-                  // ]);
-                  // setNewExpense(defaultValues);
-                  // setEditIndex(-1);
-                  // addExpenseHandler(changedExpense);
+                  if (!changedExpense._id) {
+                    await fetch(`/api/expenses`, {
+                      method: "POST",
+                      body: changedExpense,
+                    });
+                  }
+                  setEditIndex(-1);
                   await fetch(`/api/expenses/${expense._id}`, {
                     method: "PUT",
-                    body: JSON.stringify(changedExpense),
+                    body: changedExpense,
                   });
                 }}
                 onChange={(value) => {

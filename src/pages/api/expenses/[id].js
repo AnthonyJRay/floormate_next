@@ -8,6 +8,7 @@ export default async function handler(req, res) {
   const {
     query: { id },
     method,
+    body,
   } = req;
 
   await dbConnect();
@@ -15,8 +16,11 @@ export default async function handler(req, res) {
   switch (method) {
     case "POST":
       try {
-        console.log("req.body", req.body);
-      } catch (error) {}
+        const expense = await ExpenseModel.create(body);
+        res.status(201).json({ success: true, data: expense });
+      } catch (error) {
+        console.log(error);
+      }
       break;
 
     case "GET":
@@ -33,31 +37,36 @@ export default async function handler(req, res) {
 
     case "PUT":
       try {
-        console.log("req.body", req.body);
-        console.log("id", id);
         // const expense = await ExpenseModel.find({}).exists({ id });
 
         // const expense = await ExpenseModel.find({});
-        // const expense = await ExpenseModel.findByIdAndUpdate(id, req.body, {
-        //   new: true,
-        //   runValidators: true,
-        // });
-
-        const expense = await ExpenseModel.findByIdAndUpdate(
-          id,
-          { name: "test" },
+        // find a document with that a matching id and update it with the req.body
+        const expense = await ExpenseModel.findOneAndUpdate(
+          { _id: id },
+          req.body,
           {
             new: true,
+            runValidators: true,
           }
         );
 
-        // console.log("Expense in the PUT call", expense);
-        if (!expense) {
-          return res
-            .status(400)
-            .json({ success: false, data: "No expense found" });
-        }
-        console.log("Is this expense working", expense);
+        // const expense = await ExpenseModel.findByIdAndUpdate(
+        //   { _id: id },
+        //   req.body,
+        //   {
+        //     new: true,
+        //     runValidators: true,
+        //   }
+        // );
+
+        console.log("Expense in the PUT call", expense);
+
+        // if (!expense) {
+        //   return res
+        //     .status(400)
+        //     .json({ success: false, data: "No expense found" });
+        // }
+
         res.status(200).json({ success: true, data: expense });
       } catch (error) {
         return res.status(400).json({ success: false });

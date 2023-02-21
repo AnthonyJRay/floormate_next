@@ -1,13 +1,13 @@
 import mongoose from "mongoose";
 
 const ExpenseSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, "Please add an expense name"],
-  },
   occurredOn: {
     type: String,
     required: [true, "Please add an expense date"],
+  },
+  name: {
+    type: String,
+    required: [true, "Please add an expense name"],
   },
   purpose: {
     type: String,
@@ -20,4 +20,4 @@ const ExpenseSchema = new mongoose.Schema({
 });
 
 export default mongoose.models.Expense ||
-  mongoose.model("Expense", ExpenseSchema);
+  mongoose.model("expenses", ExpenseSchema, "expenses");
